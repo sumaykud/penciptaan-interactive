@@ -36,12 +36,11 @@ void main(){
   vec3 col = day * (1.0 - clSh * 0.45) * lit * 1.15;
   col = mix(col, vec3(1.0, 0.98, 0.96) * pow(lit, 0.9) * 0.95, cl * 0.9);
   vec3 H = normalize(L + Vd);
-  col += vec3(1.0, 0.88, 0.7) * pow(max(dot(N, H), 0.0), 140.0) * spec * (1.0 - cl) * 0.7 * step(0.0, ndl);
+  col += vec3(1.0, 0.88, 0.7) * pow(max(dot(N, H), 0.0), 220.0) * spec * (1.0 - cl) * 0.35 * step(0.0, ndl);
   float nightMask = 1.0 - smoothstep(-0.25, 0.08, ndl);
-  col += night * vec3(1.0, 0.72, 0.42) * nightMask * 1.4 * (1.0 - cl * 0.8);
+  col += max(night - 0.06, 0.0) * vec3(1.0, 0.72, 0.42) * nightMask * 1.8 * (1.0 - cl * 0.8);
   float fr = pow(1.0 - max(dot(N, Vd), 0.0), 3.0);
   col += vec3(0.32, 0.58, 1.0) * fr * smoothstep(-0.35, 0.5, ndl) * 0.7;
-  col += vec3(1.0, 0.42, 0.18) * exp(-pow(ndl * 9.0, 2.0)) * 0.025;
   gl_FragColor = vec4(col * uOpacity * uReady, 1.0);
 }`;
 const ATM_VS = /* glsl */ `
@@ -122,6 +121,7 @@ export class ActBumi extends Act {
     const u = this.earthMat.uniforms;
     const load = (url, key, srgb) => new Promise((res) => L.load(url, (t) => {
       if (srgb) t.colorSpace = THREE.SRGBColorSpace;
+      t.wrapS = THREE.RepeatWrapping;
       t.anisotropy = 4;
       u[key].value = t; res();
     }, undefined, () => res()));
@@ -174,7 +174,7 @@ export class ActBumi extends Act {
     lm.uDraw.value = smooth(0.4, 0.82, P) * 1.6;
     lm.uRainbow.value = 1 - smooth(0.95, 1.2, P);
     lm.uFan.value = smooth(1.08, 1.32, P);
-    lm.uBase.value = lerp(0.07, 0.034, q);
+    lm.uBase.value = lerp(0.07, 0.03, q) * Math.min(1, Math.sqrt(this.ctx.size.w / 1280) * 1.05);
     this.arcs.opacity = w * smooth(0.38, 0.5, P);
     this.arcs.root.visible = w * smooth(0.38, 0.5, P) > 0.002;
 

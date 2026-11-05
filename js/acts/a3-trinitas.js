@@ -159,7 +159,7 @@ export class ActTrinitas extends Act {
     const p1 = V(Math.sin(a) * d, Math.sin(e) * d * 0.5, Math.cos(a) * d);
     const p2 = V(0, 0.08, lerp(6.6, 5.9, smooth(1.3, 1.9, P)));
     const b = smooth(0.96, 1.18, P);
-    return { pos: p1.lerp(p2, b), look: V(0, 0.04 * b, 0), fov: 40 };
+    return this.fit({ pos: p1.lerp(p2, b), look: V(0, 0.04 * b, 0), fov: 40 });
   }
 
   post(P) {

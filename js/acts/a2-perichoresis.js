@@ -131,7 +131,7 @@ export class ActPerichoresis extends Act {
 
   pose(P) {
     const p = P;
-    return { pos: V(0, 0.05, lerp(7.4, 6.4, smooth(0, 1, p))), look: V(0, 0, 0), fov: 40 };
+    return this.fit({ pos: V(0, 0.05, lerp(7.4, 6.4, smooth(0, 1, p))), look: V(0, 0, 0), fov: 40 });
   }
 
   post(P) {

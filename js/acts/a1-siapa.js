@@ -79,11 +79,11 @@ export class ActSiapa extends Act {
 
   pose(P) {
     const p = Math.max(P, 0);
-    return {
+    return this.fit({
       pos: V(0, 0.15 - 0.3 * p, 7),
       look: V(0, -0.1 - 0.2 * p, 0),
       fov: 40,
-    };
+    }, 0.6, 1.4);
   }
 
   post(P) {

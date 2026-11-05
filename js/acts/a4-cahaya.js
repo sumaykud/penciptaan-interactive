@@ -43,16 +43,16 @@ export class ActCahaya extends Act {
       };
     }, 1, { intensity: 1 });
 
-    this.burst = streaks(Math.round(3600 * m), () => {
+    this.burst = streaks(Math.round(1500 * m), () => {
       const a = r() * Math.PI * 2;
       const zc = (r() - 0.65) * 0.5;
       const d = V(Math.cos(a), Math.sin(a), zc).normalize();
       const c = hsv(r(), 0.75 + r() * 0.25, 1);
-      const k = 0.7 + r() * 1.2;
+      const k = 0.6 + r() * 0.9;
       return {
         start: [0, 0, 0], dir: [d.x, d.y, d.z],
         color: [c[0] * k, c[1] * k, c[2] * k],
-        speed: 3 + Math.pow(r(), 0.6) * 20, len: 0.6 + r() * 1.8, width: 0.012 + r() * 0.05,
+        speed: 3 + Math.pow(r(), 0.6) * 20, len: 0.5 + r() * 1.4, width: 0.006 + r() * 0.022,
         phase: r() * 1.4,
       };
     }, 2, { intensity: 1.2 });
@@ -77,11 +77,11 @@ export class ActCahaya extends Act {
     u(this.fine).uSpin.value = t * 0.004;
 
     // inti bintang
-    const coreAmt = 0.45 + 0.75 * easeOut(gather) + 0.5 * boom;
+    const coreAmt = 0.45 + 0.75 * easeOut(gather) + 0.3 * boom;
     u(this.core).uIntensity.value = coreAmt * (1 + 0.05 * Math.sin(t * 7)) * (1 - end * 0.7);
-    u(this.core).uScale.value.setScalar(2.0 + 1.2 * gather + 3 * boom);
+    u(this.core).uScale.value.setScalar(2.0 + 1.2 * gather + 2 * boom);
     u(this.halo).uIntensity.value = 0.12 + 0.18 * gather + 0.12 * boom;
-    u(this.halo).uScale.value.setScalar(6 + 3 * gather + 10 * boom);
+    u(this.halo).uScale.value.setScalar(6 + 3 * gather + 5 * boom);
     u(this.flareH).uIntensity.value = (0.45 + 0.75 * gather) * (1 - e * 0.7);
     u(this.flareH).uScale.value.set(8 + 6 * gather + 10 * boom, 0.12 + 0.05 * gather);
     u(this.flareH2).uIntensity.value = 0.15 + 0.25 * gather;
@@ -90,7 +90,7 @@ export class ActCahaya extends Act {
     // ledakan
     u(this.burst).uProgress.value = e * 1.05;
     u(this.burst).uOpacity.value = w * smooth(0.99, 1.02, P) * (1 - end);
-    u(this.burst).uLenMul.value = 1 + 2.0 * boom;
+    u(this.burst).uLenMul.value = 1 + 0.8 * boom;
     u(this.rainbow).uIntensity.value = 0.55 * boom * (1 - end);
     u(this.rainbow).uLength.value = 0.15 + 1.3 * easeOut(e);
     u(this.rainbow).uCoreAmt.value = 0.35 * boom;
@@ -113,7 +113,7 @@ export class ActCahaya extends Act {
   pose(P) {
     const z = lerp(7.6, 6.0, smooth(0, 1, P)) + 0.8 * smooth(1.0, 1.5, P);
     const pos = V(0, 0, z).add(this.shakeV);
-    return { pos, look: V(0, 0, 0).add(this.shakeV.clone().multiplyScalar(0.5)), fov: 40 + 6 * bell(1.0, 1.5, P) };
+    return this.fit({ pos, look: V(0, 0, 0).add(this.shakeV.clone().multiplyScalar(0.5)), fov: 40 + 6 * bell(1.0, 1.5, P) }, 0.8);
   }
 
   post(P) {
