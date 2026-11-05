@@ -3,8 +3,11 @@ import { Act, V } from './act.js';
 import { glow, points, GlowRing } from '../core/materials.js';
 import { smooth, lerp, rng, range, easeInOut, easeIn, bell } from '../core/util.js';
 import { buildHumanGeometry, humanMeshes } from '../core/human.js';
+import { VerseOrbs, projectOrb } from '../core/verses.js';
+import { PERICHORESIS_VERSES } from '../data.js';
 
-/* STORY 3 · tiga cincin cahaya bergerak teratur & saling overlapping (P 0..1)
+/* STORY 3 · Tritunggal Mahakudus / Perichoresis — tiga cincin cahaya bergerak teratur
+             & saling overlapping; hover / tap titik cahaya → ayat firman (P 0..1)
    STORY 4 · Creatio ex Nihilo — semua cahaya berkumpul, samar-samar muncul
              manusia ilahi bercahaya transparan + salib yang tersorot (P 1..2) */
 const AX = V(), Q1 = new THREE.Quaternion(), Q2 = new THREE.Quaternion();
@@ -24,18 +27,22 @@ export class ActTrinitas extends Act {
     this.holders = this.rings.map((rg) => { const h = new THREE.Group(); h.add(rg); this.root.add(h); return h; });
     this.ringGlows = cols.map(() => { const g = glow({ color: [1, 0.7, 0.4], scale: [2.6, 2.6], falloff: 3.0, coreAmt: 0.2, core: 6, intensity: 0.15 }); this.group.add(g); return g; });
 
-    // orb bokeh
+    // orb bokeh — tiap titik menyimpan satu ayat (Story 3); titik ditambah kalau ayatnya lebih banyak
     const r = rng(23);
-    const N = 16;
+    const N = Math.max(16, PERICHORESIS_VERSES.length);
     this.bokeh = [];
     this.bokehPts = points(N, (i) => {
       const a = (i / N) * Math.PI * 2 + r();
       const rad = 1.9 + r() * 1.3;
-      const b = { base: V(Math.cos(a) * rad * 1.35, Math.sin(a) * rad * 0.95, -1.5 + r() * 2.6), seed: r() * 9 };
+      const b = {
+        base: V(Math.cos(a) * rad * 1.35, Math.sin(a) * rad * 0.95, -1.5 + r() * 2.6), seed: r() * 9,
+        size: 0.16 + r() * 0.22, hover: 0, world: V(), screen: { x: 0, y: 0, r: 0, vis: 0 },
+      };
       this.bokeh.push(b);
-      return { p: [0, 0, 0], c: [0.9, 0.92, 0.55], s: 0.16 + r() * 0.22, a: 0.8 };
+      return { p: [0, 0, 0], c: [0.9, 0.92, 0.55], s: b.size, a: 0.8 };
     }, { soft: 0.92, twinkle: 0.12, maxSize: 300 });
     this.group.add(this.bokehPts);
+    this.verses = new VerseOrbs(ctx, PERICHORESIS_VERSES, N);
 
     // salib (kayu, disinari cahaya pusat — lampu 3D sungguhan)
     this.crossGroup = new THREE.Group();
@@ -123,15 +130,26 @@ export class ActTrinitas extends Act {
 
     // bokeh tertarik ke pusat ("semua cahaya berkumpul")
     const pos = this.bokehPts.geometry.attributes.position.array;
+    const size = this.bokehPts.geometry.attributes.aSize.array;
+    const al = this.bokehPts.geometry.attributes.aAlpha.array;
     const pull = easeIn(range(1.0, 1.38, P));
+    const bokehVis = smooth(0.0, 0.25, P) * (1 - smooth(1.25, 1.4, P));
+    const cam = this.ctx.camera;
     this.bokeh.forEach((b, i) => {
       const dx = Math.sin(t * 0.3 + b.seed) * 0.15, dy = Math.cos(t * 0.25 + b.seed) * 0.12;
-      pos[i * 3] = (b.base.x + dx) * (1 - pull);
-      pos[i * 3 + 1] = (b.base.y + dy) * (1 - pull);
-      pos[i * 3 + 2] = b.base.z * (1 - pull);
+      b.world.set((b.base.x + dx) * (1 - pull), (b.base.y + dy) * (1 - pull), b.base.z * (1 - pull));
+      pos[i * 3] = b.world.x; pos[i * 3 + 1] = b.world.y; pos[i * 3 + 2] = b.world.z;
+      b.hover += ((this.verses.isActive(i) ? 1 : 0) - b.hover) * 0.15;
+      size[i] = b.size * (1 + b.hover * 0.45);
+      al[i] = 0.8 * (1 + b.hover * 0.6);
+      projectOrb(b, b.world, size[i], this.group, cam, this.ctx, bokehVis);
     });
     this.bokehPts.geometry.attributes.position.needsUpdate = true;
-    this.bokehPts.material.uniforms.uOpacity.value = w * smooth(0.0, 0.25, P) * (1 - smooth(1.25, 1.4, P));
+    this.bokehPts.geometry.attributes.aSize.needsUpdate = true;
+    this.bokehPts.geometry.attributes.aAlpha.needsUpdate = true;
+    this.bokehPts.material.uniforms.uOpacity.value = w * bokehVis;
+    this.verses.setInteractive(w > 0.6 && P > 0.3 && P < 0.95);
+    this.verses.sync(this.bokeh);
 
     // manusia ilahi + salib
     const reveal = range(1.3, 1.78, P);
@@ -150,6 +168,8 @@ export class ActTrinitas extends Act {
     this.keyLight.intensity = 9 * cross * w * (1 + 0.05 * Math.sin(t * 2.1));
     this.rimLight.intensity = 12 * cross * w;
   }
+
+  onPointer(e) { this.verses.onPointer(e, this.bokeh); }
 
   pose(P) {
     const k = range(0.22, 1.0, P);

@@ -59,17 +59,24 @@ export class ActCahaya extends Act {
 
     g.add(this.halo, this.fine, this.rainbow, this.inward, this.burst, this.flareH2, this.flareH, this.flareV, this.shock, this.shock2, this.core);
     this.shakeV = V();
+    this.flow = 0;
+    this.flowRate = 0.11;
   }
 
-  update(P, w, t) {
+  update(P, w, t, dt = 1 / 60) {
     const gather = range(0, 1, P);
     const e = range(1.0, 1.6, P); // progress ledakan
     const boom = bell(0.98, 1.6, P);
     const end = smooth(1.82, 2.0, P);
     const u = (m) => m.material.uniforms;
 
-    // berkumpul
-    u(this.inward).uFlow.value = t * 0.11 + P * 1.4;
+    // berkumpul — aliran digerakkan waktu (selalu menuju bintang, tidak ikut mundur saat scroll
+    // ke atas, tidak meloncat saat scroll cepat). Kecepatannya naik perlahan seiring progress,
+    // dan perubahan kecepatannya pun dihaluskan.
+    const targetRate = 0.11 + 0.17 * smooth(0, 1, gather);
+    this.flowRate += (targetRate - this.flowRate) * Math.min(1, dt * 2.5);
+    this.flow += dt * this.flowRate;
+    u(this.inward).uFlow.value = this.flow;
     u(this.inward).uOpacity.value = w * smooth(0.0, 0.12, P) * (1 - smooth(0.95, 1.04, P));
     u(this.inward).uIntensity.value = 0.45 + 0.45 * gather;
     u(this.fine).uIntensity.value = (0.12 + 0.25 * gather) * (1 - e);

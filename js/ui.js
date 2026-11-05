@@ -1,6 +1,7 @@
 import { STORIES } from './config.js';
-import { UNIVERSE_TIMELINE, THEMES, BOOK_GROUPS } from './data.js';
+import { UNIVERSE_TIMELINE, THEMES, BOOK_GROUPS, EXPLAINERS } from './data.js';
 import { clamp } from './core/util.js';
+import { fmtVerse } from './core/verses.js';
 
 const gsap = window.gsap;
 const $ = (s, r = document) => r.querySelector(s);
@@ -21,16 +22,23 @@ function splitChars(el) {
   return $$('.ch', el);
 }
 function splitMask(el) {
-  const text = el.textContent;
+  const text = el.textContent.trim();
   el.setAttribute('aria-label', text);
   el.textContent = '';
-  for (const ch of text) {
-    const m = document.createElement('span');
-    m.className = 'm'; m.setAttribute('aria-hidden', 'true');
-    const c = document.createElement('span');
-    c.className = 'c'; c.textContent = ch;
-    m.appendChild(c); el.appendChild(m);
-  }
+  // Huruf dikelompokkan per kata (nowrap) supaya baris hanya patah di spasi.
+  text.split(/\s+/).forEach((word, wi) => {
+    if (wi) el.appendChild(document.createTextNode(' '));
+    const wd = document.createElement('span');
+    wd.className = 'wd'; wd.setAttribute('aria-hidden', 'true');
+    for (const ch of word) {
+      const m = document.createElement('span');
+      m.className = 'm';
+      const c = document.createElement('span');
+      c.className = 'c'; c.textContent = ch;
+      m.appendChild(c); wd.appendChild(m);
+    }
+    el.appendChild(wd);
+  });
   return $$('.c', el);
 }
 function splitWords(el) {
@@ -63,7 +71,9 @@ export class StoryUI {
     this.buildChapters();
     this.buildStory1();
     this.buildStory2();
+    this.buildStory3();
     this.buildStory4();
+    this.buildExplainer();
     this.buildStory7();
     this.buildStory8();
     this.buildStory9and10();
@@ -101,8 +111,6 @@ export class StoryUI {
     const L = this.layers[0];
     this.s1chars = splitChars($('.s1-title', L));
     this.s1words = splitWords($('.s1-intro', L));
-    const creatioChars = splitChars($('.s1-creatio', L));
-    const creatio = $('.s1-creatio', L);
     gsap.set(this.s1chars, { opacity: 0 });
     gsap.set(this.s1words, { opacity: 0 });
     const [c1, c2, c3] = $$('.card', L);
@@ -112,11 +120,8 @@ export class StoryUI {
     tl.fromTo(c1, { ...rest, x: -34, rotateY: 16 }, lit, 0.07)
       .fromTo(c2, { ...rest, x: 34, rotateY: -16 }, lit, 0.19)
       .fromTo(c3, { ...rest, y: 26, rotateX: 20 }, lit, 0.31)
-      .fromTo(creatioChars, { opacity: 0.32, filter: 'blur(3px)' }, { opacity: 1, filter: 'blur(0px)', stagger: 0.01, duration: 0.12 }, 0.5)
-      .fromTo(creatio, { letterSpacing: '0.16em', '--glow': 0 }, { letterSpacing: '0em', '--glow': 1, duration: 0.24, ease: 'power3.out' }, 0.5)
       .fromTo($('.scroll-hint', L), { opacity: 1 }, { opacity: 0, duration: 0.04, immediateRender: false }, 0.01)
       .fromTo($('.s1-wrap', L), { y: 0, opacity: 1, filter: 'blur(0px)' }, { y: -60, opacity: 0, filter: 'blur(10px)', duration: 0.13, ease: 'power2.in', immediateRender: false }, 0.76)
-      .fromTo(creatio, { scale: 1, opacity: 1, filter: 'blur(0px)' }, { scale: 1.18, opacity: 0, filter: 'blur(14px)', duration: 0.1, ease: 'power2.in', immediateRender: false }, 0.9)
       .set({}, {}, 1);
     this.tls[0] = tl;
   }
@@ -132,34 +137,106 @@ export class StoryUI {
     document.body.classList.add('ready');
   }
 
-  /* STORY 2: huruf naik dari balik "mask", kilau emas menyapu judul */
-  buildStory2() {
-    const L = this.layers[1];
+  /* STORY 2 & 3: huruf naik dari balik "mask", kilau emas menyapu judul, lalu caption
+     dan petunjuk "titik cahaya → ayat" muncul. hintAt = saat titik mulai bisa di-hover. */
+  buildStory2() { this.tls[1] = this.buildVerseStory(this.layers[1], 0.52); }
+  buildStory3() { this.tls[2] = this.buildVerseStory(this.layers[2], 0.32); }
+
+  buildVerseStory(L, hintAt) {
+    const head = $('.s2-head', L);
     const title = $('.s2-title', L);
     const chars = splitMask(title);
+    const caption = $$('.s2-sub, .s2-cap', L);
     const hint = $('.s2-hint', L);
-    hint.textContent = this.ctx.touch ? 'Ketuk partikel cahaya' : 'Arahkan kursor ke partikel cahaya';
+    hint.innerHTML = `${this.ctx.touch ? 'Ketuk partikel cahaya' : 'Arahkan kursor ke partikel cahaya'}<span class="s2-hint-sub">untuk melihat ayat</span>`;
+    // Kilau emas menyapu judul huruf per huruf. Warna diberikan per huruf karena
+    // background-clip:text di induk tidak ikut mewarnai huruf yang di-transform.
+    const root = getComputedStyle(document.documentElement);
+    const ink = root.getPropertyValue('--ink').trim();
+    const gold = root.getPropertyValue('--gold').trim();
     const tl = gsap.timeline({ paused: true });
-    tl.fromTo(chars, { yPercent: 118 }, { yPercent: 0, stagger: 0.014, duration: 0.14, ease: 'power3.out' }, 0.02)
-      .fromTo(title, { '--shine': '0%' }, { '--shine': '100%', duration: 0.32, ease: 'none' }, 0.16)
-      .fromTo(hint, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.05 }, 0.52)
+    tl.fromTo(chars, { yPercent: 118 }, { yPercent: 0, stagger: { amount: 0.17 }, duration: 0.14, ease: 'power3.out' }, 0.02)
+      .fromTo(chars, { color: ink }, { color: gold, duration: 0.05, stagger: { amount: 0.24 }, ease: 'power1.out', immediateRender: false }, 0.16)
+      .fromTo(chars, { color: gold }, { color: ink, duration: 0.09, stagger: { amount: 0.24 }, ease: 'power1.in', immediateRender: false }, 0.21)
+      .fromTo(caption, { opacity: 0, y: 12, filter: 'blur(6px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.09, stagger: 0.05, ease: 'power2.out' }, 0.26)
+      .fromTo(hint, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.05 }, hintAt)
       .to(hint, { opacity: 0, duration: 0.04 }, 0.92)
-      .fromTo(title, { opacity: 1, y: 0, filter: 'blur(0px)' }, { opacity: 0, y: -34, filter: 'blur(10px)', duration: 0.07, ease: 'power2.in', immediateRender: false }, 0.91)
+      .fromTo(head, { opacity: 1, y: 0, filter: 'blur(0px)' }, { opacity: 0, y: -34, filter: 'blur(10px)', duration: 0.07, ease: 'power2.in', immediateRender: false }, 0.91)
       .set({}, {}, 1);
-    this.tls[1] = tl;
+    return tl;
   }
 
   /* STORY 4: judul "disinari" — pita cahaya memindai huruf dari kiri ke kanan */
   buildStory4() {
     const L = this.layers[3];
     const title = $('.s4-title', L);
+    const cap = $('.s4-cap', L);
+    const info = $('.info-btn', L);
     const tl = gsap.timeline({ paused: true });
+    // tombol "?" hanya bisa diklik selama judul tampil (autoAlpha → visibility: hidden saat 0)
+    tl.fromTo(info, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.06 }, 0.1)
+      .to(info, { autoAlpha: 0, duration: 0.06 }, 0.86);
     tl.fromTo(title, { '--scan': '0%', opacity: 0, scale: 1.07, filter: 'blur(10px)', '--glow': 0 }, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 0.1 }, 0.03)
       .to(title, { '--scan': '100%', duration: 0.32, ease: 'power1.inOut' }, 0.05)
       .to(title, { '--glow': 1, duration: 0.2 }, 0.32)
+      .fromTo(cap, { opacity: 0, y: 12, filter: 'blur(6px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.1, ease: 'power2.out' }, 0.3)
+      .to(cap, { opacity: 0, y: -20, filter: 'blur(10px)', duration: 0.08, ease: 'power2.in' }, 0.84)
       .to(title, { opacity: 0, letterSpacing: '0.28em', filter: 'blur(12px)', duration: 0.1, ease: 'power2.in' }, 0.84)
       .set({}, {}, 1);
     this.tls[3] = tl;
+  }
+
+  /* Modal penjelasan: tombol .info-btn[data-explainer] membuka EXPLAINERS[id] dari data.js */
+  buildExplainer() {
+    const dlg = $('#explainer');
+    if (!dlg) return;
+    const f = fmtVerse;
+    // butir bisa berupa teks, atau { text, items: [...] } untuk sub-butir (bertingkat)
+    const list = (items, cls = 'modal-points') => `<ul class="${cls}">${items.map((it) => (typeof it === 'string'
+      ? `<li>${f(it)}</li>`
+      : `<li>${f(it.text)}${it.items?.length ? list(it.items, 'modal-points sub') : ''}</li>`)).join('')}</ul>`;
+    const node = (n, cls = '') => `<div class="md-node ${cls}"><p class="md-t">${f(n.title)}</p>${n.sub ? `<p class="md-s">${f(n.sub)}</p>` : ''}${
+      (n.lines || []).map((l) => `<p class="md-l">${f(l)}</p>`).join('')}${n.ref ? `<p class="md-ref">${f(n.ref)}</p>` : ''}</div>`;
+    const diagram = (g) => `<figure class="mdiag" aria-label="Diagram">${node(g.top, 'md-top')}
+      <div class="md-stem"></div><div class="md-branch"></div>
+      <div class="md-row">${node(g.left)}${node(g.right)}</div>
+      <div class="md-merge"></div><div class="md-stem"></div>${node(g.bottom, 'md-bottom')}</figure>`;
+    const verse = (v) => `<li><p class="mv-ref">${f(v.ref)}</p>${v.note ? `<p class="mv-note">${f(v.note)}</p>` : ''}
+      <p class="mv-txt">${f(v.text)}</p>${v.comment ? `<p class="mv-cmt">${v.commentLabel ? `<span class="mv-cmt-label">${f(v.commentLabel)}</span>` : ''}${f(v.comment)}</p>` : ''}</li>`;
+    const fill = (id) => {
+      const d = EXPLAINERS[id];
+      if (!d) return false;
+      $('.modal-title', dlg).innerHTML = f(d.title);
+      let html = d.lead ? `<blockquote class="modal-lead"><p>${f(d.lead.text)}</p><cite>${f(d.lead.ref)}</cite></blockquote>` : '';
+      if (d.diagram) html += diagram(d.diagram);
+      if (d.points) html += list(d.points);
+      (d.sections || []).forEach((s) => {
+        html += `<section class="modal-sec"><h3 class="modal-h">${f(s.heading)}</h3>${s.intro ? `<p class="modal-intro">${f(s.intro)}</p>` : ''}${s.items ? list(s.items) : ''}</section>`;
+      });
+      const groups = d.verseGroups || (d.verses ? [{ verses: d.verses }] : []);
+      if (groups.length) {
+        html += `<h3 class="modal-sub">${f(d.versesTitle || 'Ayat-ayat Referensi')}</h3>`;
+        groups.forEach((gr) => {
+          html += `${gr.title ? `<h4 class="modal-gtitle">${f(gr.title)}</h4>` : ''}<ol class="modal-verses">${gr.verses.map(verse).join('')}</ol>`;
+        });
+      }
+      $('.modal-body', dlg).innerHTML = html;
+      return true;
+    };
+    let opener = null;
+    $$('.info-btn[data-explainer]').forEach((btn) => btn.addEventListener('click', () => {
+      if (!fill(btn.dataset.explainer)) return;
+      opener = btn;
+      dlg.showModal();
+      $('.modal-scroll', dlg).scrollTop = 0; // setelah dibuka; saat tersembunyi scrollTop tidak berlaku
+      this.ctx.setScrollLock(true);
+    }));
+    $('.modal-close', dlg).addEventListener('click', () => dlg.close());
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); }); // klik di luar panel
+    dlg.addEventListener('close', () => {
+      this.ctx.setScrollLock(false);
+      opener?.focus({ preventScroll: true });
+    });
   }
 
   /* STORY 7: "&" muncul di garis cahaya, kedua frasa membelah keluar, sub-judul diketik */
@@ -170,6 +247,9 @@ export class StoryUI {
     const subL = splitChars($('.sub.left', L));
     const subR = splitChars($('.sub.right', L));
     const tl = gsap.timeline({ paused: true });
+    const info = $('.info-btn', L);
+    tl.fromTo(info, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.05 }, 0.5)
+      .to(info, { autoAlpha: 0, duration: 0.05 }, 0.93);
     tl.fromTo(amp, { opacity: 0, scale: 0.3, filter: 'blur(10px)' }, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 0.06, ease: 'back.out(2)' }, 0.47)
       .fromTo(wl, { clipPath: 'inset(0 0 0 100%)', x: 36, opacity: 1 }, { clipPath: 'inset(0 0 0 0%)', x: 0, duration: 0.12, ease: 'power3.out' }, 0.5)
       .fromTo(wr, { clipPath: 'inset(0 100% 0 0)', x: -36, opacity: 1 }, { clipPath: 'inset(0 0% 0 0)', x: 0, duration: 0.12, ease: 'power3.out' }, 0.5)
@@ -183,17 +263,30 @@ export class StoryUI {
   /* STORY 8: label timeline — posisi diatur act Big Bang setiap frame */
   buildStory8() {
     const box = $('.uni-labels', this.layers[7]);
-    const items = [{ x: 0, title: 'Big Bang', sub: '', kind: 'bigbang' }, ...UNIVERSE_TIMELINE];
+    const items = [...UNIVERSE_TIMELINE];
     this.uniLabels = items.map((it, i) => {
       const el = document.createElement('div');
       el.className = `ul ${it.kind || ''} ${!it.kind && i % 2 === 0 ? 'hi' : ''}`;
-      el.innerHTML = `<div class="lab"><b></b><span></span></div>`;
+      el.innerHTML = `<div class="lab"><b></b><i></i><span></span></div>`;
       $('b', el).textContent = it.title;
+      $('i', el).textContent = it.ref || '';
       $('span', el).textContent = it.sub;
       el._item = it;
       box.appendChild(el);
       return el;
     });
+    // judul "Berfirmanlah Allah" + caption Ibrani, dan tombol "?" — tampil selama terompet tumbuh,
+    // hilang sebelum kamera menukik ke Bumi
+    const L = this.layers[7];
+    const head = $('.s8-head', L), info = $('.info-btn', L);
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo($('.s8-title', L), { opacity: 0, y: 18, filter: 'blur(10px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.07, ease: 'power2.out' }, 0.05)
+      .fromTo($('.s8-cap', L), { opacity: 0, y: 10, filter: 'blur(6px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.07, ease: 'power2.out' }, 0.1)
+      .fromTo(info, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.05 }, 0.1)
+      .to(head, { opacity: 0, y: -24, filter: 'blur(8px)', duration: 0.06, ease: 'power2.in' }, 0.76)
+      .to(info, { autoAlpha: 0, duration: 0.05 }, 0.76)
+      .set({}, {}, 1);
+    this.tls[7] = tl;
   }
 
   /* STORY 9–10: label kelompok, label kitab, legend, navigasi tema, daftar referensi */

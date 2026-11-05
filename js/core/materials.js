@@ -251,7 +251,7 @@ export function points(count, fill, o = {}) {
 const STREAK_VS = /* glsl */ `
 attribute vec3 aStart; attribute vec3 aDir; attribute float aSpeed; attribute float aLen;
 attribute float aWidth; attribute vec3 aColor; attribute float aPhase;
-uniform float uTime, uProgress, uTravel, uLenMul, uWidthMul, uFlow;
+uniform float uTime, uProgress, uTravel, uLenMul, uWidthMul, uFlow, uPxScale, uPR, uMinPx;
 varying vec2 vUv; varying vec3 vColor; varying float vFade;
 void main(){
   vec3 c; vec3 d = normalize(aDir); float fade = 1.0; float len = aLen * uLenMul;
@@ -273,14 +273,32 @@ void main(){
     len *= clamp(0.25 + dist * 0.35, 0.0, 3.0);
   #endif
   vec4 cv = modelViewMatrix * vec4(c, 1.0);
+  vUv = vec2(position.x + 0.5, position.y + 0.5);
+  vColor = aColor;
+  if (-cv.z < 0.2) { vFade = 0.0; gl_Position = vec4(2.0, 2.0, 2.0, 1.0); return; } // terlalu dekat kamera
   fade *= smoothstep(0.8, 2.6, -cv.z);
   vec3 dv = normalize(mat3(modelViewMatrix) * d);
-  vec3 side = normalize(cross(dv, normalize(-cv.xyz)));
-  float along = position.x + 0.5;
-  vec3 p = cv.xyz + dv * ((along - 1.0) * len) + side * (position.y * aWidth * uWidthMul);
-  gl_Position = projectionMatrix * vec4(p, 1.0);
-  vUv = vec2(along, position.y + 0.5);
-  vColor = aColor; vFade = fade;
+  // Garis dibentuk di ruang layar: kepala & ekor diproyeksikan dulu, lalu quad dilebarkan
+  // tegak lurus arah garis DI LAYAR. Stabil walau garis mengarah lurus ke kamera
+  // (versi lama memakai cross(arah, pandangan) yang ≈ 0 di kasus itu → garis berputar/berkedip).
+  vec3 tailV = cv.xyz - dv * len;
+  tailV.z = min(tailV.z, -0.2);
+  vec4 hc = projectionMatrix * cv;
+  vec4 tc = projectionMatrix * vec4(tailV, 1.0);
+  vec2 pxPerNdc = vec2(uPxScale / projectionMatrix[0][0], uPxScale / projectionMatrix[1][1]);
+  vec2 sd = (hc.xy / hc.w - tc.xy / tc.w) * pxPerNdc;
+  float sl = length(sd);
+  vec2 nrm = sl > 1e-4 ? vec2(-sd.y, sd.x) / sl : vec2(0.0, 1.0);
+  float along = vUv.x;
+  vec4 pc = mix(tc, hc, along);
+  // lebar asli (px CSS); garis yang lebih tipis dari uMinPx piksel layar digambar selebar uMinPx
+  // tapi diredupkan sebanding → energi sama, tanpa kedip/aliasing (renderer tanpa antialias).
+  float wpx = aWidth * uWidthMul * uPxScale / max(pc.w, 0.2);
+  float wDraw = max(wpx, uMinPx / uPR);
+  pc.xy += nrm * (position.y * wDraw) / pxPerNdc * pc.w;
+  gl_Position = pc;
+  // garis yang di layar hampir jadi titik (mengarah ke kamera) dipudarkan, bukan digambar kasar
+  vFade = fade * (wpx / wDraw) * smoothstep(0.5, 4.0, sl);
 }`;
 const STREAK_FS = /* glsl */ `
 uniform float uIntensity, uOpacity;
@@ -318,6 +336,7 @@ export function streaks(count, fill, mode = 0, o = {}) {
       uTime: SHARED.uTime, uProgress: { value: 0 }, uTravel: { value: o.travel ?? 10 },
       uLenMul: { value: 1 }, uWidthMul: { value: 1 }, uIntensity: { value: o.intensity ?? 1 },
       uOpacity: { value: 1 }, uFlow: { value: 0 },
+      uPxScale: SHARED.uPxScale, uPR: SHARED.uPR, uMinPx: { value: o.minPx ?? 1.5 },
     },
     vertexShader: STREAK_VS, fragmentShader: STREAK_FS, ...ADD, depthTest: false, side: THREE.DoubleSide,
   });

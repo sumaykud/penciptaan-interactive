@@ -244,6 +244,13 @@ export class ActBigBang extends Act {
     this.home.position.copy(this.homeLocal);
     this.horn.add(this.home);
 
+    // Geser seluruh adegan supaya titik Big Bang tepat di posisi cahaya Story 7 (titik asal dunia).
+    // Saat peralihan Story 7 → 8 hanya ada SATU cahaya: cahaya kanan Story 7 meredup menjadi
+    // titik Big Bang di tempat yang sama, dan kamera menukik ke dalamnya.
+    this.horn.updateMatrix();
+    this.group.position.copy(this.bbPos.clone().applyMatrix4(this.horn.matrix)).negate();
+    this.group.updateMatrixWorld(true);
+
     // label DOM
     this.labels = [];
     this.tmp = V();
@@ -314,7 +321,9 @@ export class ActBigBang extends Act {
       if (it.kind === 'bigbang') this.tmp.copy(this.bbPos);
       else this.tmp.set(xOf(it.x), AXIS_Y + 0.22, AXIS_Z);
       this.tmp.applyMatrix4(this.horn.matrixWorld).project(cam);
-      const x = (this.tmp.x * 0.5 + 0.5) * W, y = (-this.tmp.y * 0.5 + 0.5) * H;
+      let x = (this.tmp.x * 0.5 + 0.5) * W;
+      const y = (-this.tmp.y * 0.5 + 0.5) * H;
+      if (it.kind === 'axis-start') x = Math.max(x, 14); // jangan terpotong tepi kiri layar (HP)
       el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0)`;
       const visible = on && this.tmp.z < 1 && g >= it.x - 0.002 && (it.kind === 'bigbang' ? P < 0.5 : P > 0.14);
       el.classList.toggle('on', visible);

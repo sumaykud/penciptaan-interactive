@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "penciptaan",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [".claude/serve.py", "8080"],
+      "port": 8080
+    }
+  ]
+}

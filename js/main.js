@@ -67,6 +67,11 @@ const ctx = {
   setCursor(pointer, grabbing) {
     document.body.style.cursor = grabbing ? 'grabbing' : pointer ? 'pointer' : '';
   },
+  // Kunci scroll halaman saat modal terbuka (modal tetap bisa di-scroll: data-lenis-prevent).
+  setScrollLock(on) {
+    if (lenis) { if (on) lenis.stop(); else lenis.start(); }
+    document.documentElement.classList.toggle('modal-open', on);
+  },
   showArcTip(it, x, y) {
     const tip = dom.arcTip;
     if (!it) { tip.classList.remove('on'); return; }
@@ -155,9 +160,29 @@ addEventListener('pointerup', (e) => {
 });
 
 /* ---------------- resize ---------------- */
+/* Kualitas adaptif: kalau rata-rata frame terlalu lambat secara konsisten (GPU lemah),
+   resolusi render diturunkan bertahap supaya animasi tetap mulus. Tidak pernah dinaikkan lagi
+   di sesi yang sama (menghindari naik-turun), dan tidak berlaku di layar yang sudah lancar. */
+let prScale = 1;
+const perf = { acc: 0, n: 0, slow: 0 };
+function watchPerf(rawDt) {
+  if (document.hidden || rawDt > 0.25) return; // tab di latar / jeda panjang: abaikan
+  perf.acc += rawDt; perf.n++;
+  if (perf.acc < 0.5) return; // evaluasi tiap ±0,5 detik
+  const avg = perf.acc / perf.n;
+  perf.acc = 0; perf.n = 0;
+  perf.slow = avg > 1 / 42 ? perf.slow + 1 : 0; // < ±42 fps
+  const base = Math.min(devicePixelRatio || 1, mobile ? 1.5 : 1.75);
+  if (perf.slow >= 3 && base * prScale > 0.8) {
+    prScale = Math.max(0.8 / base, prScale * 0.82);
+    perf.slow = 0;
+    resize();
+  }
+}
+
 function resize() {
   size.w = innerWidth; size.h = innerHeight;
-  const pr = Math.min(devicePixelRatio || 1, mobile ? 1.5 : 1.75);
+  const pr = Math.min(devicePixelRatio || 1, mobile ? 1.5 : 1.75) * prScale;
   renderer.setPixelRatio(pr);
   renderer.setSize(size.w, size.h, false);
   composer.setPixelRatio(pr);
@@ -178,7 +203,9 @@ const flashCol = new THREE.Color();
 let smoothLook = null;
 
 function frame() {
-  const dt = Math.min(clock.getDelta(), 0.05);
+  const rawDt = clock.getDelta();
+  const dt = Math.min(rawDt, 0.05);
+  watchPerf(rawDt);
   const t = clock.elapsedTime;
   SHARED.uTime.value = t;
   if (lenis) lenis.raf(t * 1000);
@@ -249,7 +276,51 @@ function frame() {
 
   ui.update(g, progressOf(g));
   composer.render(dt);
+  probeNavBackdrop();
   requestAnimationFrame(frame);
+}
+
+/* ---------------- warna navigasi bab adaptif ----------------
+   Kecerahan gambar tepat di belakang navigasi bab (kiri bawah) dibaca dari canvas, lalu
+   teks & garis navigasi berganti hitam saat latarnya terlalu terang (mis. kilat ledakan).
+   Pembacaan asinkron (WebGL2 PBO + fence): readPixels masuk antrean GPU dan hasilnya diambil
+   di frame berikutnya bila sudah siap, jadi tidak pernah menahan render (tetap mulus). */
+const navEl = document.getElementById('chapters');
+const gl = renderer.getContext();
+const navProbe = (typeof WebGL2RenderingContext !== 'undefined' && gl instanceof WebGL2RenderingContext)
+  ? { pbo: gl.createBuffer(), cap: 0, len: 0, buf: null, sync: null, frame: 0, light: false } : null;
+function probeNavBackdrop() {
+  const p = navProbe;
+  if (!p) return;
+  if (p.sync) {
+    if (gl.clientWaitSync(p.sync, 0, 0) === gl.TIMEOUT_EXPIRED) return; // belum siap; cek frame berikutnya
+    gl.deleteSync(p.sync); p.sync = null;
+    gl.bindBuffer(gl.PIXEL_PACK_BUFFER, p.pbo);
+    gl.getBufferSubData(gl.PIXEL_PACK_BUFFER, 0, p.buf, 0, p.len);
+    gl.bindBuffer(gl.PIXEL_PACK_BUFFER, null);
+    let s = 0, n = 0;
+    for (let i = 0; i < p.len; i += 12) { s += 0.2126 * p.buf[i] + 0.7152 * p.buf[i + 1] + 0.0722 * p.buf[i + 2]; n++; }
+    const luma = n ? s / n / 255 : 0;
+    p.luma = luma;
+    // histeresis supaya tidak berkedip bolak-balik di sekitar ambang
+    const light = p.light ? luma > 0.42 : luma > 0.58;
+    if (light !== p.light) { p.light = light; navEl.classList.toggle('on-light', light); }
+    return;
+  }
+  if (++p.frame % 5) return; // ±12× per detik sudah cukup
+  const r = navEl.getBoundingClientRect();
+  const pr = renderer.getPixelRatio();
+  const W = gl.drawingBufferWidth, H = gl.drawingBufferHeight;
+  const x = Math.max(0, Math.floor(r.left * pr)), y = Math.max(0, Math.floor((size.h - r.bottom) * pr));
+  const w = Math.min(Math.ceil(r.width * pr), W - x), h = Math.min(Math.ceil(r.height * pr), H - y);
+  if (w <= 0 || h <= 0) return;
+  p.len = w * h * 4;
+  renderer.setRenderTarget(null); // pastikan membaca framebuffer layar
+  gl.bindBuffer(gl.PIXEL_PACK_BUFFER, p.pbo);
+  if (p.cap < p.len) { gl.bufferData(gl.PIXEL_PACK_BUFFER, p.len, gl.STREAM_READ); p.cap = p.len; p.buf = new Uint8Array(p.len); }
+  gl.readPixels(x, y, w, h, gl.RGBA, gl.UNSIGNED_BYTE, 0);
+  gl.bindBuffer(gl.PIXEL_PACK_BUFFER, null);
+  p.sync = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0);
 }
 
 /* ---------------- boot ---------------- */
@@ -270,4 +341,4 @@ async function boot() {
 }
 boot();
 
-window.__story = { ctx, acts, ui, measure, lenis, trackTop, trackLen, get g() { return globalProgress(scrollY); } };
+window.__story = { ctx, acts, ui, measure, lenis, trackTop, trackLen, get g() { return globalProgress(scrollY); }, get navLuma() { return navProbe?.luma; } };
