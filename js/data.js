@@ -722,6 +722,282 @@ export const EXPLAINERS = {
       },
     ],
   },
+
+  esa: {
+    title: 'Allah itu Esa — *Echad* (אֶחָד)',
+    sections: [
+      {
+        heading: 'Makna: *Ehad / Echad* (אֶחָד)',
+        intro:
+          'Kata **Ehad (*Echad*)** adalah kata bahasa Ibrani Kuno yang muncul pertama kali dalam **Kejadian 1:5** (*yom echad* — ' +
+          '“hari satu/pertama”) dan menjadi kata kunci dalam pengakuan iman utama Israel, yaitu **Shema Yisrael** (Ulangan 6:4):',
+        quote:
+          '**שְׁמַע יִשְׂרָאֵל יְהוָה אֱלֹהֵינוּ יְהוָה אֶחָֽד**\n' +
+          '*Shema Yisrael Adonai Eloheinu Adonai* **Echad**\n' +
+          '“Dengarlah, hai orang Israel: TUHAN itu Allah kita, TUHAN itu **esa/satu**!”',
+      },
+      {
+        heading: 'Makna Linguistik: *Compound Unity* (Kesatuan Jamak / Manunggal)',
+        intro:
+          'Secara tata bahasa Ibrani, kata *Echad* sering kali merujuk pada kesatuan dari beberapa unsur yang menyatu secara utuh ' +
+          '(*compound unity* / kesatuan jamak), bukan sekadar angka matematis tunggal yang terisolasi:',
+        items: [
+          '**Kejadian 2:24:** “Sebab itu seorang laki-laki akan meninggalkan ayahnya dan ibunya dan bersatu dengan isterinya, sehingga ' +
+            'keduanya menjadi **satu daging**” (*l’basar echad*). Dua pribadi (suami dan istri) menjadi satu/*echad* dalam ikatan pernikahan.',
+          '**Bilangan 13:23:** “Ketika mereka sampai ke lembah Eskol, dipotong merekalah di sana sebuah cabang dengan **setandan buah ' +
+            'anggurnya**” (*eshkol anavim echad*). Banyak buah anggur dalam satu tangkai disebut satu/*echad*.',
+          '**Kejadian 11:6:** “Ia berfirman: ‘Mereka ini **satu bangsa**’” (*am echad*). Ribuan orang menyatu dalam satu bangsa.',
+        ],
+      },
+      {
+        heading: 'Perbandingan Krusial: *Echad* (אֶחָד) vs *Yachid* (יָחִיד)',
+        intro: 'Untuk memahami mengapa Alkitab menggunakan kata *Echad* untuk Allah, kita harus melihat kata Ibrani lainnya, yaitu **Yachid**:',
+        table: {
+          head: ['Kata Ibrani', 'Arti / Sifat', 'Penggunaan dalam Alkitab'],
+          rows: [
+            ['Echad (אֶחָד)', '**Kesatuan Manunggal** (*Compound Unity*). Menyatakan keesaan yang memiliki kedalaman relasional.',
+              'Digunakan dalam **Ulangan 6:4** (*Shema Yisrael*) untuk menyatakan Keesaan Allah.'],
+            ['Yachid (יָחִיד)', '**Tunggal Mutlak / Terisolasi** (*Solitary / Single*). Berarti angka satu yang menyendiri tanpa relasi.',
+              'Digunakan untuk menyebut “anak tunggal” (seperti Ishak dalam Kejadian 22:2). **Tidak pernah** digunakan Alkitab untuk menyebut Keesaan Allah.'],
+          ],
+        },
+        outro:
+          '**Implikasi:** Kitab Suci secara sengaja memakai kata **Echad** (bukan *Yachid*) untuk menegaskan bahwa Allah Yang Esa bukanlah ' +
+          'entitas yang kaku, kesepian, atau terisolasi, melainkan Allah yang memiliki persekutuan internal yang sempurna di dalam diri-Nya ' +
+          'sendiri sejak kekekalan.',
+      },
+      {
+        heading: 'Bedah Kata Bahasa Indonesia: *Esa*',
+        intro: 'Kata *Esa* dalam bahasa Indonesia memiliki akar sejarah dan makna filosofis-teologis yang sangat khas:',
+        items: [
+          '**Etimologi Sanskerta:** Kata *Esa* berasal dari bahasa Sanskerta (*Eka* / *Esa*), yang berarti “Maha Tunggal”, “Utama”, atau “Yang Mengesakan”.',
+          {
+            text: '**Perbedaan “Esa” dan “Satu”:**',
+            items: [
+              'Kata “Satu” adalah bilangan numerik matematis (1, 2, 3…) yang bisa ditambah, dibagi, atau dikurangi.',
+              'Kata “Esa” melampaui deret hitung matematika. Esa menandakan Keberadaan yang Utama, Mutlak, Tak Terbagi, dan Tidak Ada Tandingannya.',
+            ],
+          },
+          'Oleh karena itu, ketika Lembaga Alkitab Indonesia (LAI) menerjemahkan Ulangan 6:4, mereka memilih frasa “TUHAN itu **esa**” ' +
+            '(bukan sekadar “TUHAN itu satu”), untuk menangkap bobot keagungan kata *Echad*.',
+        ],
+      },
+      {
+        heading: 'Yohanes 10:30 — *Hen*',
+        quote: '**ἐγὼ καὶ ὁ πατὴρ ἕν ἐσμεν**\n*Egō kai ho patēr* **hen** *esmen*\n“Aku dan Bapa adalah **satu/esa**.”',
+        outro:
+          '**Satu Hakikat (*Ousia*):** Allah itu **Esa** (*Echad / Hen*) karena Bapa, Anak (*Logos*), dan Roh Kudus memiliki satu kodrat ' +
+          'keilahian, satu kuasa, satu kehendak, dan satu kemuliaan yang tak terbagi.',
+      },
+      {
+        heading: 'Esensi Ilahi (*Ousia*) dan Energi Ilahi (*Energeia*)',
+        items: [
+          {
+            text: '**Esensi Ilahi (*Ousia*)**',
+            items: [
+              '**Hakikat Batiniah Allah:** Merupakan wujud terdalam Allah di dalam diri-Nya sendiri.',
+              '**Mutlak Tidak Terjangkau:** Esensi Allah sama sekali tidak terbatas, tidak tercipta, tidak dapat dilihat, dan tidak dapat ' +
+                'dipahami oleh makhluk ciptaan mana pun—baik oleh manusia maupun malaikat.',
+              '**Jurang Ontologis (*Diastema*):** Perbedaan kodrat antara Sang Pencipta yang Tidak Diciptakan (*Uncreated*) dan ciptaan ' +
+                'yang Diciptakan (*Created*) membuat manusia jasmani akan mengalami kehancuran ontologis jika menatap Esensi Allah secara ' +
+                'langsung tanpa pelindung.',
+            ],
+          },
+          {
+            text: '**Energi Ilahi (*Energeia*)**',
+            items: [
+              '**Hadirat dan Tindakan yang Memancar:** Merupakan tindakan, kuasa, kemuliaan, rahmat, dan Terang Tak Tercipta ' +
+                '(*Uncreated Light*) yang memancar keluar dari Esensi Allah.',
+              '**Dapat Dialami dan Dipartisipasi:** Melalui Energi Ilahi inilah Allah menyatakan diri-Nya di dalam sejarah, menopang alam ' +
+                'semesta, serta memungkinkan manusia untuk bersatu dengan-Nya (*Theosis*) dan “melihat” hadirat-Nya tanpa kebinasaan.',
+            ],
+          },
+        ],
+      },
+      {
+        heading: 'Teologi Apofatik (*Via Negativa* / Jalan Penyangkalan)',
+        intro:
+          'Ketakterlihatan Allah memicu lahirnya Teologi Apofatik di dalam Tradisi Patristik (dikembangkan oleh Bapa Gereja seperti ' +
+          'Santo Dionysius Areopagita dan Santo Gregorius dari Nyssa):',
+        items: [
+          '**Bukan Objek Penglihatan:** Allah bukanlah salah satu objek fisik di alam semesta yang bisa diukur atau ditangkap oleh indra penglihatan manusia.',
+          '**Melampaui Konsep Intelektual:** Akal budi manusia (*dianoia*) tidak sanggup mendefinisikan atau mengurung Hakikat Allah di dalam ' +
+            'kata-kata atau gambaran visual.',
+          '**Pengenalan Melalui “Kegelapan Ilahi” (*Agnosia*):** Santo Gregorius dari Nyssa menafsirkan peristiwa Musa mendaki Gunung Sinai: ' +
+            'ketika Musa memasuki awan pekat, ia melepaskan semua konsep dan bayangan visual untuk bersatu dengan Allah di dalam keheningan ' +
+            'doa yang melampaui pengetahuan intelektual.',
+        ],
+      },
+      {
+        heading: 'Bagaimana Manusia Akhirnya Dapat “Melihat” Allah?',
+        intro: 'Jika Hakikat Bapa tidak dapat dilihat oleh manusia, lalu bagaimana manusia dapat mengenal dan berhubungan dengan Allah?',
+        items: [
+          '**Pengosongan Diri (*Kenosis*):** Karena manusia akan hancur jika melihat Terang Hakikat Allah yang tak terbatas, maka Allah Bapa ' +
+            'mengutus Sang Logos (Firman-Nya) untuk mengambil rupa daging manusia sejati dalam diri Yesus Kristus.',
+          '**Sang Gambar (*Eikon*) Allah yang Tidak Kelihatan:** Di dalam Kristus, Keilahian Allah dibungkus dengan kemanusiaan. Kristus adalah ' +
+            'Ikon nyata dari Bapa yang tidak kelihatan.',
+          '**Sabda Yesus (Yohanes 14:9):** “Barangsiapa telah melihat Aku, ia telah melihat Bapa…” Di dalam Diri Yesus Kristus, manusia ' +
+            'akhirnya dapat melihat, mendengar, dan menyentuh Allah secara nyata tanpa harus binasa oleh kedahsyatan hakikat ilahi-Nya.',
+        ],
+      },
+    ],
+    versesTitle: 'Landasan Ayat-Ayat Alkitab',
+    verseGroups: [
+      {
+        intro: 'Alkitab secara eksplisit dan konsisten mengunci kebenaran bahwa Allah di dalam hakikat-Nya tidak dapat dilihat oleh mata jasmani manusia:',
+        verses: [
+          { ref: 'Yohanes 1:18', text: '**Tidak ada seorang pun yang pernah melihat Allah**; tetapi Anak Tunggal Allah, yang ada di pangkuan Bapa, Dialah yang menyatakan-Nya.' },
+          { ref: '1 Timotius 6:16', text: 'Dialah satu-satunya yang tidak takluk kepada maut, bersemayam dalam terang yang tak terhampiri. Seorang pun tidak pernah melihat Dia dan **memang manusia tidak dapat melihat Dia**…' },
+          { ref: '1 Yohanes 4:12', text: '**Tidak ada seorang pun yang pernah melihat Allah**…' },
+          { ref: 'Keluaran 33:20', text: 'Lagi firman-Nya: ‘Engkau tidak tahan memandang wajah-Ku, sebab **tidak ada orang yang memandang Aku dapat hidup**.’' },
+        ],
+      },
+    ],
+  },
+
+  trinitas: {
+    title: 'Perichoresis (περιχώρησις)',
+    sections: [
+      {
+        heading: 'Etimologi (Asal-Usul Bahasa Yunani)',
+        intro: 'Secara kebahasaan, kata *Perichoresis* dibentuk dari gabungan dua kata dalam bahasa Yunani Kuno:',
+        items: [
+          '**1. Peri (περί):** Berarti “di sekeliling”, “sekitar”, atau “saling / timbal-balik”.',
+          '**2. Chōreō (χωρέω):** Berarti “memberi ruang”, “menampung”, “bergerak”, atau “melangkah” (berasal dari akar kata ' +
+            '*chōros* [χῶρος] yang berarti “ruang” atau “tempat”).',
+        ],
+        outro:
+          '**Makna Harfiah Linguistik:** Secara etimologis murni, *Perichoresis* berarti “saling memberi ruang”, “saling melingkupi”, ' +
+          'atau “saling bergerak masuk dan menempati ruang satu sama lain” (*mutual indwelling / co-inherence*).\n\n' +
+          '**Catatan Metaforis:** Dalam tradisi teologi populer, kata ini sering kali diasosiasikan secara puitis dengan kata Yunani ' +
+          '*choreuō* (χορεύω) yang berarti “menari”. Metafora ini menggambarkan Tritunggal Mahakudus seperti sebuah “tarian ilahi yang ' +
+          'saling melingkupi” (*dance around*), di mana Bapa, Anak, dan Roh Kudus bergerak secara harmonis, sejajar, dan saling menyatu ' +
+          'tanpa pernah saling membenturkan atau meniadakan identitas masing-masing.',
+      },
+      {
+        heading: 'Makna Hakiki: *Mutual Indwelling* & *Interpenetration*',
+        intro:
+          'Dalam teologi Patristik (ajaran Bapa-Bapa Gereja), *Perichoresis* diterjemahkan ke dalam bahasa Latin sebagai ' +
+          '*circumincessio* atau *circuminsessio*, yang mengandung makna:',
+        items: [
+          '**Saling Menembus (*Interpenetration*):** Ketiga Pribadi Ilahi saling menembus dan memenuhi satu sama lain secara total, abadi, dan tak terpisahkan.',
+          '**Saling Berdiam di Dalam (*Mutual Indwelling / Co-inherence*):** Bapa ada di dalam Anak dan Roh Kudus; Anak ada di dalam Bapa ' +
+            'dan Roh Kudus; Roh Kudus ada di dalam Bapa dan Anak.',
+          '**Tanpa Peleburan (*Without Confusion / Mingling*):** Meskipun saling menembus secara mutlak, Ketiga Pribadi (*Hypostases*) ' +
+            'tidak pernah melebur menjadi satu pribadi yang kabur (Sabellianisme/Modalisme), dan esensi-Nya (*Ousia*) tidak terpecah ' +
+            'menjadi tiga tuhan (Tritisme).',
+        ],
+      },
+      {
+        heading: 'Perkembangan Sejarah Teologis (Gereja Purba)',
+        intro: 'Penggunaan kata *Perichoresis* berkembang melalui dua tahapan utama dalam sejarah Gereja:',
+        items: [
+          {
+            text: '**1. Penggunaan Kristologis (Abad ke-4)**',
+            items: [
+              'Pertama kali diperkenalkan oleh Bapa Gereja seperti Santo Gregorius dari Nazianzus (*St. Gregory the Theologian*) untuk ' +
+                'menjelaskan bagaimana Kodrat Ilahi dan Kodrat Manusia menyatu di dalam Satu Pribadi Kristus tanpa saling membinasakan atau melebur.',
+            ],
+          },
+          {
+            text: '**2. Penggunaan Trinitaris (Abad ke-8)**',
+            items: [
+              'Dirumuskan secara sistematis oleh Santo Yohanes dari Damaskus (*St. John of Damascus*) dan Pseudo-Cyril untuk menjelaskan ' +
+                'hubungan internal antara Bapa, Anak, dan Roh Kudus.',
+              'Santo Yohanes dari Damaskus menggambarkan bahwa Ketiga Pribadi saling melekat dan menembus seperti **tiga matahari yang ' +
+                'memancarkan satu cahaya** yang bersatu padu.',
+            ],
+          },
+        ],
+      },
+    ],
+    versesTitle: 'Ayat-ayat Referensi',
+    verseGroups: [
+      {
+        title: 'Saling Berdiam Antara Bapa dan Anak (*Intra-Trinitarian Indwelling*)',
+        verses: [
+          {
+            ref: 'Yohanes 14:10–11', note: 'Pernyataan Eksplisit Saling Berdiam',
+            text:
+              'Tidak percayakah engkau, bahwa **Aku di dalam Bapa dan Bapa di dalam Aku**? Apa yang Aku katakan kepadamu, tidak Aku ' +
+              'katakan dari diri-Ku sendiri, tetapi Bapa, **yang diam di dalam Aku**, Dialah yang melakukan pekerjaan-Nya. Percayalah ' +
+              'kepada-Ku, bahwa **Aku di dalam Bapa dan Bapa di dalam Aku**…',
+            commentLabel: 'Makna Teologis',
+            comment: 'Yesus menegaskan bahwa setiap karya dan ucapan-Nya merupakan manifestasi Bapa yang berdiam di dalam diri-Nya secara utuh dan tak terpisahkan.',
+          },
+          {
+            ref: 'Yohanes 10:30', note: 'Kesatuan Hakikat / *Ousia*',
+            text: '**Aku dan Bapa adalah satu.**',
+            commentLabel: 'Analisis Bahasa Asli',
+            comment:
+              'Teks asli Yunani menggunakan kata **hen** (ἕν — bentuk netral/*neuter* yang merujuk pada kesatuan hakikat atau esensi), ' +
+              'bukan *heis* (εἷς — bentuk maskulin yang menunjuk pada satu orang/pribadi). Ini membuktikan bahwa Yesus dan Bapa adalah ' +
+              '**DUA Pribadi** (*Hypostases*) yang berbeda, tetapi menyatu secara mutlak dalam **SATU Hakikat** (*Ousia*) melalui *Perichoresis*.',
+          },
+          {
+            ref: 'Yohanes 14:9', note: 'Ikon Sempurna Bapa',
+            text: 'Barangsiapa telah melihat Aku, ia telah melihat Bapa…',
+            commentLabel: 'Makna Teologis',
+            comment: 'Karena Anak berdiam di dalam Bapa dan Bapa di dalam Anak, maka mengenal Sang Anak berarti mengenal Sang Bapa secara utuh.',
+          },
+          {
+            ref: 'Yohanes 17:21', note: 'Standar Kesatuan Persekutuan',
+            text: '…supaya mereka semua menjadi satu, sama seperti **Engkau, ya Bapa, di dalam Aku dan Aku di dalam Engkau**…',
+          },
+        ],
+      },
+      {
+        title: 'Kehadiran dan Kesatuan Roh Kudus dalam Tritunggal',
+        verses: [
+          {
+            ref: 'Yohanes 15:26', note: 'Prosesi dan Kesaksian Roh',
+            text: 'Jikalau Penghibur yang akan Kuutus dari Bapa datang, yaitu Roh Kebenaran, **yang keluar dari Bapa**, Ia akan bersaksi tentang Aku.',
+            commentLabel: 'Makna Teologis',
+            comment:
+              'Roh Kudus keluar dari Bapa sebagai Sumber kekal (Monarki Bapa) dan memancarkan kesaksian tentang Anak, memperlihatkan ' +
+              'persekutuan Tiga Pribadi yang saling mengalirkan kehidupan.',
+          },
+          {
+            ref: '1 Korintus 2:10–11', note: 'Penyelaman Kedalaman Allah',
+            text:
+              'Karena kepada kita Allah telah menyatakannya oleh Roh, sebab Roh menyelami segala sesuatu, bahkan **hal-hal yang terdalam ' +
+              'dari Allah**… Demikianlah tidak ada orang yang tahu apa yang ada di dalam diri Allah selain Roh Allah.',
+            commentLabel: 'Makna Teologis',
+            comment: 'Roh Kudus berdiam di dalam kedalaman batiniah Allah Bapa, membuktikan bahwa Roh Kudus adalah Allah sejati yang tahu dan sehakikat dengan Bapa.',
+          },
+          {
+            ref: '2 Korintus 13:13', note: 'Persekutuan / *Koinonia* Trinitarian',
+            text: '**Kasih karunia Tuhan Yesus Kristus**, dan **kasih Allah** [Bapa], dan **persekutuan Roh Kudus** menyertai kamu sekalian.',
+            commentLabel: 'Makna Teologis',
+            comment: 'Rasul Paulus menempatkan Ketiga Pribadi secara sejajar dan simultan sebagai sumber tunggal kasih karunia dan persekutuan rohani.',
+          },
+        ],
+      },
+      {
+        title: 'Manifestasi Formula dan Teofani Kesatuan Tritunggal',
+        verses: [
+          {
+            ref: 'Matius 28:19', note: 'Satu Nama untuk Tiga Pribadi',
+            text: 'Karena itu pergilah, jadikanlah semua bangsa murid-Ku dan baptislah mereka dalam **nama** Bapa dan Anak dan Roh Kudus…',
+            commentLabel: 'Analisis Bahasa Asli',
+            comment:
+              'Penggunaan kata tunggal “NAMA” (*eis to onoma*), bukan “nama-nama” (jamak), menegaskan bahwa Bapa, Anak, dan Roh Kudus ' +
+              'memiliki Satu Otoritas dan Satu Hakikat Ilahi yang tidak terbagi.',
+          },
+          {
+            ref: 'Matius 3:16–17', note: 'Teofani Agung di Sungai Yordan',
+            text:
+              'Sesudah dibaptis, **Yesus** [Anak] segera keluar dari air… dan ia melihat **Roh Allah** [Roh Kudus] seperti burung merpati ' +
+              'turun ke atas-Nya, lalu terdengarlah **suara dari sorga** [Bapa] yang mengatakan: ‘Inilah Anak-Ku yang Kekasih…’',
+            commentLabel: 'Makna Teologis',
+            comment:
+              'Momen ini memperlihatkan Tiga Pribadi yang berbeda secara *hypostasis* menampakkan diri secara simultan dan bekerja dalam ' +
+              'satu harmoni tindakan ilahi (*Inseparable Operations*).',
+          },
+        ],
+      },
+    ],
+  },
 };
 
 /* ---------------------------------------------------------------------
@@ -865,6 +1141,48 @@ export const THEMES = [
       { from: 'Mat 25:31', to: 'Why 20:11', text: '' },
       { from: 'Yoh 5:22', to: 'Kis 10:42', text: '' },
       { from: 'Rm 2:16', to: 'Ibr 9:27', text: '' },
+    ],
+  },
+  /* Section terakhir KRISTUS — tema tersembunyi (tidak tampil sebagai tombol di Keterhubungan).
+     cat: 'kristofani' = Sang Firman menampakkan diri sebelum inkarnasi;
+          'inkarnasi'  = Sang Firman menjadi manusia di dalam Yesus Kristus.
+     Penomoran mengikuti TB (LAI), diverifikasi di alkitab.sabda.org:
+     Mikha 5:2 TB (= 5:1 Ibrani/Inggris), Mazmur 40:6-8 TB (= 40:7-9). */
+  {
+    id: 'kristus',
+    name: 'Kristus',
+    hidden: true,
+    refs: [
+      { cat: 'kristofani', from: 'Kej 3:8', to: 'Yoh 1:14', text: 'Suara (Memra) TUHAN berjalan di taman — Firman itu diam di antara kita' },
+      { cat: 'kristofani', from: 'Kej 15:1', to: 'Yoh 1:1', text: 'Firman TUHAN datang kepada Abram dalam penglihatan — Pada mulanya adalah Firman' },
+      { cat: 'kristofani', from: 'Kej 18:1', to: 'Yoh 8:56', text: 'TUHAN menampakkan diri kepada Abraham — Abraham telah melihat hari-Ku' },
+      { cat: 'kristofani', from: 'Kej 32:30', to: 'Yoh 1:18', text: 'Yakub melihat Allah berhadapan muka — Anak Tunggal Allah yang menyatakan-Nya' },
+      { cat: 'kristofani', from: 'Kel 3:2', to: 'Kis 7:30', text: 'Malaikat TUHAN dalam nyala api semak duri' },
+      { cat: 'kristofani', from: 'Kel 3:14', to: 'Yoh 8:58', text: 'AKU ADALAH AKU — Sebelum Abraham jadi, Aku telah ada' },
+      { cat: 'kristofani', from: 'Kel 17:6', to: '1Kor 10:4', text: 'Batu karang di Horeb — batu karang itu ialah Kristus' },
+      { cat: 'kristofani', from: 'Yos 5:14', to: 'Why 19:14', text: 'Panglima Balatentara TUHAN — pasukan sorga mengikuti Dia' },
+      { cat: 'kristofani', from: 'Hak 13:18', to: 'Yes 9:5', text: 'Nama-Ku ajaib — Penasihat Ajaib' },
+      { cat: 'kristofani', from: '1Sam 3:21', to: 'Yoh 1:1', text: 'TUHAN menyatakan diri dengan perantaraan firman-Nya' },
+      { cat: 'kristofani', from: 'Yes 6:1', to: 'Yoh 12:41', text: 'Yesaya melihat Tuhan — ia telah melihat kemuliaan-Nya (Kristus)' },
+      { cat: 'kristofani', from: 'Yeh 1:26', to: 'Why 1:13', text: 'Rupa manusia di atas takhta — seorang serupa Anak Manusia' },
+      { cat: 'kristofani', from: 'Dan 3:25', to: 'Yes 43:2', text: 'Yang keempat seperti anak dewa — Aku menyertai engkau di dalam api' },
+      { cat: 'kristofani', from: 'Dan 7:13', to: 'Mat 26:64', text: 'Seorang seperti anak manusia datang dengan awan-awan' },
+      { cat: 'inkarnasi', from: 'Kej 3:15', to: 'Gal 4:4', text: 'Keturunan perempuan — Anak-Nya lahir dari seorang perempuan' },
+      { cat: 'inkarnasi', from: 'Ul 18:15', to: 'Kis 3:22', text: 'Seorang nabi seperti Musa akan dibangkitkan' },
+      { cat: 'inkarnasi', from: 'Mzm 2:7', to: 'Ibr 1:5', text: 'Anak-Ku Engkau! Engkau telah Kuperanakkan' },
+      { cat: 'inkarnasi', from: 'Mzm 33:6', to: 'Yoh 1:3', text: 'Oleh firman TUHAN langit dijadikan — segala sesuatu dijadikan oleh Dia' },
+      { cat: 'inkarnasi', from: 'Mzm 40:6-8', to: 'Ibr 10:5-7', text: 'Sungguh, aku datang — Engkau telah menyediakan tubuh bagiku' },
+      { cat: 'inkarnasi', from: 'Yes 7:14', to: 'Mat 1:23', text: 'Anak dara mengandung — Imanuel, Allah menyertai kita' },
+      { cat: 'inkarnasi', from: 'Yes 9:5', to: 'Luk 2:11', text: 'Seorang anak telah lahir untuk kita — Juruselamat, Kristus, Tuhan' },
+      { cat: 'inkarnasi', from: 'Yes 40:3', to: 'Mrk 1:3', text: 'Persiapkanlah jalan untuk TUHAN' },
+      { cat: 'inkarnasi', from: 'Yer 23:5', to: 'Luk 1:32', text: 'Tunas adil bagi Daud — takhta Daud, bapa leluhur-Nya' },
+      { cat: 'inkarnasi', from: 'Mi 5:2', to: 'Mat 2:6', text: 'Betlehem Efrata — dari padamu akan bangkit seorang pemimpin' },
+      { cat: 'inkarnasi', from: 'Mal 3:1', to: 'Mrk 1:2', text: 'Aku menyuruh utusan-Ku mempersiapkan jalan' },
+      { cat: 'inkarnasi', from: 'Yoh 1:1', to: '1Yoh 1:1', text: 'Firman hidup yang telah kami lihat dan raba' },
+      { cat: 'inkarnasi', from: 'Yoh 1:14', to: 'Flp 2:7', text: 'Firman menjadi manusia — mengambil rupa seorang hamba' },
+      { cat: 'inkarnasi', from: 'Yoh 1:14', to: 'Kol 2:9', text: 'Seluruh kepenuhan keallahan berdiam secara jasmani' },
+      { cat: 'inkarnasi', from: 'Yoh 1:14', to: '1Tim 3:16', text: 'Dia, yang telah menyatakan diri-Nya dalam rupa manusia' },
+      { cat: 'inkarnasi', from: 'Yoh 1:14', to: 'Ibr 2:14', text: 'Ia juga menjadi sama dengan mereka dan mendapat bagian dalam darah dan daging' },
     ],
   },
 ];

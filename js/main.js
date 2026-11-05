@@ -93,7 +93,7 @@ const ctx = {
   },
   goTheme(i) {
     const s10 = 0.1 + ((i + 0.5) / 4) * 0.82;
-    ctx.scrollToStory(10, 0.24 + 0.76 * s10);
+    ctx.scrollToStory(11, 0.4 + 0.6 * s10);
   },
 };
 

@@ -11,7 +11,7 @@
   --card-line: rgba(255, 232, 196, 0.09);
   --tip-edge: rgba(255, 244, 222, 0.75);
   --orb-ring: rgba(150, 205, 255, 0.95);
-  --serif: "Instrument Serif", "Iowan Old Style", "Times New Roman", serif;
+  --serif: "Instrument Serif", "Iowan Old Style", "Times New Roman", "Noto Serif Hebrew", serif;
   --sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --gutter-l: max(16px, env(safe-area-inset-left, 0px));
   --gutter-r: max(16px, env(safe-area-inset-right, 0px));
@@ -299,6 +299,85 @@ html.modal-open { overflow: hidden; }
   background: radial-gradient(ellipse closest-side, rgba(10, 6, 2, 0.62), rgba(10, 6, 2, 0.4) 60%, rgba(10, 6, 2, 0));
 }
 .s7-subs .sub.left { text-align: right; }
+
+/* ---------- TAMAN EDEN + MANUSIA (Kristofani) ---------- */
+#eden { position: absolute; inset: 0; overflow: hidden; visibility: hidden; opacity: 0; pointer-events: none; background: #050403; }
+/* bingkai "cover" dengan rasio gambar (±1,792) → posisi % di dalamnya = posisi di gambar */
+.eden-frame {
+  position: absolute; left: 50%; top: 50%; width: max(100vw, calc(100vh * 1.792)); aspect-ratio: 2000 / 1116;
+  transform: translate(-50%, -50%) scale(var(--eden-scale, 1)); filter: blur(var(--eden-blur, 0px)); will-change: transform, filter;
+}
+.eden-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.eden-kf {
+  --r1: 0; --r2: 0; --ra: 0;
+  -webkit-mask-image:
+    radial-gradient(ellipse calc(var(--r1) * 1%) calc(var(--r1) * 3.4%) at 61% 55%, #000 55%, transparent 100%),
+    radial-gradient(ellipse calc(var(--r2) * 1%) calc(var(--r2) * 3.8%) at 47% 57%, #000 55%, transparent 100%),
+    radial-gradient(ellipse calc(var(--ra) * 1%) calc(var(--ra) * 1%) at 54% 50%, #000 60%, transparent 100%);
+  mask-image:
+    radial-gradient(ellipse calc(var(--r1) * 1%) calc(var(--r1) * 3.4%) at 61% 55%, #000 55%, transparent 100%),
+    radial-gradient(ellipse calc(var(--r2) * 1%) calc(var(--r2) * 3.8%) at 47% 57%, #000 55%, transparent 100%),
+    radial-gradient(ellipse calc(var(--ra) * 1%) calc(var(--ra) * 1%) at 54% 50%, #000 60%, transparent 100%);
+}
+.eden-glow {
+  position: absolute; aspect-ratio: 1; border-radius: 50%; opacity: 0; mix-blend-mode: screen;
+  transform: translate(-50%, -50%) scale(var(--s, 1));
+  background: radial-gradient(circle, rgba(255, 251, 238, 0.95) 0%, rgba(255, 228, 175, 0.55) 22%, rgba(255, 212, 150, 0) 62%);
+}
+.kf-christ { left: 61%; top: 42%; width: 34%; }
+.kf-adam { left: 46.5%; top: 47%; width: 30%; }
+.kf-spark { left: calc(61% - 14.5% * var(--t, 0)); top: calc(42% + 5% * var(--t, 0)); width: 12%; }
+.eden-white { position: absolute; inset: 0; opacity: 0; background: radial-gradient(circle at 50% 45%, #fffdf6, #efe3c9); }
+
+.eden-head { position: absolute; left: var(--gutter-l); right: var(--gutter-r); top: clamp(40px, 9vh, 104px); text-align: center; }
+.eden-title {
+  margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(46px, 6.4vw, 100px); line-height: 1; color: var(--ink);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6), 0 0 40px rgba(140, 190, 255, 0.35);
+}
+.mn-text {
+  position: absolute; left: var(--gutter-l); right: var(--gutter-r); bottom: clamp(64px, 11vh, 130px);
+  margin: 0 auto; max-width: 56rem; text-align: center; isolation: isolate;
+}
+.mn-text::before {
+  content: ""; position: absolute; z-index: -1; left: 50%; top: 50%; width: min(1200px, 120vw); height: 190%;
+  transform: translate(-50%, -50%); pointer-events: none;
+  background: radial-gradient(ellipse closest-side, rgba(10, 7, 3, 0.78), rgba(10, 7, 3, 0.5) 60%, rgba(10, 7, 3, 0));
+}
+.mn-lead { margin: 0 0 10px; font-family: var(--serif); font-style: italic; font-size: clamp(19px, 1.9vw, 27px); color: var(--gold-hot); text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85); }
+.mn-verse {
+  margin: 0; font-family: var(--serif); font-size: clamp(22px, 2.5vw, 38px); line-height: 1.28; color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 24px rgba(0, 0, 0, 0.6); text-wrap: balance;
+}
+.mn-ref { margin: 12px 0 0; font-size: 12px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9); }
+
+/* ---------- KRISTUS (Sang Kristus = Firman) ---------- */
+.kr-cross {
+  position: absolute; left: 0; top: 0; width: clamp(38px, 3.6vw, 60px); color: #ff2424; opacity: 0; pointer-events: none;
+  filter: drop-shadow(0 0 10px rgba(255, 60, 40, 0.85)) drop-shadow(0 0 28px rgba(255, 90, 60, 0.55));
+  will-change: transform, opacity;
+}
+.kr-cross svg { display: block; width: 100%; height: auto; }
+.kr-panel {
+  position: absolute; left: var(--gutter-l); right: var(--gutter-r); bottom: calc(58px + env(safe-area-inset-bottom, 0px)); top: 54%;
+  margin: 0 auto; max-width: 1180px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin;
+  padding: 8px 4px 12px;
+}
+.kr-title { margin: 0; text-align: right; font-family: var(--sans); font-weight: 700; font-size: clamp(24px, 2.6vw, 40px); color: #fff; letter-spacing: -0.01em; text-shadow: 0 0 22px rgba(255, 80, 60, 0.35); }
+.kr-sub { margin: 4px 0 14px; text-align: right; font-size: 11.5px; color: var(--ink-faint); letter-spacing: 0.04em; }
+.kr-grid { display: grid; gap: 14px; }
+.kr-cat h3 { margin: 0 0 8px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-hot); }
+.kr-cat h3 small { font-size: 11px; font-weight: 400; letter-spacing: 0.02em; text-transform: none; color: var(--ink-faint); }
+.kr-cat ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px 18px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.kr-cat li {
+  padding: 6px 8px; border-left: 2px solid rgba(255, 60, 40, 0.5); border-radius: 2px; cursor: default;
+  opacity: 0; transform: translateY(6px); transition: background 0.2s, border-color 0.2s;
+}
+.kr-cat li.in { opacity: 1; transform: none; transition: opacity 0.45s, transform 0.45s, background 0.2s, border-color 0.2s; }
+.kr-cat li:hover { background: rgba(255, 255, 255, 0.06); border-color: #ff4a3a; }
+.kr-cat .r { margin: 0; font-size: 12.5px; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+.kr-cat .r .arrow { margin: 0 6px; color: #ff6a55; font-weight: 400; }
+.kr-cat .t { margin: 2px 0 0; font-size: 11px; line-height: 1.4; color: var(--ink-dim); }
+@media (max-width: 760px) { .kr-cross { width: 24px; } .kr-panel { top: 46%; } .kr-title, .kr-sub { text-align: left; } .kr-cat ol { grid-template-columns: 1fr; } }
 
 /* ---------- PROGINOSKO (ledakan cahaya) ---------- */
 .pg-head { position: absolute; left: var(--gutter-l); right: var(--gutter-r); top: clamp(40px, 9vh, 104px); text-align: center; isolation: isolate; }

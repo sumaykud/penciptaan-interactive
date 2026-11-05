@@ -164,6 +164,8 @@ export class StoryUI {
       .to(hint, { opacity: 0, duration: 0.04 }, 0.92)
       .fromTo(head, { opacity: 1, y: 0, filter: 'blur(0px)' }, { opacity: 0, y: -34, filter: 'blur(10px)', duration: 0.07, ease: 'power2.in', immediateRender: false }, 0.91)
       .set({}, {}, 1);
+    const info = $('.info-btn', L); // tombol "?" (opsional)
+    if (info) tl.fromTo(info, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.05 }, 0.1).to(info, { autoAlpha: 0, duration: 0.05 }, 0.91);
     return tl;
   }
 
@@ -238,7 +240,7 @@ export class StoryUI {
       if (groups.length) {
         html += `<h3 class="modal-sub">${f(d.versesTitle || 'Ayat-ayat Referensi')}</h3>`;
         groups.forEach((gr) => {
-          html += `${gr.title ? `<h4 class="modal-gtitle">${f(gr.title)}</h4>` : ''}<ol class="modal-verses">${gr.verses.map(verse).join('')}</ol>`;
+          html += `${gr.title ? `<h4 class="modal-gtitle">${f(gr.title)}</h4>` : ''}${gr.intro ? `<p class="modal-intro">${f(gr.intro)}</p>` : ''}<ol class="modal-verses">${gr.verses.map(verse).join('')}</ol>`;
         });
       }
       $('.modal-body', dlg).innerHTML = html;
@@ -312,14 +314,14 @@ export class StoryUI {
 
   /* STORY 9–10: label kelompok, label kitab, legend, navigasi tema, daftar referensi */
   buildStory9and10() {
-    const gbox = $('.group-labels', this.layers[9]);
+    const gbox = $('.group-labels', this.layers[11]);
     this.groupLabels = BOOK_GROUPS.map((g) => {
       const el = document.createElement('div');
       el.className = 'gl'; el.textContent = g.name;
       gbox.appendChild(el);
       return el;
     });
-    const L = this.layers[10];
+    const L = this.layers[11];
     const leg = $('.legend ul', L);
     BOOK_GROUPS.forEach((g) => {
       const li = document.createElement('li');
@@ -329,7 +331,7 @@ export class StoryUI {
       leg.appendChild(li);
     });
     const list = $('.theme-list', L);
-    this.themeButtons = THEMES.map((th, i) => {
+    this.themeButtons = THEMES.filter((th) => !th.hidden).map((th, i) => {
       const li = document.createElement('li');
       const b = document.createElement('button');
       b.type = 'button'; b.className = 'interactive'; b.textContent = th.name;
@@ -345,11 +347,40 @@ export class StoryUI {
     this.bookBox = $('.book-labels', L);
     this.leaders = $('.leaders path', L);
     const tl = gsap.timeline({ paused: true });
-    tl.fromTo(this.themeButtons, { opacity: 0, x: 34 }, { opacity: 1, x: 0, stagger: 0.025, duration: 0.07, ease: 'power3.out' }, 0.15)
-      .fromTo($('.legend', L), { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.08 }, 0.17)
-      .fromTo([this.refList, $('.drag-hint', L)], { opacity: 0 }, { opacity: 1, duration: 0.06, stagger: 0.03 }, 0.22)
+    // diagram baru selesai berputar ke vertikal di ±40% story ini (lihat a7-bumi legacy())
+    tl.fromTo(this.themeButtons, { opacity: 0, x: 34 }, { opacity: 1, x: 0, stagger: 0.025, duration: 0.07, ease: 'power3.out' }, 0.38)
+      .fromTo($('.legend', L), { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.08 }, 0.4)
+      .fromTo([this.refList, $('.drag-hint', L)], { opacity: 0 }, { opacity: 1, duration: 0.06, stagger: 0.03 }, 0.44)
       .set({}, {}, 1);
-    this.tls[10] = tl;
+    this.tls[11] = tl;
+
+    // Taman Eden: judul tampil di awal, hilang sebelum kamera menukik ke Bumi
+    const E = this.layers[9];
+    const te = gsap.timeline({ paused: true });
+    te.fromTo($('.eden-title', E), { opacity: 0, y: 16, letterSpacing: '0.12em', filter: 'blur(10px)' }, { opacity: 1, y: 0, letterSpacing: '0.02em', filter: 'blur(0px)', duration: 0.12, ease: 'power3.out' }, 0.06)
+      .to($('.eden-head', E), { opacity: 0, y: -20, filter: 'blur(8px)', duration: 0.08, ease: 'power2.in' }, 0.5)
+      .set({}, {}, 1);
+    this.tls[9] = te;
+
+    // Manusia: kalimat pembuka → ayat Kejadian 1:27 → referensi; hilang sebelum gambar memudar
+    const M = this.layers[10];
+    const tm = gsap.timeline({ paused: true });
+    tm.fromTo($('.mn-lead', M), { opacity: 0, y: 12, filter: 'blur(6px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.07 }, 0.06)
+      .fromTo($('.mn-verse', M), { opacity: 0, y: 14, filter: 'blur(8px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.09 }, 0.14)
+      .fromTo($('.mn-ref', M), { opacity: 0 }, { opacity: 1, duration: 0.05 }, 0.22)
+      .to($('.mn-text', M), { opacity: 0, y: 16, filter: 'blur(6px)', duration: 0.07, ease: 'power2.in' }, 0.8)
+      .set({}, {}, 1);
+    this.tls[10] = tm;
+
+    // KRISTUS: judul + daftar ayat muncul setelah diagram kembali horizontal (salib digerakkan act Bumi)
+    const K = this.layers[12];
+    const tk = gsap.timeline({ paused: true });
+    tk.fromTo($('.kr-panel', K), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.04 }, 0.2)
+      .fromTo($('.kr-title', K), { opacity: 0, y: 18, filter: 'blur(8px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.08, ease: 'power3.out' }, 0.22)
+      .fromTo($('.kr-sub', K), { opacity: 0 }, { opacity: 1, duration: 0.06 }, 0.27)
+      .fromTo($('.kr-grid', K), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.08 }, 0.3)
+      .set({}, {}, 1);
+    this.tls[12] = tk;
   }
 
   bindBookLabels(books, arcs) {
@@ -370,6 +401,7 @@ export class StoryUI {
   setTheme(i, arcs) {
     this.themeButtons.forEach((b, k) => b.setAttribute('aria-current', k === i ? 'true' : 'false'));
     const th = arcs.themes[i];
+    if (th.hidden) { this.fillKristus(th, arcs); return; }
     this.refList.innerHTML = '';
     th.items.forEach((it, k) => {
       const li = document.createElement('li');
@@ -380,6 +412,38 @@ export class StoryUI {
       li.addEventListener('pointerleave', () => arcs.setHoverItem(null));
       this.refList.appendChild(li);
       setTimeout(() => li.classList.add('in'), 40 + k * 45);
+    });
+  }
+
+  /* Section KRISTUS: daftar semua ayat yang terhubung, dikelompokkan Kristofani / Inkarnasi */
+  fillKristus(th, arcs) {
+    const box = $('.kr-grid', this.layers[12]);
+    if (!box || box.dataset.filled) return;
+    box.dataset.filled = '1';
+    const cats = [
+      ['kristofani', 'Kristofani', 'Sang Firman menampakkan diri sebelum menjadi manusia'],
+      ['inkarnasi', 'Inkarnasi', 'Sang Firman menjadi manusia di dalam Yesus Kristus'],
+    ];
+    let n = 0;
+    cats.forEach(([id, name, desc]) => {
+      const sec = document.createElement('section');
+      sec.className = 'kr-cat';
+      sec.innerHTML = `<h3><span></span><small></small></h3><ol></ol>`;
+      $('h3 span', sec).textContent = name;
+      $('h3 small', sec).textContent = desc;
+      const ol = $('ol', sec);
+      th.items.filter((it) => it.ref.cat === id).forEach((it) => {
+        const li = document.createElement('li');
+        li.innerHTML = `<p class="r"><span class="a"></span><span class="arrow">⟶</span><span class="b"></span></p><p class="t"></p>`;
+        $('.a', li).textContent = it.ref.from;
+        $('.b', li).textContent = it.ref.to;
+        $('.t', li).textContent = it.ref.text;
+        li.addEventListener('pointerenter', () => arcs.setHoverItem(it));
+        li.addEventListener('pointerleave', () => arcs.setHoverItem(null));
+        ol.appendChild(li);
+        setTimeout(() => li.classList.add('in'), 60 + n++ * 35);
+      });
+      box.appendChild(sec);
     });
   }
 

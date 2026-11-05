@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { Act, V } from './act.js';
 import { glow, rays, streaks } from '../core/materials.js';
 import { smooth, lerp, rng, range, bell, easeOut } from '../core/util.js';
+import { Sound } from '../core/sound.js';
 
 /* STORY 5 · Cahaya berkumpul (P 0..1) — garis cahaya berwarna tersedot ke satu bintang,
                                           flare anamorfik + sinar halus radial.
@@ -61,6 +62,7 @@ export class ActCahaya extends Act {
     this.shakeV = V();
     this.flow = 0;
     this.flowRate = 0.11;
+    this.prevP = 0;
   }
 
   update(P, w, t, dt = 1 / 60) {
@@ -115,6 +117,11 @@ export class ActCahaya extends Act {
     // getaran kamera
     const amp = this.ctx.reduced ? 0 : 0.07 * bell(1.0, 1.4, P);
     this.shakeV.set(Math.sin(t * 47) * amp, Math.cos(t * 39) * amp, 0);
+
+    // suara: dengung naik saat cahaya berkumpul (Story 5), dentuman saat ledakan (awal Story 6, maju)
+    Sound.setHum(w * (0.15 + 0.7 * smooth(0.3, 1.0, P)) * (1 - smooth(1.0, 1.08, P)) + w * 0.3 * boom * (1 - end));
+    if (w > 0.5 && this.prevP < 1.0 && P >= 1.0 && P - this.prevP < 0.2) Sound.boom();
+    this.prevP = P;
   }
 
   pose(P) {

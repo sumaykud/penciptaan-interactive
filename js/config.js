@@ -9,8 +9,10 @@ export const STORIES = [
   { id: 'dunia-kasat-mata', label: 'Penciptaan Dua Dunia', vh: 340 },
   { id: 'proginosko', label: 'Proginosko', vh: 300 },
   { id: 'big-bang', label: '7 Hari Penciptaan', vh: 420 },
-  { id: 'bumi', label: 'Bumi', vh: 260 },
-  { id: 'keterhubungan', label: 'Keterhubungan Firman', vh: 460 },
+  { id: 'bumi', label: 'Taman Eden', vh: 300 },
+  { id: 'manusia', label: 'Manusia', vh: 380 },
+  { id: 'keterhubungan', label: 'Keterhubungan Firman', vh: 600 },
+  { id: 'kristus', label: 'Kristus', vh: 380 },
 ];
 
 export const CROSSFADE = 0.06; // lebar crossfade antar act (dalam satuan track)

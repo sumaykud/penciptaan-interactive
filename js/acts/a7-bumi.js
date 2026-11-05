@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { Act, V } from './act.js';
 import { points, SHARED } from '../core/materials.js';
 import { ArcDiagram } from '../core/arcs.js';
-import { smooth, lerp, rng, range, easeInOut } from '../core/util.js';
+import { smooth, lerp, rng, range, easeInOut, bell } from '../core/util.js';
 
 /* STORY 9 · Bumi — planet dengan cahaya matahari dramatis dari atas; scroll memunculkan
                grafik timeline interconnected di bawahnya (P 0..1).
@@ -72,7 +72,14 @@ const UPY = new THREE.Vector3(0, 1, 0);
 
 export class ActBumi extends Act {
   constructor(ctx) {
-    super(ctx, { start: 9, end: 10 });
+    super(ctx, { start: 9, end: 12 });
+    this.crossEl = document.querySelector('#L12 .kr-cross');
+    // DOM Taman Eden + Kristofani (overlay di atas canvas, di bawah teks)
+    const ed = document.getElementById('eden');
+    this.eden = ed && {
+      root: ed, bg: ed.querySelector('.eden-bg'), kf: ed.querySelector('.eden-kf'), white: ed.querySelector('.eden-white'),
+      christ: ed.querySelector('.kf-christ'), spark: ed.querySelector('.kf-spark'), adam: ed.querySelector('.kf-adam'),
+    };
     const r = rng(8);
 
     // bintang latar
@@ -143,12 +150,57 @@ export class ActBumi extends Act {
       : { pos: V(0.9, 0, 0), scale: 1, cam: V(1.85, 0, 10.8), look: V(1.85, 0, 0) };
   }
 
-  update(P, w, t) {
+  /* Act ini hidup di 3 story (P mentah 0..3):
+       0..1  Taman Eden   — bumi (sedikit lebih jauh), lalu kamera menukik & gambar Eden terbuka
+       1..2  Manusia      — Eden + Kristofani (DOM), kamera tetap dekat bumi; di akhir gambar memudar
+       2..3  Keterhubungan — kamera mundur dari bumi, lalu logika lama diagram busur
+     legacy(P) memetakan tahap 3 ke progress lama (0.38..2) supaya kode diagram tidak berubah. */
+  legacy(P) {
+    if (P < 2) return 0.2;
+    if (P >= 3) return 2; // section KRISTUS: diagram dalam keadaan akhir, lalu ditata ulang (kristus())
+    const u = P - 2;
+    return u < 0.4 ? lerp(0.38, 1.24, u / 0.4) : 1.24 + ((u - 0.4) / 0.6) * 0.76;
+  }
+
+  syncEden(P, w) {
+    const E = this.eden;
+    if (!E) return;
+    const open = smooth(0.8, 0.97, P) * (1 - smooth(1.84, 1.98, P));   // gambar Eden tampil
+    const vis = w > 0.001 && open > 0.001;
+    E.root.style.visibility = vis ? 'visible' : 'hidden';
+    if (!vis) return;
+    E.root.style.opacity = open.toFixed(3);
+    // "zoom ke dalam bumi": gambar masuk dari skala besar & kabur → tajam, lalu Ken Burns pelan
+    const zin = 1 - smooth(0.8, 1.0, P);
+    const kb = smooth(1.0, 2.0, P);
+    E.root.style.setProperty('--eden-scale', (1 + 0.35 * zin + 0.06 * kb).toFixed(4));
+    E.root.style.setProperty('--eden-blur', `${(14 * zin).toFixed(2)}px`);
+    // kilat putih lembut saat menembus atmosfer & saat kembali ke bumi
+    E.white.style.opacity = (0.75 * bell(0.86, 1.02, P) + 0.6 * bell(1.86, 2.0, P)).toFixed(3);
+    // Kristofani: cahaya Kristus muncul → cahaya mengalir ke manusia → manusia terbentuk → gambar penuh
+    const r1 = 11.5 * easeInOut(range(1.22, 1.42, P));          // area Kristus
+    const sp = range(1.42, 1.56, P);                            // cahaya mengalir
+    const r2 = 9.5 * easeInOut(range(1.54, 1.68, P));           // area manusia
+    const rAll = 130 * easeInOut(range(1.66, 1.8, P));         // seluruh gambar
+    E.kf.style.setProperty('--r1', r1.toFixed(2));
+    E.kf.style.setProperty('--r2', r2.toFixed(2));
+    E.kf.style.setProperty('--ra', rAll.toFixed(2));
+    E.christ.style.opacity = (smooth(1.16, 1.3, P) * (1 - 0.55 * smooth(1.5, 1.7, P)) * (1 - smooth(1.84, 1.95, P))).toFixed(3);
+    E.christ.style.setProperty('--s', (0.6 + 0.5 * smooth(1.16, 1.4, P)).toFixed(3));
+    E.spark.style.opacity = (sp > 0 && sp < 1 ? Math.sin(sp * Math.PI) : 0).toFixed(3);
+    E.spark.style.setProperty('--t', sp.toFixed(3));
+    E.adam.style.opacity = (bell(1.52, 1.74, P) * 1.0).toFixed(3);
+  }
+
+  update(rawP, w, t) {
+    this.syncEden(rawP, w);
+    this.rawP = rawP;
+    const P = this.legacy(rawP);
     const q = easeInOut(range(0.88, 1.24, P)); // transisi story 9 → 10
     // ---- bumi
     const e = this.earthMat.uniforms;
     e.uCloudShift.value = t * 0.0015;
-    this.earth.rotation.y = t * 0.02 + P * 0.9;
+    this.earth.rotation.y = t * 0.02 + rawP * 0.6;
     this.earthGroup.position.set(0, 7.5 * q * q, -2 * q);
     const earthVis = w * (1 - smooth(0.2, 0.85, q));
     e.uOpacity.value = earthVis;
@@ -170,21 +222,68 @@ export class ActBumi extends Act {
     const sway = (Math.sin(t * 0.22) * 0.22 + this.dragYaw) * smooth(1.15, 1.35, P);
     YAW.setFromAxisAngle(UPY, sway);
     root.quaternion.copy(ID).slerp(FLIP, q).premultiply(YAW);
+    // KRISTUS: diagram kembali horizontal di bagian atas layar, fokus ke salib di kitab Injil
+    const kr = this.kristusK(rawP);
+    if (kr > 0) {
+      const L3 = this.layout3();
+      root.position.lerp(L3.pos, kr);
+      root.scale.setScalar(lerp(root.scale.x, L3.scale, kr));
+      root.quaternion.slerp(ID, kr);
+    }
     const lm = this.arcs.lineMat.uniforms;
     lm.uDraw.value = smooth(0.4, 0.82, P) * 1.6;
     lm.uRainbow.value = 1 - smooth(0.95, 1.2, P);
     lm.uFan.value = smooth(1.08, 1.32, P);
-    lm.uBase.value = lerp(0.07, 0.03, q) * Math.min(1, Math.sqrt(this.ctx.size.w / 1280) * 1.05);
-    this.arcs.opacity = w * smooth(0.38, 0.5, P);
-    this.arcs.root.visible = w * smooth(0.38, 0.5, P) > 0.002;
+    lm.uBase.value = lerp(0.07, 0.03, q) * Math.min(1, Math.sqrt(this.ctx.size.w / 1280) * 1.05) * (1 - 0.55 * kr);
+    const arcsOn = rawP >= 2 ? 1 : 0;
+    this.arcs.opacity = w * smooth(0.38, 0.5, P) * arcsOn;
+    this.arcs.root.visible = w * smooth(0.38, 0.5, P) * arcsOn > 0.002;
 
     // tema mengikuti scroll di story 10
-    if (P > 1.18) {
+    if (P > 1.18 && rawP < 3) {
       const th = Math.min(3, Math.floor(range(0.1, 0.92, s10) * 4));
       if (th !== this.theme) { this.theme = th; this.arcs.setTheme(th); this.onTheme && this.onTheme(th); }
     }
-    this.interactive = w > 0.6 && P > 1.22;
-    this.syncLabels(P, w, q);
+    this.interactive = w > 0.6 && rawP >= 2 && P > 1.22;
+    if (rawP >= 3) {
+      if (rawP > 3.12 && this.theme !== 4) { this.theme = 4; this.arcs.setTheme(4); this.onTheme && this.onTheme(4); }
+      this.interactive = w > 0.6 && kr > 0.95;
+      this.hideLabels();
+    } else {
+      this.syncLabels(P, w, q);
+    }
+    this.syncCross(rawP, w, kr);
+  }
+
+  kristusK(rawP) { return easeInOut(range(3.0, 3.28, rawP)); }
+
+  // tata letak section KRISTUS: diagram horizontal di atas, ruang daftar ayat di bawah
+  layout3() {
+    const portrait = this.ctx.size.w / this.ctx.size.h < 0.9;
+    return portrait
+      ? { pos: V(0, 1.6, 0), scale: 0.5, cam: V(0, 0.4, 11.5), look: V(0, 0.4, 0) }
+      : { pos: V(0, 0.95, 0), scale: 0.88, cam: V(0, 0.2, 8.4), look: V(0, 0.2, 0) };
+  }
+
+  hideLabels() {
+    if (this.labelsShown) { this.labelEls.forEach((el) => el.classList.remove('on')); this.leaders.setAttribute('d', ''); this.labelsShown = false; }
+    this.groupEls.forEach((el) => el.classList.remove('on'));
+  }
+
+  // salib di atas kelompok kitab Injil, mengikuti proyeksi 3D sumbu
+  syncCross(rawP, w, kr) {
+    const el = this.crossEl;
+    if (!el) return;
+    const on = w * smooth(3.18, 3.34, rawP);
+    el.style.opacity = on.toFixed(3);
+    if (on < 0.002) return;
+    const injil = this.arcs.layout.groups.find((g) => g.id === 'injil') || this.arcs.layout.groups[5];
+    const x0 = injil.xc ?? (injil.x0 + injil.x1) / 2;
+    this.arcs.inner.updateMatrixWorld();
+    this.tmp.set(x0, 0, 0.02).applyMatrix4(this.arcs.inner.matrixWorld).project(this.ctx.camera);
+    const sx = (this.tmp.x * 0.5 + 0.5) * this.ctx.size.w, sy = (-this.tmp.y * 0.5 + 0.5) * this.ctx.size.h;
+    const pulse = 1 + 0.04 * Math.sin(performance.now() * 0.0025);
+    el.style.transform = `translate3d(${sx.toFixed(1)}px, ${sy.toFixed(1)}px, 0) translate(-50%, -100%) scale(${(lerp(0.6, 1, smooth(3.18, 3.4, rawP)) * pulse).toFixed(3)})`;
   }
 
   // label kitab: kolom rata di kanan sumbu + garis penunjuk ke posisi sebenarnya
@@ -244,19 +343,40 @@ export class ActBumi extends Act {
     }
   }
 
-  pose(P) {
+  pose(rawP) {
+    const portrait = this.ctx.size.w / this.ctx.size.h < 0.9;
+    // Taman Eden: bumi sedikit lebih jauh, lalu menukik sampai menembus atmosfer
+    const far = V(0, 0, portrait ? 12.5 : 9.0), farLook = V(0, 0.1, 0);
+    const near = V(0.25, 0.55, 2.35), nearLook = V(0.3, 0.75, 0);
+    const dive = easeInOut(range(0.5, 1.0, rawP));
+    if (rawP < 2) return { pos: far.clone().lerp(near, dive), look: farLook.clone().lerp(nearLook, dive), fov: 40 };
+    // Keterhubungan: pose lama (dari progress legacy), diawali kamera mundur dari dekat bumi
+    const P = this.legacy(rawP);
     const q = easeInOut(range(0.88, 1.24, P));
     const k = smooth(0.06, 0.62, P);
-    const portrait = this.ctx.size.w / this.ctx.size.h < 0.9;
     const pos1 = V(0, lerp(-0.1, -0.85, k), lerp(portrait ? 10.5 : 7.2, portrait ? 13.5 : 9.8, k));
     const look1 = V(0, lerp(0.35, -0.85, k), 0);
     const L2 = this.layout2();
-    return { pos: pos1.lerp(L2.cam, q), look: look1.lerp(L2.look, q), fov: 40 };
+    const pos = pos1.lerp(L2.cam, q), look = look1.lerp(L2.look, q);
+    const back = easeInOut(range(2.0, 2.2, rawP)); // zoom out bumi
+    const p = near.clone().lerp(pos, back), l = nearLook.clone().lerp(look, back);
+    const kr = this.kristusK(rawP);
+    if (kr > 0) {
+      // fokus ke salib: kamera sedikit bergeser & mendekat ke arah kitab Injil
+      const L3 = this.layout3();
+      const injil = this.arcs.layout.groups.find((g) => g.id === 'injil');
+      const fx = injil ? (injil.xc ?? (injil.x0 + injil.x1) / 2) * L3.scale : 0;
+      const focus = smooth(3.35, 3.7, rawP) * 0.3;
+      p.lerp(L3.cam.clone().add(V(fx * focus, 0, -1.2 * focus)), kr);
+      l.lerp(L3.look.clone().add(V(fx * focus, 0, 0)), kr);
+    }
+    return { pos: p, look: l, fov: 40 };
   }
 
-  post(P) {
+  post(rawP) {
+    const P = this.legacy(rawP);
     const q = range(0.88, 1.24, P);
-    const flashIn = 1 - smooth(0.0, 0.08, P);
+    const flashIn = 1 - smooth(0.0, 0.08, rawP);
     return {
       bloom: lerp(0.7, 0.75, q),
       rays: 0,
