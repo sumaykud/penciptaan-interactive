@@ -507,6 +507,221 @@ export const EXPLAINERS = {
       },
     ],
   },
+
+  proginosko: {
+    title: 'Proginosko (προγινώσκω) — Kemahatahuan Allah',
+    sections: [
+      {
+        heading: 'Etimologi dan Makna Asli Kata',
+        intro: 'Secara kebahasaan Yunani Kuno, kata *Proginosko* dibentuk dari dua suku kata:',
+        items: [
+          '**Pro (πρό):** Berarti “sebelum” atau “terlebih dahulu”.',
+          '**Ginosko (γινώσκω):** Berarti “mengetahui”, “mengenal”, atau “berelasi secara intim”.',
+          {
+            text: '**Makna Harfiah**',
+            items: [
+              '**Proginosko** (προγινώσκω — kata kerja): berarti “mengetahui/mengenal terlebih dahulu” (*to foreknow / to know beforehand*).',
+              '**Prognosis** (πρόγνωσις — kata benda): berarti “pengetahuan semula” / “pengetahuan yang ada sebelumnya” (*foreknowledge*).',
+            ],
+          },
+        ],
+        outro:
+          'Dalam budaya Ibrani-Alkitabiah, kata *Ginosko* (sepadan dengan kata Ibrani *Yada’*) melampaui sekadar data intelektual di otak; ' +
+          'ia mengandung makna pengetahuan relasional yang penuh kasih dan kepedulian. Oleh karena itu, ketika Alkitab menyatakan bahwa ' +
+          'Allah mengenal seseorang dari semula, itu menandakan penetapan relasi kasih dan pemeliharaan-Nya sejak kekekalan.',
+      },
+      {
+        heading: 'Implikasi Teologis: “Dikenal dari Semula” (*Proginosko*)',
+        intro:
+          'Ketika Alkitab menyatakan bahwa Allah **proginosko** (*pro* = sebelum, *ginosko* = mengenal/berelasi), hal ini melampaui ' +
+          'konsep bahwa Allah sekadar “melihat masa depan” secara pasif:',
+        items: [
+          '**Bukan Sekadar Informasi Pra-Ketaatan:** Allah “mengenal dari semula” bukan berarti Allah mengintip pita rekaman masa depan ' +
+            'untuk melihat siapa yang pandai atau baik, lalu memilih mereka berdasarkan data tersebut.',
+          '**Penetapan Relasi Kasih Sejak Kekekalan:** Berdasarkan makna *Yada’ / Ginosko*, ketika Allah *mengenal seseorang dari semula* ' +
+            '(Roma 8:29), itu berarti **Allah telah menetapkan ikatan kasih, pemeliharaan, dan perlindungan Perjanjian-Nya (*covenantal love*) ' +
+            'atas orang tersebut sejak sebelum dunia dijadikan**.',
+        ],
+      },
+      {
+        heading: 'Kata Ibrani: *Yada’* (יָדַע)',
+        intro:
+          'Dalam Perjanjian Lama, kata kerja *Yada’* tidak pernah merujuk pada pengamatan pasif atau teori akademis. *Yada’* berarti ' +
+          'pengalaman langsung, perjumpaan personal, ikatan perjanjian, dan persatuan yang paling intim:',
+        items: [
+          '**Keintiman Tubuh dan Jiwa:** Teks Alkitab menggunakan kata *Yada’* untuk menggambarkan persatuan suami-istri yang paling intim ' +
+            '(“Adam mengenal [*yada’*] Hawa, isterinya, dan mengandunglah ia…”, Kejadian 4:1).',
+          '**Komitmen Perjanjian (*Covenantal Commitment*):** Ketika Allah menyatakan bahwa Ia “mengenal” suatu bangsa atau individu, hal itu ' +
+            'menandakan bahwa Allah memilih mereka untuk masuk ke dalam hubungan relasional yang dipenuhi oleh pemeliharaan, kesetiaan, dan kasih.',
+        ],
+      },
+      {
+        heading: 'Kata Kerja: *Proginosko* (προγινώσκω) — 5 Kali Muncul',
+        verses: [
+          {
+            ref: 'Roma 8:29', note: 'Konteks Rancangan Keselamatan',
+            text: 'Sebab semua orang yang **dikenal-Nya dari semula** (προέγνω — *proegnō*), mereka juga ditentukan-Nya dari semula (*proōrisen*) untuk menjadi serupa dengan gambaran Anak-Nya…',
+          },
+          {
+            ref: 'Roma 11:2', note: 'Konteks Kesetiaan Allah pada Umat-Nya',
+            text: 'Allah tidak menolak umat-Nya yang **dikenal-Nya dari semula** (προέγνω — *proegnō*).',
+          },
+          {
+            ref: '1 Petrus 1:20', note: 'Konteks Pra-Eksistensi Kristus',
+            text: 'Ia [Kristus] telah **dipilih/dikenal sebelum dunia dijadikan** (προεγνωσμένου — *proegnōsmenou*), tetapi oleh karena kamu Ia baru menyatakan diri-Nya pada zaman akhir.',
+          },
+          {
+            ref: '2 Petrus 3:17', note: 'Konteks Peringatan bagi Orang Beriman',
+            text: 'Tetapi kamu, saudara-saudaraku yang kekasih, kamu telah **mengetahui hal ini sebelumnya** (προγινώσκοντες — *proginōskontes*). Karena itu waspadalah…',
+          },
+          {
+            ref: 'Kisah Para Rasul 26:5', note: 'Konteks Pengakuan Kesaksian Manusia',
+            text: 'Mereka telah **mengenal aku dari semula** (προγινώσκοντές — *proginōskontes*) dan jika mereka mau, mereka dapat bersaksi…',
+          },
+        ],
+      },
+      {
+        heading: 'Kata Benda: *Prognosis* (πρόγνωσις) — 2 Kali Muncul',
+        verses: [
+          {
+            ref: '1 Petrus 1:2', note: 'Konteks Pemilihan Ilahi',
+            text: 'yaitu orang-orang yang dipilih, **sesuai dengan pengetahuan semula** (κατὰ πρόγνωσιν — *kata prognōsin*) Allah, Bapa kita, dan yang dikuduskan oleh Roh…',
+          },
+          {
+            ref: 'Kisah Para Rasul 2:23', note: 'Konteks Rencana Salib Kristus',
+            text: 'Dia yang diserahkan Allah **menurut rencana dan pengetahuan-Nya semula** (προγνώσει — *prognōsei*), telah kamu salibkan dan kamu bunuh oleh tangan bangsa-bangsa durhaka…',
+          },
+        ],
+      },
+      {
+        heading: 'Tinjauan Teologis Patristik: *Prognosis* vs *Proorismos*',
+        intro:
+          'Para Bapa Gereja (seperti Santo Maksimus Pengaku Iman dan Santo Yohanes dari Damaskus) memberikan pembedaan dogmatis yang ' +
+          'sangat jernih antara *Prognosis* dan *Proorismos*:',
+        items: [
+          '**Prognosis (Pengetahuan Semula):** Allah Mahatahu dan melihat seluruh alur sejarah serta pilihan bebas (*free will*) yang diambil ' +
+            'oleh manusia sebelum penciptaan terjadi.',
+          '**Proorismos (Predestinasi / Penetapan):** Allah menetapkan tujuan akhir rancangan keselamatan-Nya.',
+          '**Prinsip Sinergi:** Bapa-Bapa Gereja menegaskan bahwa Pengetahuan Semula Allah (*Prognosis*) tidak memaksa kehendak manusia. ' +
+            'Pengetahuan Allah akan masa depan tidak menjadi “penyebab” manusia berbuat dosa atau taat, melainkan Allah menghormati ' +
+            'kebebasan yang Ia anugerahkan kepada manusia.',
+        ],
+      },
+      {
+        heading: 'Prinsip Utama: Allah Mengetahui Segala Sesuatu, Tetapi Tidak Menentukan Segala Sesuatu',
+        intro: 'Santo Yohanes dari Damaskus merumuskan sebuah kaidah emas teologi Ortodoks:',
+        quote: '“Allah mengetahui segala sesuatu sebelumnya (*prognosis*), tetapi Ia tidak menentukan (*proorismos* / mempredestinasikan) segala sesuatu.”',
+        items: [
+          '**Pembedaan *Prognosis* dan *Proorismos*:** Allah di dalam keekalan-Nya memandang dan mengetahui seluruh alur waktu dan tindakan ' +
+            'manusia sebelum hal itu terjadi. Namun, pengetahuan Allah akan masa depan bukanlah penyebab dari terjadinya tindakan manusia.',
+          '**Analogi Kausalitas:** Sebagaimana seorang dokter yang memiliki pengetahuan medis dapat meramalkan bahwa seorang pasien akan ' +
+            'jatuh sakit jika terus mengonsumsi racun, ramalan dokter tersebut bukanlah penyebab sakitnya sang pasien. Demikian pula, fakta ' +
+            'bahwa Allah tahu seorang manusia akan memilih kebaikan atau kejahatan tidak berarti Allah memaksanya melakukan pilihan tersebut.',
+        ],
+      },
+      {
+        heading: 'Dua Bentuk Kehendak Allah (*Antecedent Will* vs. *Consequent Will*)',
+        intro:
+          'Untuk menjelaskan bagaimana Allah yang Mahakuasa tetap mengizinkan adanya kejahatan atau penolakan manusia tanpa menjadi ' +
+          'pencipta kejahatan, Santo Yohanes dari Damaskus membagi kehendak Allah ke dalam dua kategori:',
+        items: [
+          {
+            text: '**1. Kehendak Utama / Awal (*Antecedent Will* / *Thelema Proegoumenon*)**',
+            items: [
+              'Ini adalah kehendak murni Allah berdasarkan kebaikan dan kasih-Nya yang melimpah, yaitu bahwa Allah menghendaki semua orang ' +
+                'diselamatkan dan mengambil bagian dalam Kerajaan-Nya (1 Timotius 2:4).',
+            ],
+          },
+          {
+            text: '**2. Kehendak Kedua / Konsekuen (*Consequent Will* / *Thelema Hepomenon*)**',
+            items: [
+              'Ini adalah kehendak Allah yang bertindak sebagai pembiaran atau izin (*permissive will*) sebagai respons atas pilihan bebas ' +
+                'manusia. Jika manusia secara persisten menolak kasih Allah dan memilih kejahatan, Allah mengizinkan manusia menanggung ' +
+                'konsekuensi dari pilihannya sendiri.',
+            ],
+          },
+        ],
+      },
+      {
+        heading: 'Kehendak Bebas (*Autexousion*) sebagai Hakikat *Imago Dei*',
+        intro:
+          'Santo Yohanes dari Damaskus menegaskan bahwa kehendak bebas (*autexousion*) adalah bagian intrinsik dari ciptaan rasional yang ' +
+          'diciptakan menurut Gambar dan Rupa Allah (*Imago Dei*):',
+        items: [
+          '**Kebebasan Manusia adalah Nyata:** Karena Allah itu bebas secara mutlak, maka manusia yang diciptakan menurut Gambar-Nya juga ' +
+            'dianugerahi otonomi dan **kebebasan memilih**.',
+          '**Keutamaan (*Virtue*) Menuntut Kebebasan:** Kebaikan atau kebajikan yang dilakukan karena paksaan bukanlah kebaikan sejati. ' +
+            'Santo Yohanes menyatakan bahwa Allah menginginkan hamba-hamba yang mengasihi-Nya secara sukarela (*voluntary lovers*), bukan ' +
+            'robot yang dipaksa taat.',
+        ],
+      },
+      {
+        heading: 'Penolakan atas Predestinasi Ganda (*Double Predestination*)',
+        intro:
+          'Ajaran Santo Yohanes dari Damaskus dan Tradisi Timur secara tegas menolak doktrin predestinasi ganda (paham bahwa dari kekekalan ' +
+          'Allah telah menetapkan sebagian orang pasti selamat dan sebagian orang pasti binasa tanpa memedulikan kehendak mereka):',
+        items: [
+          '**Penolakan Monergisme Kaku:** Keselamatan tidak bekerja secara monergis (hanya satu aktor, yaitu Allah yang memaksa).',
+          '**Doktrin Sinergi (*Cooperation*):** Keselamatan terjadi melalui Sinergi—yaitu pertemuan dan kerja sama harmonis antara ' +
+            '**Rahmat Ilahi Allah** (yang memprakarsai dan menganugerahkan keselamatan) dan **Kehendak Bebas Manusia** (yang merespons, ' +
+            'menerima, dan memelihara rahmat tersebut). Sebagaimana Bunda Maria memberikan persetujuannya (*assent*) saat Kabar Sukacita ' +
+            'sebelum Roh Kudus menguduskannya.',
+        ],
+      },
+      {
+        heading: 'Ringkasan Pemikiran Santo Yohanes dari Damaskus',
+        table: {
+          head: ['Konsep', 'Penjelasan Teologis Santo Yohanes dari Damaskus'],
+          rows: [
+            ['Prognosis (Pengetahuan Semula)', 'Allah tahu segala tindakan manusia sebelum dunia ada, tetapi pengetahuan-Nya tidak memaksa pilihan manusia.'],
+            ['Proorismos (Predestinasi)', 'Penetapan rancangan keselamatan Allah di dalam Kristus, yang ditawarkan kepada semua manusia.'],
+            ['Autexousion (Kehendak Bebas)', 'Kemampuan bawaan manusia sebagai *Imago Dei* untuk memilih menyatu dengan Allah (*Theosis*) atau berpaling.'],
+            ['Sinergi', 'Keselamatan membutuhkan tumpuan dua sayap: Rahmat Allah (100%) dan ketaatan sukarela manusia (100%).'],
+          ],
+        },
+      },
+    ],
+    versesTitle: 'Ayat-ayat Referensi',
+    verseGroups: [
+      {
+        title: 'Perjanjian Lama (*Yada’* — Relasi Intim & Perjanjian)',
+        verses: [
+          { ref: 'Kejadian 4:1', note: 'Keintiman Terdalam', text: 'Kemudian manusia itu **mengenal** [*yada’*] Hawa, isterinya, dan mengandunglah perempuan itu lalu melahirkan Kain…' },
+          {
+            ref: 'Amos 3:2', note: 'Pemilihan dan Relasi Khusus',
+            text: 'Hanya kamu yang **Aku kenal** [*yada’*] dari segala kaum di muka bumi, sebab itu Aku akan menuntut dari padamu segala kesalahanmu.',
+            commentLabel: 'Makna',
+            comment: 'Allah Mahatahu dan secara intelektual tahu keberadaan semua bangsa di bumi, tetapi hanya dengan Israel-lah Ia masuk ke dalam ikatan hubungan perjanjian (*covenantal intimacy*).',
+          },
+          { ref: 'Yeremia 1:5', note: 'Pemeliharaan Sebelum Kelahiran', text: 'Sebelum Aku membentuk engkau dalam rahim ibumu, **Aku telah mengenal engkau** [*yada’*], dan sebelum engkau keluar dari kandungan, Aku telah menguduskan engkau…' },
+          { ref: 'Mazmur 1:6', note: 'Perhatian dan Perlindungan Allah', text: 'Sebab **TUHAN mengenal** [*yada’*] jalan orang benar, tetapi jalan orang fasik menuju kebinasaan.' },
+        ],
+      },
+      {
+        title: 'Perjanjian Baru (*Ginosko* — Persatuan Hidup dengan Kristus)',
+        verses: [
+          { ref: 'Yohanes 17:3', note: 'Pengenalan Adalah Hidup Kekal', text: 'Inilah hidup yang kekal itu, yaitu bahwa mereka **mengenal** [*ginosko*] Engkau, satu-satunya Allah yang benar, dan **mengenal** [*ginosko*] Yesus Kristus yang telah Engkau utus.' },
+          {
+            ref: 'Matius 7:22–23', note: 'Kontras: Tanpa Relasi Batiniah',
+            text: 'Pada waktu itulah Aku akan berterus terang kepada mereka dan berkata: **Aku tidak pernah mengenal kamu!** [*oudeporte egnon* — *ginosko*] Enyahlah dari pada-Ku, kamu sekalian pembuat kejahatan!',
+            commentLabel: 'Makna',
+            comment: 'Mereka memiliki aktivitas agama dan pelayanan (bahkan melakukan mukjizat), tetapi Yesus menyebut “Aku tidak pernah mengenal kamu” karena tidak pernah ada hubungan kasih yang nyata dan ketaatan batiniah antara mereka dengan Kristus.',
+          },
+          { ref: '1 Korintus 8:3', note: 'Mengasihi Berarti Dikenal', text: 'Tetapi orang yang mengasihi Allah, **ia dikenal** [*egnostai* — *ginosko*] oleh Allah.' },
+          { ref: 'Galatia 4:9', note: 'Inisiatif Pengenalan dari Allah', text: 'Tetapi sekarang sesudah kamu mengenal [*gnontes* — *ginosko*] Allah, atau lebih baik: **sesudah kamu dikenal** [*gnosthentes* — *ginosko*] **oleh Allah**, bagaimanakah kamu dapat berbalik kembali kepada roh-roh dunia…?' },
+          { ref: '2 Timotius 2:19', note: 'Kepemilikan Allah', text: 'Namun demikian dasar yang diletakkan Allah itu teguh dan meterainya ialah: **‘Tuhan mengenal siapa kepunyaan-Nya’** [*egno Kyrios tous ontas autou*]…' },
+          { ref: '1 Yohanes 4:7–8', note: 'Pengenalan Berbuah Kasih', text: 'Barangsiapa mengasihi, ia lahir dari Allah dan **mengenal** [*ginosko*] Allah. Barangsiapa tidak mengasihi, ia **tidak mengenal** [*egno* — *ginosko*] Allah, sebab Allah adalah kasih.' },
+        ],
+      },
+      {
+        title: '*Proginosko* (Dikenal dari Semula)',
+        verses: [
+          { ref: 'Roma 8:29', text: 'Sebab semua orang yang **dikenal-Nya dari semula** [*proegno* — *proginosko*], mereka juga ditentukan-Nya dari semula untuk menjadi serupa dengan gambaran Anak-Nya…' },
+          { ref: '1 Petrus 1:20', note: 'Kristus Dikenal Sebelum Dunia Ada', text: 'Ia [Kristus] telah **dipilih/dikenal sebelum dunia dijadikan** [*proegnosmenou* — *proginosko*], tetapi oleh karena kamu Ia baru menyatakan diri-Nya pada zaman akhir.' },
+        ],
+      },
+    ],
+  },
 };
 
 /* ---------------------------------------------------------------------

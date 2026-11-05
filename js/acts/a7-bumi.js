@@ -72,7 +72,7 @@ const UPY = new THREE.Vector3(0, 1, 0);
 
 export class ActBumi extends Act {
   constructor(ctx) {
-    super(ctx, { start: 8, end: 9 });
+    super(ctx, { start: 9, end: 10 });
     const r = rng(8);
 
     // bintang latar

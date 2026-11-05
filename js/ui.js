@@ -75,6 +75,7 @@ export class StoryUI {
     this.buildStory4();
     this.buildExplainer();
     this.buildStory7();
+    this.buildProginosko();
     this.buildStory8();
     this.buildStory9and10();
     this.lastG = -1;
@@ -186,6 +187,22 @@ export class StoryUI {
     this.tls[3] = tl;
   }
 
+  /* PROGINOSKO: judul tetap terlihat (dan terbaca) selama detak & ledakan, hilang sebelum
+     kamera mendekat ke titik cahaya untuk 7 Hari Penciptaan */
+  buildProginosko() {
+    const L = this.layers[7];
+    const head = $('.pg-head', L), info = $('.info-btn', L);
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo($('.pg-greek', L), { opacity: 0, y: 10, filter: 'blur(6px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.06, ease: 'power2.out' }, 0.04)
+      .fromTo($('.pg-title', L), { opacity: 0, letterSpacing: '0.24em', filter: 'blur(12px)' }, { opacity: 1, letterSpacing: '0.06em', filter: 'blur(0px)', duration: 0.1, ease: 'power3.out' }, 0.05)
+      .fromTo($('.pg-cap', L), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.06, ease: 'power2.out' }, 0.12)
+      .fromTo(info, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.05 }, 0.1)
+      .to(head, { opacity: 0, y: -26, filter: 'blur(8px)', duration: 0.07, ease: 'power2.in' }, 0.8)
+      .to(info, { autoAlpha: 0, duration: 0.05 }, 0.8)
+      .set({}, {}, 1);
+    this.tls[7] = tl;
+  }
+
   /* Modal penjelasan: tombol .info-btn[data-explainer] membuka EXPLAINERS[id] dari data.js */
   buildExplainer() {
     const dlg = $('#explainer');
@@ -211,7 +228,11 @@ export class StoryUI {
       if (d.diagram) html += diagram(d.diagram);
       if (d.points) html += list(d.points);
       (d.sections || []).forEach((s) => {
-        html += `<section class="modal-sec"><h3 class="modal-h">${f(s.heading)}</h3>${s.intro ? `<p class="modal-intro">${f(s.intro)}</p>` : ''}${s.items ? list(s.items) : ''}</section>`;
+        const table = s.table ? `<div class="modal-table-wrap"><table class="modal-table"><thead><tr>${s.table.head.map((h) => `<th>${f(h)}</th>`).join('')}</tr></thead><tbody>${
+          s.table.rows.map((r) => `<tr>${r.map((c) => `<td>${f(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>` : '';
+        html += `<section class="modal-sec"><h3 class="modal-h">${f(s.heading)}</h3>${s.intro ? `<p class="modal-intro">${f(s.intro)}</p>` : ''}${
+          s.quote ? `<blockquote class="modal-quote">${f(s.quote)}</blockquote>` : ''}${s.items ? list(s.items) : ''}${
+          s.outro ? `<p class="modal-intro">${f(s.outro)}</p>` : ''}${s.verses ? `<ol class="modal-verses">${s.verses.map(verse).join('')}</ol>` : ''}${table}</section>`;
       });
       const groups = d.verseGroups || (d.verses ? [{ verses: d.verses }] : []);
       if (groups.length) {
@@ -262,7 +283,7 @@ export class StoryUI {
 
   /* STORY 8: label timeline — posisi diatur act Big Bang setiap frame */
   buildStory8() {
-    const box = $('.uni-labels', this.layers[7]);
+    const box = $('.uni-labels', this.layers[8]);
     const items = [...UNIVERSE_TIMELINE];
     this.uniLabels = items.map((it, i) => {
       const el = document.createElement('div');
@@ -277,7 +298,7 @@ export class StoryUI {
     });
     // judul "Berfirmanlah Allah" + caption Ibrani, dan tombol "?" — tampil selama terompet tumbuh,
     // hilang sebelum kamera menukik ke Bumi
-    const L = this.layers[7];
+    const L = this.layers[8];
     const head = $('.s8-head', L), info = $('.info-btn', L);
     const tl = gsap.timeline({ paused: true });
     tl.fromTo($('.s8-title', L), { opacity: 0, y: 18, filter: 'blur(10px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.07, ease: 'power2.out' }, 0.05)
@@ -286,19 +307,19 @@ export class StoryUI {
       .to(head, { opacity: 0, y: -24, filter: 'blur(8px)', duration: 0.06, ease: 'power2.in' }, 0.76)
       .to(info, { autoAlpha: 0, duration: 0.05 }, 0.76)
       .set({}, {}, 1);
-    this.tls[7] = tl;
+    this.tls[8] = tl;
   }
 
   /* STORY 9–10: label kelompok, label kitab, legend, navigasi tema, daftar referensi */
   buildStory9and10() {
-    const gbox = $('.group-labels', this.layers[8]);
+    const gbox = $('.group-labels', this.layers[9]);
     this.groupLabels = BOOK_GROUPS.map((g) => {
       const el = document.createElement('div');
       el.className = 'gl'; el.textContent = g.name;
       gbox.appendChild(el);
       return el;
     });
-    const L = this.layers[9];
+    const L = this.layers[10];
     const leg = $('.legend ul', L);
     BOOK_GROUPS.forEach((g) => {
       const li = document.createElement('li');
@@ -328,7 +349,7 @@ export class StoryUI {
       .fromTo($('.legend', L), { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.08 }, 0.17)
       .fromTo([this.refList, $('.drag-hint', L)], { opacity: 0 }, { opacity: 1, duration: 0.06, stagger: 0.03 }, 0.22)
       .set({}, {}, 1);
-    this.tls[9] = tl;
+    this.tls[10] = tl;
   }
 
   bindBookLabels(books, arcs) {

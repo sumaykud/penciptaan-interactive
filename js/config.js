@@ -7,6 +7,7 @@ export const STORIES = [
   { id: 'cahaya-berkumpul', label: 'Luapan Kasih (Overflow of Love)', vh: 230 },
   { id: 'cahaya-meledak', label: 'Penciptaan', vh: 230 },
   { id: 'dunia-kasat-mata', label: 'Penciptaan Dua Dunia', vh: 340 },
+  { id: 'proginosko', label: 'Proginosko', vh: 300 },
   { id: 'big-bang', label: '7 Hari Penciptaan', vh: 420 },
   { id: 'bumi', label: 'Bumi', vh: 260 },
   { id: 'keterhubungan', label: 'Keterhubungan Firman', vh: 460 },

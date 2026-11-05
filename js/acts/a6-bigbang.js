@@ -87,7 +87,7 @@ void main(){
 
 export class ActBigBang extends Act {
   constructor(ctx) {
-    super(ctx, { start: 7, end: 7 });
+    super(ctx, { start: 8, end: 8 });
     this.horn = new THREE.Group();
     this.horn.rotation.set(0.06, -0.36, 0.07);
     this.horn.position.set(0, 0.25, 0);

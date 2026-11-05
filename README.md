@@ -28,9 +28,10 @@ Daftar id ada di `js/config.js`.
 | 5 | Luapan Kasih (Overflow of Love) | Garis cahaya berwarna terus mengalir ke satu bintang (digerakkan waktu, kecepatan naik seiring scroll), dengan flare anamorfik | `js/acts/a4-cahaya.js` |
 | 6 | Penciptaan | Kilat putih, ledakan sinar pelangi, gelombang kejut, getaran kamera | `js/acts/a4-cahaya.js` |
 | 7 | Penciptaan Dua Dunia (judul: Dunia Tak Kasat Mata & Dunia Kasat Mata) | Arus garis emas (seperti video referensi); teks terbelah dari garis cahaya | `js/acts/a5-menyebar.js` |
-| 8 | 7 Hari Penciptaan | "Terompet" ruang-waktu tumbuh, label timeline menempel di sumbu 3D, kamera menukik ke Bumi | `js/acts/a6-bigbang.js` |
-| 9 | Bumi | Bumi dengan cahaya matahari dari atas; grafik timeline interconnected muncul di bawahnya | `js/acts/a7-bumi.js` |
-| 10 | Keterhubungan firman | Diagram berputar 3D jadi vertikal; tema Penciptaan / Keselamatan / Gereja / Penghakiman; pulse line; bisa diseret | `js/acts/a7-bumi.js` + `js/core/arcs.js` |
+| 8 | Proginosko (kemahatahuan Allah) | Cahaya berdenyut lalu meledak (garis emas, gelombang kejut), titik cahaya menyebar ke segala arah; suara dentuman (Web Audio, tombol Suara); modal penjelasan | `js/acts/a5b-proginosko.js` + `js/core/sound.js` |
+| 9 | 7 Hari Penciptaan | "Terompet" ruang-waktu tumbuh, label timeline menempel di sumbu 3D, kamera menukik ke Bumi | `js/acts/a6-bigbang.js` |
+| 10 | Bumi | Bumi dengan cahaya matahari dari atas; grafik timeline interconnected muncul di bawahnya | `js/acts/a7-bumi.js` |
+| 11 | Keterhubungan firman | Diagram berputar 3D jadi vertikal; tema Penciptaan / Keselamatan / Gereja / Penghakiman; pulse line; bisa diseret | `js/acts/a7-bumi.js` + `js/core/arcs.js` |
 
 Teks dan animasi DOM per story ada di `js/ui.js`. Kamera, post-processing dan sinkronisasi scroll ada di `js/main.js`.
 

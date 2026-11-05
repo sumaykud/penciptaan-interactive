@@ -10,11 +10,13 @@ import { SHARED } from './core/materials.js';
 import { GradeShader } from './core/post.js';
 import { clamp, smooth, prefersReducedMotion } from './core/util.js';
 import { StoryUI } from './ui.js';
+import { Sound } from './core/sound.js';
 import { ActSiapa } from './acts/a1-siapa.js';
 import { ActPerichoresis } from './acts/a2-perichoresis.js';
 import { ActTrinitas } from './acts/a3-trinitas.js';
 import { ActCahaya } from './acts/a4-cahaya.js';
 import { ActMenyebar } from './acts/a5-menyebar.js';
+import { ActProginosko } from './acts/a5b-proginosko.js';
 import { ActBigBang } from './acts/a6-bigbang.js';
 import { ActBumi } from './acts/a7-bumi.js';
 
@@ -91,7 +93,7 @@ const ctx = {
   },
   goTheme(i) {
     const s10 = 0.1 + ((i + 0.5) / 4) * 0.82;
-    ctx.scrollToStory(9, 0.24 + 0.76 * s10);
+    ctx.scrollToStory(10, 0.24 + 0.76 * s10);
   },
 };
 
@@ -103,10 +105,11 @@ const acts = [
   new ActTrinitas(ctx),
   new ActCahaya(ctx),
   new ActMenyebar(ctx),
+  new ActProginosko(ctx),
   new ActBigBang(ctx),
   new ActBumi(ctx),
 ];
-const bigbang = acts[5], bumi = acts[6];
+const bigbang = acts[6], bumi = acts[7];
 bigbang.bindLabels(ui.uniLabels);
 const bookEls = ui.bindBookLabels(bumi.arcs.layout.books, bumi.arcs);
 bumi.bindDom({ labels: bookEls, groups: ui.groupLabels, leaders: ui.leaders, onTheme: (i) => ui.setTheme(i, bumi.arcs) });
@@ -275,6 +278,7 @@ function frame() {
   gu.uTime.value = t;
 
   ui.update(g, progressOf(g));
+  Sound.commit();
   composer.render(dt);
   probeNavBackdrop();
   requestAnimationFrame(frame);
@@ -321,6 +325,17 @@ function probeNavBackdrop() {
   gl.readPixels(x, y, w, h, gl.RGBA, gl.UNSIGNED_BYTE, 0);
   gl.bindBuffer(gl.PIXEL_PACK_BUFFER, null);
   p.sync = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0);
+}
+
+/* ---------------- tombol suara (default mati; audio butuh klik pengguna) ---------------- */
+const soundBtn = document.getElementById('sound-toggle');
+if (soundBtn) {
+  soundBtn.addEventListener('click', async () => {
+    const on = !Sound.enabled;
+    await Sound.setEnabled(on);
+    soundBtn.setAttribute('aria-pressed', String(on));
+    soundBtn.querySelector('.st-label').textContent = on ? 'Suara: nyala' : 'Suara: mati';
+  });
 }
 
 /* ---------------- boot ---------------- */
