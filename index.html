@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Creatio ex Nihilo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Kisah interaktif 3D: Siapa Allah, Perichoresis, Creatio ex Nihilo, hingga keterhubungan firman.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!--BODY-START-->
+<div id="loader" aria-live="polite">
+  <div class="loader-dot"></div>
+  <p class="loader-txt">Menyalakan cahaya…</p>
+</div>
+
+<canvas id="gl" aria-hidden="true"></canvas>
+
+<div id="stage">
+  <!-- STORY 1 · Siapa Allah -->
+  <section class="layer" id="L0" aria-label="Siapa Allah">
+    <div class="s1-wrap">
+      <h1 class="s1-title split-chars">Siapa Allah</h1>
+      <p class="s1-intro split-words">Allah adalah Kasih (1 Yohanes 4:8)-Karena Allah adalah Kasih di dalam hakikat-Nya, kasih tersebut bersifat relasional. Bapa adalah <span class="nb"><strong>Sang Pengasih</strong>,</span> Anak adalah Yang Dikasihi, dan Roh Kudus adalah "Wujud Aliran Kasih" itu <span class="nb">sendiri<sup>[8]</sup>.</span> Kasih Allah sudah sempurna dari kekekalan tanpa membutuhkan ciptaan</p>
+      <div class="s1-cards fade-load">
+        <article class="card c1 icon-right">
+          <p>St Gregorius dari Nazianzus menjelaskan bahwa kebaikan dan terang Allah begitu melimpah sehingga "meluap" (overflow) ke dalam tindakan penciptaan</p>
+          <img src="assets/saints/gregorius-1.jpg" alt="Ikon St Gregorius dari Nazianzus" width="180" height="216">
+        </article>
+        <article class="card c2 icon-left">
+          <img src="assets/saints/gregorius-2.jpg" alt="Ikon St Gregorius dari Nazianzus" width="180" height="216">
+          <p>St Gregorius dari Nazianzus menjelaskan bahwa kebaikan dan terang Allah begitu melimpah sehingga "meluap" (overflow) ke dalam tindakan penciptaan</p>
+        </article>
+        <article class="card c3 icon-left">
+          <div class="icons">
+            <img src="assets/saints/santo-3a.jpg" alt="Ikon santo" width="180" height="212">
+            <img src="assets/saints/santo-3b.jpg" alt="Ikon santo dengan gulungan" width="180" height="212">
+          </div>
+          <p>gerakan ini sebagai Ecstasis Ilahi—di mana Allah, karena kelimpahan kasih-Nya yang membara (<em>erotikēs agathotētos</em>), "keluar" untuk memelihara dan membawa ciptaan menuju persatuan dengan-Nya (Theosis)</p>
+        </article>
+      </div>
+    </div>
+    <div class="s1-bottom fade-load"><h2 class="s1-creatio split-chars">Creatio ex Nihilo</h2></div>
+    <div class="scroll-hint fade-load" aria-hidden="true"><span>Gulir perlahan</span><i></i></div>
+  </section>
+
+  <!-- STORY 2 · Perichoresis -->
+  <section class="layer" id="L1" aria-label="Perichoresis">
+    <h2 class="s2-title split-mask">Perichoresis</h2>
+    <p class="s2-hint">Arahkan kursor ke partikel cahaya</p>
+  </section>
+
+  <!-- STORY 3 · tiga cahaya (tanpa teks di storyboard) -->
+  <section class="layer" id="L2" aria-label="Tiga cahaya saling overlapping"></section>
+
+  <!-- STORY 4 · Creatio ex Nihilo -->
+  <section class="layer" id="L3" aria-label="Creatio ex Nihilo">
+    <h2 class="s4-title">Creatio ex Nihilo</h2>
+  </section>
+
+  <!-- STORY 5 & 6 · cahaya berkumpul / meledak (tanpa teks) -->
+  <section class="layer" id="L4" aria-label="Cahaya berkumpul"></section>
+  <section class="layer" id="L5" aria-label="Cahaya meledak"></section>
+
+  <!-- STORY 7 · Dunia Tak Kasat Mata & Dunia Kasat Mata -->
+  <section class="layer" id="L6" aria-label="Dunia Tak Kasat Mata dan Dunia Kasat Mata">
+    <div class="s7-wrap">
+      <h2 class="s7-title">
+        <span class="half left"><span class="wipe">Dunia Tak Kasat Mata</span></span>
+        <span class="amp">&amp;</span>
+        <span class="half right"><span class="wipe">Dunia Kasat Mata</span></span>
+      </h2>
+      <div class="s7-subs">
+        <p class="sub left split-chars">Malaikat/Dunia Spiritual</p>
+        <p class="sub right split-chars">Kosmos/Alam Semesta</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY 8 · Big Bang (label diisi dari data.js) -->
+  <section class="layer" id="L7" aria-label="Big Bang dan dunia dibuat">
+    <div class="uni-labels"></div>
+  </section>
+
+  <!-- STORY 9 · Bumi -->
+  <section class="layer" id="L8" aria-label="Bumi">
+    <div class="group-labels"></div>
+  </section>
+
+  <!-- STORY 10 · Keterhubungan firman -->
+  <section class="layer" id="L9" aria-label="Keterhubungan firman">
+    <svg class="leaders" aria-hidden="true"><path d=""></path></svg>
+    <div class="book-labels"></div>
+    <div class="legend"><p class="legend-title">Kelompok kitab</p><ul></ul></div>
+    <nav class="themes" aria-label="Tema">
+      <ul class="theme-list"></ul>
+      <ol class="ref-list" aria-live="polite"></ol>
+      <p class="drag-hint">Seret diagram untuk memutar 3D · arahkan kursor ke busur untuk melihat ayat</p>
+    </nav>
+  </section>
+
+  <div id="orb-ring" aria-hidden="true"></div>
+  <div id="verse-tip" class="tip" role="tooltip"><p class="ref"></p><p class="txt"></p></div>
+  <div id="arc-tip" class="tip small" role="tooltip"><p class="ref"></p><p class="txt"></p></div>
+</div>
+
+<nav id="chapters" aria-label="Bab cerita">
+  <span class="ch-num">01</span>
+  <span class="ch-name">Siapa Allah</span>
+  <div class="ch-bar"></div>
+</nav>
+
+<main id="tracks"></main>
+<!--BODY-END-->
+
+<script type="importmap">{"imports":{"three":"./vendor/three/three.module.js","three/addons/":"./vendor/three/addons/"}}</script>
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
