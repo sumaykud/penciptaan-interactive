@@ -178,26 +178,22 @@ body.ready .fade-load { opacity: 1; }
 }
 .info-btn:hover { color: #fff; transform: scale(1.06); }
 .info-btn:focus-visible { outline: 1.5px solid var(--gold); outline-offset: 2px; }
+/* label "Lihat Ayat": selalu tampil di kiri ikon (desktop & HP), ikut bisa diklik */
 .info-label {
-  position: absolute; top: calc(100% + 8px); right: -2px; white-space: nowrap;
-  padding: 7px 15px 8px; border-radius: 2px; background: rgba(26, 25, 23, 0.95);
-  font-family: var(--serif); font-size: 20px; line-height: 1; color: var(--ink);
+  position: absolute; top: 50%; right: calc(100% + 8px); white-space: nowrap;
+  padding: 7px 14px 8px; border-radius: 2px; background: rgba(26, 25, 23, 0.95);
+  font-family: var(--serif); font-size: 19px; line-height: 1; color: var(--ink);
   box-shadow: 0 0 22px rgba(255, 228, 180, 0.35), 0 0 60px rgba(255, 196, 120, 0.18);
-  opacity: 0; transform: translateY(-4px); transition: opacity 0.2s, transform 0.2s; pointer-events: none;
+  transform: translateY(-50%); transition: background 0.2s, box-shadow 0.2s;
 }
 .info-label::before {
-  content: ""; position: absolute; bottom: 100%; right: 18px;
-  border: 6px solid transparent; border-bottom-color: rgba(26, 25, 23, 0.95);
+  content: ""; position: absolute; top: 50%; right: -12px; margin-top: -6px;
+  border: 6px solid transparent; border-left-color: rgba(26, 25, 23, 0.95);
 }
-.info-btn:hover .info-label, .info-btn:focus-visible .info-label { opacity: 1; transform: none; }
-@media (hover: none) { .info-label { opacity: 1; transform: none; } }
-/* layar sentuh / sempit: label di kiri ikon supaya tidak menimpa judul */
-@media (hover: none), (max-width: 760px) {
-  .info-label { top: 50%; right: calc(100% + 8px); font-size: 17px; padding: 6px 12px 7px; transform: translateY(-50%); }
-  .info-btn:hover .info-label, .info-btn:focus-visible .info-label { transform: translateY(-50%); }
-  .info-label::before { bottom: auto; top: 50%; right: -12px; margin-top: -6px; border-bottom-color: transparent; border-left-color: rgba(26, 25, 23, 0.95); }
+.info-btn:hover .info-label, .info-btn:focus-visible .info-label {
+  background: rgba(40, 36, 30, 0.97); box-shadow: 0 0 26px rgba(255, 228, 180, 0.5), 0 0 70px rgba(255, 196, 120, 0.25);
 }
-@media (hover: none) { .info-label { opacity: 1; } }
+@media (max-width: 760px) { .info-label { font-size: 17px; padding: 6px 12px 7px; } }
 
 .modal {
   width: min(1120px, calc(100vw - 32px)); max-width: none; max-height: min(88vh, 940px);

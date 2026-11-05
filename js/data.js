@@ -241,7 +241,7 @@ export const EXPLAINERS = {
   },
 
   'dunia-kasat-mata': {
-    title: 'Dunia Tak Kasat Mata & Dunia Kasat Mata',
+    title: 'Penciptaan Dunia Tak Kasat Mata & Dunia Kasat Mata',
     diagram: {
       top: { title: 'Allah Sang Pencipta', sub: 'Uncreated / Tak Tercipta' },
       left: { title: 'Dunia Tak Kasat Mata', lines: ['Sorga / Alam Roh', 'Malaikat & Jiwa'], ref: 'Kolose 1:16' },
@@ -727,6 +727,82 @@ export const EXPLAINERS = {
     title: 'Allah itu Esa — *Echad* (אֶחָד)',
     sections: [
       {
+        heading: 'Mengapa Allah itu ESA?',
+        intro:
+          'Kekristenan Ortodoks memegang teguh **Monoteisme Mutlak** dan menolak keras ajaran **Tritheisme** (kepercayaan kepada tiga ' +
+          'tuhan). Keesaan Allah berpijak pada dua pilar ontologis utama:',
+        items: [
+          {
+            text: '**1. Satu Hakikat / Kodrat Ilahi (*Ousia* / Esensi)**',
+            items: [
+              'Bapa, Anak, dan Roh Kudus memiliki satu keilahian, satu kuasa, satu kehendak, dan satu kemuliaan yang sama dan tak ' +
+                'terbagi (*Homoousios*).',
+              'Ketiga-Nya tidak memiliki tiga esensi yang terpisah; kehidupan ilahi yang dihidupi Bapa adalah kehidupan ilahi yang sama ' +
+                'persis di dalam Anak dan Roh Kudus.',
+            ],
+          },
+          {
+            text: '**2. Prinsip Monarki Bapa (*Monarchia of the Father*)**',
+            items: [
+              'Dalam teologi Patristik (seperti ajaran Santo Gregorius dari Nazianzus), keesaan Allah berakar pada Pribadi Allah Bapa ' +
+                'sebagai satu-satunya Sumber Kekal (*Arche* / *Aitia*) dari seluruh keilahian.',
+              'Anak diperanakkan/dilahirkan secara kekal dari Bapa, dan Roh Kudus keluar/berprosesi dari Bapa. Karena Bapa adalah ' +
+                'satu-satunya sumber kekal tanpa awal, maka Allah itu mutlak Esa.',
+            ],
+          },
+        ],
+      },
+      {
+        heading: 'Mengapa Allah itupun TRITUNGGAL?',
+        intro:
+          'Allah yang Esa tidak pernah diimani sebagai sosok tunggal yang terisolasi atau kesepian (*monad*), melainkan ' +
+          '**Komunitas Kasih yang abadi**. Ada tiga alasan utama mengapa Allah itu Tritunggal:',
+        items: [
+          {
+            text: '**1. Karena Hakikat “Allah adalah Kasih” (1 Yohanes 4:8)**',
+            items: [
+              'Alkitab menegaskan bahwa “Allah adalah kasih”. Agar kasih itu bersifat nyata dan kekal sebelum ada ciptaan (malaikat atau ' +
+                'manusia), harus ada relasi kasih timbal balik di dalam diri Allah sendiri sejak kekekalan.',
+              'Jika Allah hanya satu pribadi yang sendirian, Dia tidak dapat mempraktikkan kasih sebelum ada ciptaan. Oleh karena itu, ' +
+                'sejak kekekalan terdapat relasi kasih yang sempurna: Bapa sebagai **Sang Pengasih**, Anak sebagai **Yang Dikasihi**, ' +
+                'dan Roh Kudus sebagai **Wujud/Aliran Kasih** tersebut.',
+            ],
+          },
+          {
+            text: '**2. Karakter Internal Allah (Memiliki Firman dan Roh)**',
+            items: [
+              'Allah Bapa tidak pernah sedetik pun ada tanpa Pikiran/Firman-Nya (*Logos*) dan tanpa Hidup/Nafas-Nya (*Pneuma*/Roh).',
+              'Menolak Tritunggal berarti mengandaikan ada masa di mana Allah itu “bisu” tanpa Firman atau “mati” tanpa Roh—suatu hal ' +
+                'yang mustahil bagi Allah yang hidup.',
+            ],
+          },
+          {
+            text: '**3. Saling Mendiami secara Sempurna (*Perichoresis*)**',
+            items: [
+              'Tiga Pribadi (*Hypostases*) ini tidak berdiri sendiri-sendiri atau terpisah secara fisik. Sebaliknya, Bapa, Anak, dan ' +
+                'Roh Kudus saling berdiam dan saling menembus (*Perichoresis*) secara abadi dan sempurna.',
+              'Hal ini menghancurkan ajaran sesat **Modalisme / Oneness** (yang mengira Allah berganti-ganti topeng) sekaligus ' +
+                '**Tritheisme** (yang mengira ada tiga allah).',
+            ],
+          },
+        ],
+      },
+      {
+        heading: 'Ayat Referensi Utama di Alkitab',
+        items: [
+          '**Matius 28:19 (Formula Baptisan):** Yesus memerintahkan membaptis dalam “nama” (bentuk tunggal/esensi satu) Bapa dan Anak ' +
+            'dan Roh Kudus (Tiga Pribadi).',
+          '**Yohanes 10:30 (Kesatuan Hakikat):** “Aku dan Bapa adalah satu.” Teks Yunani menggunakan kata *hen* (satu secara ' +
+            'hakikat/esensi netral), bukan *heis* (satu orang/pribadi).',
+          '**Matius 3:16–17 (Teofani Agung Yordan):** Anak dibaptis di air, Roh Kudus turun rupa merpati, dan suara Bapa terdengar dari ' +
+            'surga secara simultan.',
+        ],
+        outro:
+          'Memahami Allah Tritunggal mengajarkan kita bahwa **puncak kebenaran Allah bukanlah kesendirian yang kaku, melainkan ' +
+          'Persekutuan Kasih yang Abadi**. Melalui Kristus di dalam Roh Kudus, kita diundang bukan sekadar menjadi penonton luar, ' +
+          'melainkan masuk dan berpartisipasi mengambil bagian dalam kehidupan kasih ilahi tersebut (*Theosis*).',
+      },
+      {
         heading: 'Makna: *Ehad / Echad* (אֶחָד)',
         intro:
           'Kata **Ehad (*Echad*)** adalah kata bahasa Ibrani Kuno yang muncul pertama kali dalam **Kejadian 1:5** (*yom echad* — ' +
@@ -810,6 +886,52 @@ export const EXPLAINERS = {
                 '(*Uncreated Light*) yang memancar keluar dari Esensi Allah.',
               '**Dapat Dialami dan Dipartisipasi:** Melalui Energi Ilahi inilah Allah menyatakan diri-Nya di dalam sejarah, menopang alam ' +
                 'semesta, serta memungkinkan manusia untuk bersatu dengan-Nya (*Theosis*) dan “melihat” hadirat-Nya tanpa kebinasaan.',
+            ],
+          },
+        ],
+      },
+      {
+        heading: 'Tidak ada seorang pun yang pernah melihat Allah',
+        intro:
+          'Ini adalah hal paling **PENTING** dalam doktrin fundamental Kitab Suci dan Tradisi Gereja Ortodoks. Ayat-ayat Alkitab secara ' +
+          'konsisten dan tegas mengunci kebenaran mengenai **transendensi mutlak Sang Pencipta** di hadapan ciptaan-Nya.',
+      },
+      {
+        heading: 'Mengapa Tidak Ada Seorang Pun yang Pernah Melihat Allah?',
+        intro:
+          'Pertanyaan ini menyentuh inti dari **transendensi mutlak Sang Pencipta** dibandingkan dengan kelemahan dan keterbatasan ' +
+          'kodrat ciptaan-Nya.',
+      },
+      {
+        heading: 'Jurang Antara Pencipta dan Ciptaan (*Diastema*)',
+        intro:
+          'Mengapa manusia tidak sanggup melihat Allah secara langsung? Para Bapa Gereja (seperti Santo Basil Agung, Santo Gregorius dari ' +
+          'Nazianzus, Santo Gregorius dari Nyssa, dan Santo Gregorius Palamas) merumuskan pembedaan dogmatis yang sangat penting antara ' +
+          '**Esensi Ilahi** dan **Energi Ilahi**:',
+        items: [
+          {
+            text: '**1. Esensi Ilahi (*Ousia*)**',
+            items: [
+              '**Hakikat Batiniah Allah:** Merupakan wujud terdalam Allah di dalam diri-Nya sendiri.',
+              '**Mutlak Transenden dan Tak Terjangkau:** Esensi Allah sama sekali tidak terbatas, tidak diciptakan, tidak terukur, dan tidak ' +
+                'dapat dipahami maupun dilihat oleh makhluk apa pun—baik oleh manusia maupun oleh bangsa malaikat. Di dalam Esensi-Nya, ' +
+                'Allah tetap bersifat tidak dapat dikomunikasikan (*incommunicable*) kepada ciptaan.',
+              '**Jurang Ontologis (*Diastema*):** Terdapat perbedaan kodrat mendasar antara Sang Pencipta yang Tidak Diciptakan (*Uncreated*) ' +
+                'dengan ciptaan yang Diciptakan (*Created*). Karena perbedaan kodrat yang tak terlaraskan ini, manusia berdosa dan fana yang ' +
+                'mencoba menatap Esensi Allah secara langsung tanpa pelindung akan mengalami kematian ontologis.',
+              '**Analogi Bapa Gereja (Analogi Matahari):** Para Bapa Gereja menggambarkan hal ini seperti menatap matahari. Mata manusia yang ' +
+                'terbatas tidak sanggup menatap inti bola api matahari secara langsung tanpa menjadi buta atau terbakar seketika. Jika ' +
+                'terhadap ciptaan fisik (matahari) saja kita terbatas, apalagi terhadap Esensi Sang Pencipta matahari.',
+            ],
+          },
+          {
+            text: '**2. Energi Ilahi (*Energeia*)**',
+            items: [
+              '**Hadirat dan Tindakan yang Memancar:** Merupakan tindakan, kuasa, kasih karunia, dan Terang Tak Tercipta (*Uncreated Light*) ' +
+                'yang memancar dan mengalir keluar dari Esensi Allah.',
+              '**Dapat Dialami dan Dipartisipasi:** Melalui Energi Ilahi inilah—seperti halnya sinar dan hangatnya matahari yang menyinari ' +
+                'bumi—Allah menyatakan diri-Nya, memelihara alam semesta, serta memungkinkan manusia untuk bersatu dengan-Nya (*Theosis*) ' +
+                'dan “melihat” hadirat-Nya tanpa harus binasa.',
             ],
           },
         ],
