@@ -2,10 +2,16 @@
    - dengung: noise rendah + nada sub-bass, volumenya diatur tiap frame oleh act (setHum)
    - boom(): dentuman ledakan = sub-bass turun + desis ledakan (lowpass menurun) + kilau
      frekuensi tinggi, semuanya dikirim ke gema (convolver dengan impulse buatan).
-   Browser hanya mengizinkan audio setelah interaksi pengguna, jadi suara baru aktif
-   setelah tombol "Suara" ditekan (default mati). */
+   - musik latar (assets/audio/silent-benediction.mp3): looping pelan di seluruh cerita;
+     volumenya diatur main loop (setMusic) dan memudar hingga hilang di section terakhir.
+   Browser hanya mengizinkan audio setelah interaksi pengguna: suara default "nyala" dan mulai
+   pada klik/ketukan/tombol pertama di halaman; tombol "Suara" mematikan/menyalakan (diingat). */
+
+const MUSIC_SRC = 'assets/audio/silent-benediction.mp3';
+const MUSIC_VOL = 0.18; // pelan, sebagai latar
 
 let ac = null, master = null, verb = null, humGain = null, noiseBuf = null;
+let musicEl = null, musicGain = null, musicLevel = 1;
 let enabled = false, humLevel = 0, lastBoom = 0;
 
 function makeNoise(seconds) {
@@ -46,6 +52,12 @@ function init() {
   const o = ac.createOscillator(); o.type = 'sine'; o.frequency.value = 49;
   const oG = ac.createGain(); oG.gain.value = 0.35;
   o.connect(oG).connect(humGain); o.start();
+
+  // musik latar
+  musicEl = new Audio(MUSIC_SRC);
+  musicEl.loop = true; musicEl.preload = 'auto';
+  musicGain = ac.createGain(); musicGain.gain.value = 0;
+  ac.createMediaElementSource(musicEl).connect(musicGain).connect(master);
 }
 
 export const Sound = {
@@ -56,10 +68,16 @@ export const Sound = {
     if (on) {
       if (!ac) init();
       if (ac.state === 'suspended') await ac.resume();
+      try { await musicEl.play(); } catch (e) { /* diputar saat interaksi berikutnya */ }
     } else if (ac) {
       humGain.gain.setTargetAtTime(0, ac.currentTime, 0.1);
+      musicGain.gain.setTargetAtTime(0, ac.currentTime, 0.25);
+      setTimeout(() => { if (!enabled) musicEl.pause(); }, 1200);
     }
   },
+
+  // 0..1 dari main loop: 1 = volume latar penuh, 0 = hilang (section terakhir)
+  setMusic(level) { musicLevel = Math.max(0, Math.min(1, level)); },
 
   // dipanggil act yang terlihat tiap frame (nilai dijumlahkan); commit() oleh main loop menerapkannya
   setHum(level) { humLevel += Math.max(0, level); },
@@ -69,6 +87,7 @@ export const Sound = {
     humLevel = 0;
     if (!enabled || !ac) return;
     humGain.gain.setTargetAtTime(v * 0.32, ac.currentTime, 0.15);
+    musicGain.gain.setTargetAtTime(musicLevel * MUSIC_VOL, ac.currentTime, 0.6);
   },
 
   boom() {

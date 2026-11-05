@@ -278,6 +278,8 @@ function frame() {
   gu.uTime.value = t;
 
   ui.update(g, progressOf(g));
+  // musik latar: penuh sepanjang cerita, memudar hingga hilang saat masuk section terakhir
+  Sound.setMusic(1 - smooth(STORIES.length - 1.5, STORIES.length - 0.9, g));
   Sound.commit();
   composer.render(dt);
   probeNavBackdrop();
@@ -327,16 +329,33 @@ function probeNavBackdrop() {
   p.sync = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0);
 }
 
-/* ---------------- tombol suara (default mati; audio butuh klik pengguna) ---------------- */
+/* ---------------- suara & musik latar ----------------
+   Default "nyala": audio mulai pada interaksi pertama (klik/ketuk/tombol) di mana saja —
+   browser tidak mengizinkan audio sebelum itu. Tombol "Suara" mematikan/menyalakan;
+   pilihan disimpan di localStorage. */
 const soundBtn = document.getElementById('sound-toggle');
-if (soundBtn) {
-  soundBtn.addEventListener('click', async () => {
-    const on = !Sound.enabled;
-    await Sound.setEnabled(on);
-    soundBtn.setAttribute('aria-pressed', String(on));
-    soundBtn.querySelector('.st-label').textContent = on ? 'Suara: nyala' : 'Suara: mati';
-  });
+let soundWanted = true;
+try { soundWanted = localStorage.getItem('penciptaan-sound') !== 'off'; } catch (e) { /* storage diblokir */ }
+function paintSoundBtn() {
+  if (!soundBtn) return;
+  const on = Sound.enabled;
+  soundBtn.setAttribute('aria-pressed', String(on));
+  soundBtn.querySelector('.st-label').textContent = on ? 'Suara: nyala' : soundWanted ? 'Ketuk untuk suara' : 'Suara: mati';
 }
+async function setSound(on, remember) {
+  soundWanted = on;
+  if (remember) { try { localStorage.setItem('penciptaan-sound', on ? 'on' : 'off'); } catch (e) { /* abaikan */ } }
+  await Sound.setEnabled(on);
+  paintSoundBtn();
+}
+if (soundBtn) soundBtn.addEventListener('click', (e) => { e.stopPropagation(); setSound(!Sound.enabled, true); });
+const firstGesture = (e) => {
+  if (soundBtn && soundBtn.contains(e.target)) return; // klik tombol Suara ditangani tombol itu sendiri
+  if (soundWanted && !Sound.enabled) setSound(true, false);
+  ['pointerdown', 'keydown', 'touchstart'].forEach((t) => removeEventListener(t, firstGesture, true));
+};
+['pointerdown', 'keydown', 'touchstart'].forEach((t) => addEventListener(t, firstGesture, { capture: true, passive: true }));
+paintSoundBtn();
 
 /* ---------------- boot ---------------- */
 async function boot() {
