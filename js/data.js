@@ -1437,7 +1437,7 @@ export const THEMES = [
   },
   {
     id: 'gereja',
-    name: 'Gereja',
+    name: 'Eklesia',
     refs: [
       { from: 'Kel 19:6', to: '1Ptr 2:9', text: '' },
       { from: 'Mzm 118:22', to: '1Ptr 2:7', text: '' },

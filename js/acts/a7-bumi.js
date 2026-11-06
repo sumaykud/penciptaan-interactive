@@ -7,7 +7,7 @@ import { smooth, lerp, rng, range, easeInOut, bell } from '../core/util.js';
 /* STORY 9 · Bumi — planet dengan cahaya matahari dramatis dari atas; scroll memunculkan
                grafik timeline interconnected di bawahnya (P 0..1).
    STORY 10 · Diagram busur berputar 3D menjadi vertikal; tema Penciptaan / Keselamatan /
-               Gereja / Penghakiman, pulse line, hover ayat (P 1..2). */
+               Eklesia / Penghakiman, pulse line, hover ayat (P 1..2). */
 
 const EARTH_VS = /* glsl */ `
 varying vec2 vUv; varying vec3 vNw; varying vec3 vPw;

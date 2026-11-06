@@ -32,7 +32,7 @@ Daftar id ada di `js/config.js`.
 | 9 | 7 Hari Penciptaan | "Terompet" ruang-waktu tumbuh, label timeline menempel di sumbu 3D, kamera menukik ke Bumi | `js/acts/a6-bigbang.js` |
 | 10 | Taman Eden | Bumi (sedikit lebih jauh) + judul; kamera menukik ke Bumi dan gambar Taman Eden terbuka | `js/acts/a7-bumi.js` + `assets/eden/` |
 | 11 | Manusia | Kejadian 1:27 di atas Taman Eden; Kristofani: cahaya Kristus → cahaya mengalir → manusia terbentuk → gambar penuh; lalu memudar dan kamera menjauh dari Bumi | `js/acts/a7-bumi.js` (`syncEden`) |
-| 12 | Keterhubungan firman | Diagram berputar 3D jadi vertikal; tema Penciptaan / Keselamatan / Gereja / Penghakiman; pulse line; bisa diseret | `js/acts/a7-bumi.js` + `js/core/arcs.js` |
+| 12 | Keterhubungan firman | Diagram berputar 3D jadi vertikal; tema Penciptaan / Keselamatan / Eklesia / Penghakiman; pulse line; bisa diseret | `js/acts/a7-bumi.js` + `js/core/arcs.js` |
 | 13 | Kristus (Sang Kristus = Firman) | Diagram kembali horizontal, salib Ortodoks di kitab Injil, busur ayat Kristofani & Inkarnasi menyala; daftar 30 ayat yang bisa di-hover | `js/acts/a7-bumi.js` + tema `kristus` di `THEMES` |
 
 Teks dan animasi DOM per story ada di `js/ui.js`. Kamera, post-processing dan sinkronisasi scroll ada di `js/main.js`.
