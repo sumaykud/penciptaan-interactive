@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://penciptaan-interactive.vercel.app/sitemap.xml
