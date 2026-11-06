@@ -177,16 +177,121 @@ export class StoryUI {
     const info = $('.info-btn', L);
     const tl = gsap.timeline({ paused: true });
     // tombol "?" hanya bisa diklik selama judul tampil (autoAlpha → visibility: hidden saat 0)
-    tl.fromTo(info, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.06 }, 0.1)
-      .to(info, { autoAlpha: 0, duration: 0.06 }, 0.86);
-    tl.fromTo(title, { '--scan': '0%', opacity: 0, scale: 1.07, filter: 'blur(10px)', '--glow': 0 }, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 0.1 }, 0.03)
-      .to(title, { '--scan': '100%', duration: 0.32, ease: 'power1.inOut' }, 0.05)
-      .to(title, { '--glow': 1, duration: 0.2 }, 0.32)
-      .fromTo(cap, { opacity: 0, y: 12, filter: 'blur(6px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.1, ease: 'power2.out' }, 0.3)
-      .to(cap, { opacity: 0, y: -20, filter: 'blur(10px)', duration: 0.08, ease: 'power2.in' }, 0.84)
-      .to(title, { opacity: 0, letterSpacing: '0.28em', filter: 'blur(12px)', duration: 0.1, ease: 'power2.in' }, 0.84)
-      .set({}, {}, 1);
+    tl.fromTo(info, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.03 }, 0.04)
+      .to(info, { autoAlpha: 0, duration: 0.03 }, 0.25);
+    tl.fromTo(title, { '--scan': '0%', opacity: 0, scale: 1.07, filter: 'blur(10px)', '--glow': 0 }, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 0.04 }, 0.01)
+      .to(title, { '--scan': '100%', duration: 0.12, ease: 'power1.inOut' }, 0.02)
+      .to(title, { '--glow': 1, duration: 0.08 }, 0.12)
+      .fromTo(cap, { opacity: 0, y: 12, filter: 'blur(6px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.04, ease: 'power2.out' }, 0.1)
+      .to(cap, { opacity: 0, y: -20, filter: 'blur(10px)', duration: 0.04, ease: 'power2.in' }, 0.24)
+      .to(title, { opacity: 0, letterSpacing: '0.28em', filter: 'blur(12px)', duration: 0.04, ease: 'power2.in' }, 0.24);
+    this.buildLoveDiagram(L, tl);
+    tl.set({}, {}, 1);
     this.tls[3] = tl;
+  }
+
+  /* STORY 4 (lanjutan): diagram "Overflow of Love" — Bapa, Anak, Roh Kudus; satu hakikat;
+     energi yang tidak diciptakan. Bahasa Inggris; "LOVE" berubah menjadi "KASIH" saat di-scroll.
+     Muncul selama cahaya 3D ditahan sebagai "matahari" (CREATIO_HOLD di a3-trinitas.js). */
+  buildLoveDiagram(L, tl) {
+    const C = 500, rad = (d) => (d * Math.PI) / 180;
+    const pt = (r, d) => [C + r * Math.cos(rad(d)), C + r * Math.sin(rad(d))];
+    const f = (n) => n.toFixed(1);
+    // busur pada lingkaran r dari sudut a ke b (cw = searah jarum jam di layar)
+    const arc = (r, a, b, cw = true) => {
+      const [x0, y0] = pt(r, a), [x1, y1] = pt(r, b);
+      const span = cw ? ((b - a + 360) % 360) : ((a - b + 360) % 360);
+      return `M${f(x0)} ${f(y0)}A${r} ${r} 0 ${span > 180 ? 1 : 0} ${cw ? 1 : 0} ${f(x1)} ${f(y1)}`;
+    };
+    // kepala panah di titik (x,y) menghadap sudut dir (derajat)
+    const head = (x, y, dir, s = 15) => {
+      const p = (d, l) => [x + l * Math.cos(rad(d)), y + l * Math.sin(rad(d))];
+      const [ax, ay] = p(dir + 155, s), [bx, by] = p(dir - 155, s);
+      return `M${f(ax)} ${f(ay)}L${f(x)} ${f(y)}L${f(bx)} ${f(by)}`;
+    };
+    const NODES = { F: [500, 268], S: [302, 642], N: [698, 642] };
+    const R = 298;
+    // tiga busur LOVE (dua arah): [dari°, ke°, jari-jari teks, arah teks cw?]
+    const loves = [[-72, 17, 316, true], [163, 252, 316, true], [127, 53, 330, false]];
+    const ring = ['Forgiveness', 'Judgment', 'Hope', 'Joy', 'Goodness', 'Life', 'Light', 'Beauty', 'Truth', 'Grace', 'Love', 'Wisdom'];
+
+    let defs = `<path id="ld-ring" d="${arc(436, 148, 32, true)}"/>
+      <path id="ld-unc" d="${arc(452, 150, 30, false)}"/>
+      <path id="ld-proc" d="M338 588L470 314"/><path id="ld-beg" d="M530 314L662 588"/>`;
+    loves.forEach(([a, b, tr, cw], i) => { defs += `<path id="ld-love${i}" d="${arc(tr, a, b, cw)}"/>`; });
+
+    const word = (txt, cls) => `<text class="${cls}"><textPath href="#ID" startOffset="50%" text-anchor="middle">${txt}</textPath></text>`;
+    const loveLabel = (i) => `<g class="ld-love">
+        ${word('Love', 'ld-en').replace('ID', `ld-love${i}`)}${word('Kasih', 'ld-id').replace('ID', `ld-love${i}`)}</g>`;
+    const arrows = loves.map(([a, b]) => {
+      const [x0, y0] = pt(R, a), [x1, y1] = pt(R, b);
+      // arah garis singgung (cw: sudut+90, ccw: sudut-90)
+      const cw = ((b - a + 360) % 360) < 180;
+      const tEnd = cw ? b + 90 : b - 90, tStart = cw ? a - 90 : a + 90;
+      return `<g class="ld-arc"><path class="ld-draw" pathLength="1" d="${arc(R, a, b, cw)}"/><path class="ld-flow ld-both" pathLength="1" d="${arc(R, a, b, cw)}"/>
+        <path class="ld-head" d="${head(x1, y1, tEnd)}${head(x0, y0, tStart)}"/></g>`;
+    }).join('');
+    const ringWords = ring.map((w, i) => {
+      // jarak sebanding panjang kata (+ celah 3 huruf) supaya kata panjang tidak bertumpuk
+      const len = (k) => ring[k].length + 3, total = ring.reduce((n, _, k) => n + len(k), 0);
+      const before = ring.slice(0, i).reduce((n, _, k) => n + len(k), 0);
+      const off = `${(1 + (98 * (before + len(i) / 2)) / total).toFixed(2)}%`;
+      if (w === 'Love') return `<g class="ld-love ld-word">
+        <text class="ld-ring ld-en"><textPath href="#ld-ring" startOffset="${off}" text-anchor="middle">Love</textPath></text>
+        <text class="ld-ring ld-id"><textPath href="#ld-ring" startOffset="${off}" text-anchor="middle">Kasih</textPath></text></g>`;
+      return `<text class="ld-ring ld-word"><textPath href="#ld-ring" startOffset="${off}" text-anchor="middle">${w}</textPath></text>`;
+    }).join('');
+
+    const node = (k, name, sub, dy = 0) => {
+      const [x, y] = NODES[k];
+      return `<g class="ld-node"><text class="ld-name" x="${x}" y="${y + dy}">${name}</text>
+        ${sub.map((s, j) => `<text class="ld-sub" x="${x}" y="${y + dy + 26 + j * 17}">${s}</text>`).join('')}</g>`;
+    };
+
+    const box = document.createElement('div');
+    box.className = 'love-diagram';
+    box.setAttribute('aria-hidden', 'true');
+    box.innerHTML = `<svg viewBox="0 0 1000 1000">
+      <defs>${defs}</defs>
+      ${node('F', 'Father', ['Deity · Autotheos'], -10)}
+      ${node('S', 'Spirit', ['Divine'])}
+      ${node('N', 'Son', ['Divine'])}
+      <g class="ld-inner">
+        <g class="ld-arc"><path class="ld-draw" pathLength="1" d="M470 314L338 588"/><path class="ld-flow" pathLength="1" d="M470 314L338 588"/><path class="ld-head" d="${head(338, 588, 115.7, 17)}"/></g>
+        <g class="ld-arc"><path class="ld-draw" pathLength="1" d="M530 314L662 588"/><path class="ld-flow" pathLength="1" d="M530 314L662 588" style="animation-delay:-1.1s"/><path class="ld-head" d="${head(662, 588, 64.3, 17)}"/></g>
+        <text class="ld-verb" dy="-12"><textPath href="#ld-proc" startOffset="50%" text-anchor="middle">Proceeding</textPath></text>
+        <text class="ld-verb" dy="-12"><textPath href="#ld-beg" startOffset="50%" text-anchor="middle">Begetting</textPath></text>
+      </g>
+      <g class="ld-outer">${arrows}${loves.map((_, i) => loveLabel(i)).join('')}</g>
+      <g class="ld-core"><text class="ld-god" x="500" y="520">God</text>
+        <text class="ld-ess" x="500" y="560">One in Essence</text></g>
+      <g class="ld-ringwrap">${ringWords}
+        <text class="ld-unc"><textPath href="#ld-unc" startOffset="50%" text-anchor="middle">Uncreated Energies</textPath></text></g>
+    </svg>`;
+    L.appendChild(box);
+
+    const q = (s) => [...box.querySelectorAll(s)];
+    const draws = (sel) => q(`${sel} .ld-draw`);
+    const heads = (sel) => q(`${sel} .ld-head`);
+    const enL = q('.ld-love .ld-en'), idL = q('.ld-love .ld-id');
+    tl.fromTo(box, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.02 }, 0.28)
+      .fromTo(q('.ld-node'), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.03, stagger: 0.012 }, 0.31)
+      .fromTo(draws('.ld-inner'), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.035, stagger: 0.01, ease: 'none' }, 0.35)
+      .fromTo(heads('.ld-inner'), { opacity: 0 }, { opacity: 1, duration: 0.008, stagger: 0.01 }, 0.383)
+      .fromTo(q('.ld-verb'), { opacity: 0 }, { opacity: 1, duration: 0.02, stagger: 0.01 }, 0.375)
+      .fromTo(draws('.ld-outer'), { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.04, stagger: 0.012, ease: 'none' }, 0.4)
+      .fromTo(heads('.ld-outer'), { opacity: 0 }, { opacity: 1, duration: 0.01, stagger: 0.012 }, 0.435)
+      .fromTo(enL, { opacity: 0 }, { opacity: 1, duration: 0.02 }, 0.43)
+      .fromTo(q('.ld-flow'), { opacity: 0 }, { opacity: 1, duration: 0.03 }, 0.45)
+      .set(idL, { opacity: 0 }, 0)
+      .fromTo(q('.ld-core'), { opacity: 0, scale: 0.85, transformOrigin: '500px 530px' }, { opacity: 1, scale: 1, duration: 0.035, ease: 'power2.out' }, 0.45)
+      .fromTo(q('.ld-ringwrap > .ld-word, .ld-ringwrap > .ld-unc'), { opacity: 0 }, { opacity: 1, duration: 0.02, stagger: 0.004 }, 0.49)
+      .fromTo(box.querySelector('.ld-ringwrap'), { rotate: -8, transformOrigin: '500px 500px' }, { rotate: 0, duration: 0.08, ease: 'power2.out' }, 0.49)
+      // LOVE → KASIH
+      // (tanpa tween 'filter' — supaya bayangan hitam dari CSS tidak tertimpa)
+      .to(enL, { opacity: 0, letterSpacing: '0.3em', duration: 0.025, stagger: 0.006 }, 0.6)
+      .fromTo(idL, { opacity: 0, letterSpacing: '0.3em' }, { opacity: 1, letterSpacing: '0.04em', duration: 0.025, stagger: 0.006, immediateRender: false }, 0.615)
+      .to(box, { autoAlpha: 0, scale: 1.08, filter: 'blur(8px)', duration: 0.04, ease: 'power2.in' }, 0.72);
   }
 
   /* PROGINOSKO: judul tetap terlihat (dan terbaca) selama detak & ledakan, hilang sebelum

@@ -3,7 +3,7 @@ export const STORIES = [
   { id: 'siapa-allah', label: 'Siapa Allah', vh: 320 },
   { id: 'perichoresis', label: 'Allah itu Satu / Esa', vh: 290 },
   { id: 'tiga-cahaya', label: 'Tritunggal Mahakudus', vh: 260 },
-  { id: 'creatio-ex-nihilo', label: 'Creatio ex Nihilo', vh: 330 },
+  { id: 'creatio-ex-nihilo', label: 'Creatio ex Nihilo', vh: 1200 },
   { id: 'cahaya-berkumpul', label: 'Luapan Kasih (Overflow of Love)', vh: 230 },
   { id: 'cahaya-meledak', label: 'Penciptaan', vh: 230 },
   { id: 'dunia-kasat-mata', label: 'Penciptaan Dua Dunia', vh: 340 },

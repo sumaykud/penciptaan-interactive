@@ -168,6 +168,47 @@ body.ready .fade-load { opacity: 1; }
 }
 .s4-cap .nb { white-space: nowrap; }
 
+/* diagram "Overflow of Love" (Story 4 lanjutan) */
+.love-diagram {
+  position: absolute; left: 50%; top: 50%; width: min(92vh, 94vw); aspect-ratio: 1; margin: calc(min(92vh, 94vw) / -2) 0 0 calc(min(92vh, 94vw) / -2);
+  visibility: hidden; opacity: 0; pointer-events: none;
+}
+.love-diagram svg { width: 100%; height: 100%; overflow: visible; }
+.love-diagram text { font-family: var(--serif); font-weight: 400; text-anchor: middle; }
+.ld-name { font-size: 50px; fill: #8a3f08; }
+.love-diagram .ld-sub { font-family: var(--sans); font-size: 13px; letter-spacing: 0.06em; fill: #8a3f08; }
+.ld-verb { font-size: 27px; font-style: italic; fill: #8a3f08; }
+.ld-god {
+  font-size: 92px; fill: #f2b631; /* emas terang */
+  filter: drop-shadow(0 1px 1px rgba(110, 56, 4, 0.75)) drop-shadow(0 0 10px rgba(255, 196, 70, 0.85)) drop-shadow(0 0 22px rgba(255, 170, 40, 0.5));
+}
+.ld-ess { font-size: 25px; font-style: italic; fill: #8a3f08; }
+/* panah = garis cahaya: inti putih + pendar hangat yang kabur (seperti cincin cahaya 3D) */
+.ld-draw, .ld-head {
+  fill: none; stroke: #fffdf8; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round;
+  filter: drop-shadow(0 0 2px rgba(255, 240, 210, 1)) drop-shadow(0 0 7px rgba(226, 164, 86, 0.9)) drop-shadow(0 0 18px rgba(205, 136, 62, 0.55));
+}
+.ld-draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+/* denyut cahaya yang mengalir di sepanjang panah (panah dua arah: bolak-balik) */
+.ld-flow {
+  fill: none; stroke: #fff; stroke-width: 6; stroke-linecap: round; stroke-dasharray: 0.1 2; opacity: 0;
+  filter: blur(1px) drop-shadow(0 0 5px #fff) drop-shadow(0 0 12px rgba(255, 196, 120, 0.95));
+  animation: ldFlow 2.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.ld-flow.ld-both { animation-duration: 3.2s; animation-direction: alternate; }
+@keyframes ldFlow { from { stroke-dashoffset: 0.1; } to { stroke-dashoffset: -1; } }
+@media (prefers-reduced-motion: reduce) { .ld-flow { animation: none; display: none; } }
+.ld-outer .ld-love text { font-size: 25px; font-style: italic; letter-spacing: 0.04em; fill: #8a3f08; }
+.ld-outer .ld-love .ld-id { fill: #8a3f08; }
+.love-diagram .ld-id { font-style: italic; }
+/* cincin kata luar + "Uncreated Energies": putih terang dengan bayangan hitam */
+.ld-ring, .ld-unc {
+  fill: #fffaf0;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.95)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 12px rgba(0, 0, 0, 0.6));
+}
+.ld-ring { font-size: 26px; letter-spacing: 0.03em; }
+.ld-unc { font-size: 46px; letter-spacing: 0.06em; }
+
 /* ---------- tombol "?" → modal penjelasan ---------- */
 .info-btn {
   position: absolute; top: calc(18px + env(safe-area-inset-top, 0px)); right: calc(var(--gutter-r) + clamp(0px, 1.2vw, 16px));

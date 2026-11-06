@@ -86,7 +86,11 @@ export class ActTrinitas extends Act {
   }
 
   update(P, w, t) {
+    const hold = creatioHold(P);
+    P = remapCreatio(P);
     const { s, q, z, phi } = this.ringState(P, t);
+    // detak jantung cahaya selama diagram tampil (acak: kadang lembut, kadang meledak)
+    const hb = heartbeat(t), beat = hb.v * hold, burst = hb.burst * hold;
     this.root.rotation.set(lerp(0.32, 0.08, s) * (1 - q), Math.sin(t * 0.2) * 0.18 * s * (1 - q), 0);
 
     this.holders.forEach((h, k) => {
@@ -110,7 +114,7 @@ export class ActTrinitas extends Act {
       const fadeIn = k === 0 ? 1 : smooth(0.0, 0.12, s + q);
       rg.opacity = w * fadeIn;
       rg.draw = 1;
-      rg.intensity = 2.0 + 0.3 * Math.sin(t * 1.6 + k) + 2.0 * z;
+      rg.intensity = 2.0 + 0.3 * Math.sin(t * 1.6 + k) + 2.0 * z + 1.6 * beat;
       rg.haloIntensity = 0.3 * (1 - 0.4 * q);
       const gl = this.ringGlows[k];
       gl.position.copy(h.position).applyEuler(this.root.rotation);
@@ -121,11 +125,11 @@ export class ActTrinitas extends Act {
     // cahaya pusat: berkumpul → menyala
     const mg = this.mainGlow.material.uniforms;
     const gather = bell(1.0, 1.55, P);
-    mg.uIntensity.value = (0.2 + 0.05 * s + 0.4 * gather - 0.1 * smooth(1.35, 1.6, P) + 1.0 * z) * (1 + 0.06 * Math.sin(t * 2));
-    mg.uScale.value.setScalar(lerp(5.6, 7, gather) * (1 - 0.6 * z));
+    mg.uIntensity.value = (0.2 + 0.05 * s + 0.4 * gather - 0.1 * smooth(1.35, 1.6, P) + 1.0 * z) * (1 + 0.06 * Math.sin(t * 2) * (1 - hold)) + 0.42 * beat;
+    mg.uScale.value.setScalar(lerp(5.6, 7, gather) * (1 - 0.6 * z) * (1 + 0.14 * beat));
     mg.uOpacity.value = w;
     const fl = this.flare.material.uniforms;
-    fl.uIntensity.value = 0.6 * gather + 1.2 * z;
+    fl.uIntensity.value = 0.6 * gather + 1.2 * z + 0.5 * beat + 1.6 * burst;
     fl.uOpacity.value = w;
 
     // bokeh tertarik ke pusat ("semua cahaya berkumpul")
@@ -133,7 +137,7 @@ export class ActTrinitas extends Act {
     const size = this.bokehPts.geometry.attributes.aSize.array;
     const al = this.bokehPts.geometry.attributes.aAlpha.array;
     const pull = easeIn(range(1.0, 1.38, P));
-    const bokehVis = smooth(0.0, 0.25, P) * (1 - smooth(1.25, 1.4, P));
+    const bokehVis = smooth(0.0, 0.25, P) * (1 - smooth(1.25, 1.4, P)) * (1 - hold);
     const cam = this.ctx.camera;
     this.bokeh.forEach((b, i) => {
       const dx = Math.sin(t * 0.3 + b.seed) * 0.15, dy = Math.cos(t * 0.25 + b.seed) * 0.12;
@@ -172,6 +176,7 @@ export class ActTrinitas extends Act {
   onPointer(e) { this.verses.onPointer(e, this.bokeh); }
 
   pose(P) {
+    P = remapCreatio(P);
     const k = range(0.22, 1.0, P);
     const a = Math.sin(k * Math.PI) * 0.42;
     const e = Math.sin(k * Math.PI) * 0.22;
@@ -182,16 +187,50 @@ export class ActTrinitas extends Act {
     return this.fit({ pos: p1.lerp(p2, b), look: V(0, 0.04 * b, 0), fov: 40 });
   }
 
-  post(P) {
+  post(P, t) {
+    const hold = creatioHold(P);
+    P = remapCreatio(P);
     const z = range(1.84, 2.0, P);
+    const hb = heartbeat(t);
     return {
-      bloom: 0.7 - 0.1 * smooth(1.25, 1.5, P),
+      bloom: 0.7 - 0.1 * smooth(1.25, 1.5, P) + 0.3 * hb.v * hold,
       rays: 0.12 + 0.16 * smooth(1.25, 1.5, P),
       light: V(0, 0.02, 0),
-      flash: 0.35 * z * z,
+      flash: 0.35 * z * z + 0.14 * hb.burst * hold,
       vignette: 0.85,
     };
   }
+}
+
+/* Story 4 diperpanjang untuk diagram "Overflow of Love" (lihat ui.buildStory4):
+   lokal 0..0.29  → animasi asli 0..0.25 (cahaya berkumpul, jadi "matahari")
+   lokal 0.29..0.76 → ditahan di 0.25 selama diagram tampil
+   lokal 0.76..1  → animasi asli 0.25..1 (manusia ilahi, salib, runtuh jadi titik) */
+export const CREATIO_HOLD = [0.29, 0.76];
+/* Detak jantung: "lub-dub" tiap ±1,2 dtk. Kekuatan tiap detak acak (deterministik per detak):
+   sebagian besar lembut, sesekali meledak terang dengan ekor cahaya yang lebih panjang. */
+const hash = (n) => { const x = Math.sin(n * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
+const gauss = (x, m, w) => Math.exp(-(((x - m) / w) ** 2));
+function heartbeat(t) {
+  const T = 1.2, n = Math.floor(t / T), ph = t - n * T;
+  const big = hash(n) > 0.8;                        // ±1 dari 5 detak meledak
+  const amp = big ? 1 : 0.16 + 0.34 * hash(n + 41);  // detak lain: halus, kekuatan bervariasi
+  const shape = gauss(ph, 0.06, 0.05) + 0.55 * gauss(ph, 0.3, 0.06);
+  const tail = big ? 0.6 * Math.exp(-Math.max(0, ph - 0.06) * 3.2) * smooth(0.0, 0.06, ph) : 0;
+  return { v: amp * shape + tail, burst: big ? gauss(ph, 0.07, 0.07) + tail * 0.8 : 0 };
+}
+
+// 0..1: seberapa penuh diagram tampil (bokeh disembunyikan supaya bersih)
+function creatioHold(P) {
+  const l = P - 1, [h0, h1] = CREATIO_HOLD;
+  return smooth(h0 - 0.01, h0 + 0.03, l) * (1 - smooth(h1 - 0.04, h1, l));
+}
+function remapCreatio(P) {
+  if (P <= 1) return P;
+  const l = Math.min(1, P - 1), [h0, h1] = CREATIO_HOLD, o = 0.25;
+  if (l < h0) return 1 + (l / h0) * o;
+  if (l < h1) return 1 + o;
+  return 1 + o + ((l - h1) / (1 - h1)) * (1 - o);
 }
 
 function woodTexture() {
