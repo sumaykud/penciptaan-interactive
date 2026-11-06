@@ -428,7 +428,7 @@ html.modal-open { overflow: hidden; }
 .kr-cross svg { display: block; width: 100%; height: auto; }
 .kr-panel {
   position: absolute; left: var(--gutter-l); right: var(--gutter-r); bottom: calc(58px + env(safe-area-inset-bottom, 0px)); top: 54%;
-  margin: 0 auto; max-width: 1180px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin;
+  margin: 0 auto; max-width: 1180px; overflow-y: auto; overscroll-behavior: contain;
   padding: 8px 4px 12px;
 }
 .kr-title { margin: 0; text-align: right; font-family: var(--sans); font-weight: 700; font-size: clamp(24px, 2.6vw, 40px); color: #fff; letter-spacing: -0.01em; text-shadow: 0 0 22px rgba(255, 80, 60, 0.35); }
@@ -670,4 +670,20 @@ html.modal-open { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
   .loader-dot, .sh-mouse i { animation: none; }
+}
+
+/* ---------- scrollbar: tipis & bercahaya (semua area yang bisa di-scroll) ---------- */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: rgba(246, 240, 228, 0.05); border-radius: 4px; }
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: linear-gradient(180deg, #fff6df, #e8c27a 55%, #c9953f);
+  box-shadow: 0 0 6px rgba(255, 214, 140, 0.9), 0 0 14px rgba(232, 180, 90, 0.55);
+}
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #fffaf0, #f1d08e 55%, #d9a650); }
+::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
+::-webkit-scrollbar-corner { background: transparent; }
+/* Firefox (tidak mendukung ::-webkit-scrollbar) */
+@supports not selector(::-webkit-scrollbar) {
+  * { scrollbar-width: thin; scrollbar-color: #e8c27a rgba(246, 240, 228, 0.06); }
 }
