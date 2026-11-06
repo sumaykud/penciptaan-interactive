@@ -173,6 +173,39 @@ export const PERICHORESIS_VERSES = [
    dan baris baru (\n) di dalam `text`.
    --------------------------------------------------------------------- */
 export const EXPLAINERS = {
+  /* Story 4 (fase diagram "Overflow of Love") — Monarkhia Sang Bapa */
+  monarkhia: {
+    title: 'Monarkhia Sang Bapa',
+    versesTitle: 'Dasar-dasar Alkitab',
+    verseGroups: [
+      {
+        verses: [
+          { ref: '1 Korintus 8:6', text: 'namun bagi kita hanya ada satu Allah saja, yaitu Bapa, yang dari pada-Nya berasal segala sesuatu dan yang untuk Dia kita hidup, dan satu Tuhan saja, yaitu Yesus Kristus, yang oleh-Nya segala sesuatu telah dijadikan dan yang karena Dia kita hidup.' },
+          { ref: 'Yohanes 1:14b', text: '…dan kita telah melihat kemuliaan-Nya, yaitu kemuliaan yang diberikan kepada-Nya sebagai Anak Tunggal Bapa, penuh kasih karunia dan kebenaran.' },
+          { ref: 'Yohanes 5:26', text: 'Sebab sama seperti Bapa mempunyai hidup dalam diri-Nya sendiri, demikian juga diberikan-Nya Anak mempunyai hidup dalam diri-Nya sendiri.' },
+          { ref: 'Yohanes 8:42', text: 'Kata Yesus kepada mereka: "Jikalau Allah adalah Bapamu, kamu akan mengasihi Aku, sebab Aku keluar dan datang dari Allah. Dan Aku datang bukan atas kehendak-Ku sendiri, melainkan Dialah yang mengutus Aku.' },
+          { ref: 'Yohanes 14:28', text: 'Kamu telah mendengar, bahwa Aku telah berkata kepadamu: Aku pergi, tetapi Aku datang kembali kepadamu. Sekiranya kamu mengasihi Aku, kamu tentu akan bersukacita karena Aku pergi kepada Bapa-Ku, sebab Bapa lebih besar dari pada Aku.' },
+          { ref: 'Ibrani 1:5', text: 'Karena kepada siapakah di antara malaikat-malaikat itu pernah Ia katakan: "Anak-Ku Engkau! Engkau telah Kuperanakkan pada hari ini?" dan "Aku akan menjadi Bapa-Nya, dan Ia akan menjadi Anak-Ku?"' },
+          { ref: 'Yohanes 14:26', text: 'tetapi Penghibur, yaitu Roh Kudus, yang akan diutus oleh Bapa dalam nama-Ku, Dialah yang akan mengajarkan segala sesuatu kepadamu dan akan mengingatkan kamu akan semua yang telah Kukatakan kepadamu.' },
+          { ref: 'Yohanes 15:26', text: 'Jikalau Penghibur yang akan Kuutus dari Bapa datang, yaitu Roh Kebenaran yang keluar dari Bapa, Ia akan bersaksi tentang Aku.' },
+          { ref: 'Yohanes 16:13-15', text: '^[13] Tetapi apabila Ia datang, yaitu Roh Kebenaran, Ia akan memimpin kamu ke dalam seluruh kebenaran; sebab Ia tidak akan berkata-kata dari diri-Nya sendiri, tetapi segala sesuatu yang didengar-Nya itulah yang akan dikatakan-Nya dan Ia akan memberitakan kepadamu hal-hal yang akan datang. ^[14] Ia akan memuliakan Aku, sebab Ia akan memberitakan kepadamu apa yang diterimanya dari pada-Ku. ^[15] Segala sesuatu yang Bapa punya, adalah Aku punya; sebab itu Aku berkata: Ia akan memberitakan kepadamu apa yang diterimanya dari pada-Ku."' },
+          { ref: 'Matius 11:27', text: 'Semua telah diserahkan kepada-Ku oleh Bapa-Ku dan tidak seorangpun mengenal Anak selain Bapa, dan tidak seorangpun mengenal Bapa selain Anak dan orang yang kepadanya Anak itu berkenan menyatakannya.' },
+          { ref: '1 Korintus 2:11', text: 'Siapa gerangan di antara manusia yang tahu, apa yang terdapat di dalam diri manusia selain roh manusia sendiri yang ada di dalam dia? Demikian pulalah tidak ada orang yang tahu, apa yang terdapat di dalam diri Allah selain Roh Allah.' },
+          { ref: 'Ayub 33:4', text: 'Roh Allah telah membuat aku, dan nafas Yang Mahakuasa membuat aku hidup.' },
+          { ref: 'Mazmur 33:6', text: 'Oleh firman TUHAN langit telah dijadikan, oleh nafas dari mulut-Nya segala tentaranya.' },
+        ],
+      },
+      {
+        title: 'Pengakuan Iman Nicea (Nicea–Konstantinopel, 381) — butir 1, 2 dan 8',
+        verses: [
+          { ref: 'Butir 1', text: 'Aku percaya kepada satu Allah, Bapa Yang Mahakuasa, Pencipta langit dan bumi, dan segala sesuatu yang kelihatan dan yang tidak kelihatan.' },
+          { ref: 'Butir 2', text: 'Dan kepada satu Tuhan, Yesus Kristus, Putra Allah yang Tunggal, yang dilahirkan dari Sang Bapa sebelum segala zaman; Terang dari Terang, Allah Sejati dari Allah Sejati; dilahirkan, bukan dibuat; sehakikat dengan Sang Bapa; yang melalui-Nya segala sesuatu dijadikan.' },
+          { ref: 'Butir 8', text: 'Dan kepada Roh Kudus, Tuhan, Pemberi Hidup, yang keluar dari Sang Bapa; yang bersama Sang Bapa dan Sang Putra disembah dan dimuliakan; yang telah berfirman melalui para nabi.' },
+        ],
+      },
+    ],
+  },
+
   'creatio-ex-nihilo': {
     title: 'Penciptaan Kosmos (*Creatio ex Nihilo*) & Penanaman *Logoi*',
     points: [

@@ -186,6 +186,9 @@ export class StoryUI {
       .to(cap, { opacity: 0, y: -20, filter: 'blur(10px)', duration: 0.04, ease: 'power2.in' }, 0.24)
       .to(title, { opacity: 0, letterSpacing: '0.28em', filter: 'blur(12px)', duration: 0.04, ease: 'power2.in' }, 0.24);
     this.buildLoveDiagram(L, tl);
+    // tombol "Lihat Ayat" kedua (Monarkhia Sang Bapa) hanya selama diagram tampil
+    tl.fromTo($('.info-btn-love', L), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.03 }, 0.36)
+      .to($('.info-btn-love', L), { autoAlpha: 0, duration: 0.03 }, 0.71);
     tl.set({}, {}, 1);
     this.tls[3] = tl;
   }
