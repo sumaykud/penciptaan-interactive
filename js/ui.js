@@ -73,6 +73,7 @@ export class StoryUI {
     this.buildStory2();
     this.buildStory3();
     this.buildStory4();
+    this.buildStory5();
     this.buildExplainer();
     this.buildStory7();
     this.buildProginosko();
@@ -319,6 +320,16 @@ export class StoryUI {
     this.tls[7] = tl;
   }
 
+  /* STORY 5 (Luapan Kasih): hanya tombol "Lihat Ayat" → modal Excess of Love */
+  buildStory5() {
+    const info = $('.info-btn', this.layers[4]);
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo(info, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.06 }, 0.06)
+      .to(info, { autoAlpha: 0, duration: 0.06 }, 0.9)
+      .set({}, {}, 1);
+    this.tls[4] = tl;
+  }
+
   /* Modal penjelasan: tombol .info-btn[data-explainer] membuka EXPLAINERS[id] dari data.js */
   buildExplainer() {
     const dlg = $('#explainer');
@@ -327,7 +338,11 @@ export class StoryUI {
     // butir bisa berupa teks, atau { text, items: [...] } untuk sub-butir (bertingkat)
     const list = (items, cls = 'modal-points') => `<ul class="${cls}">${items.map((it) => (typeof it === 'string'
       ? `<li>${f(it)}</li>`
-      : `<li>${f(it.text)}${it.items?.length ? list(it.items, 'modal-points sub') : ''}</li>`)).join('')}</ul>`;
+      : `<li>${f(it.text)}${it.quote ? `<blockquote class="modal-quote">${f(it.quote)}</blockquote>` : ''}${it.items?.length ? list(it.items, 'modal-points sub') : ''}</li>`)).join('')}</ul>`;
+    // rumusan panah: ['A', ['atas', 'bawah'], 'B', ...] → A —atas/bawah→ B
+    const flow = (steps) => `<div class="modal-flow">${steps.map((s) => (Array.isArray(s)
+      ? `<span class="mf-arrow"><span class="mf-top">${f(s[0])}</span><span class="mf-line" aria-hidden="true"></span><span class="mf-bot">${f(s[1] || '')}</span></span>`
+      : `<span class="mf-node">${f(s)}</span>`)).join('')}</div>`;
     const node = (n, cls = '') => `<div class="md-node ${cls}"><p class="md-t">${f(n.title)}</p>${n.sub ? `<p class="md-s">${f(n.sub)}</p>` : ''}${
       (n.lines || []).map((l) => `<p class="md-l">${f(l)}</p>`).join('')}${n.ref ? `<p class="md-ref">${f(n.ref)}</p>` : ''}</div>`;
     const diagram = (g) => `<figure class="mdiag" aria-label="Diagram">${node(g.top, 'md-top')}
@@ -346,7 +361,7 @@ export class StoryUI {
       (d.sections || []).forEach((s) => {
         const table = s.table ? `<div class="modal-table-wrap"><table class="modal-table"><thead><tr>${s.table.head.map((h) => `<th>${f(h)}</th>`).join('')}</tr></thead><tbody>${
           s.table.rows.map((r) => `<tr>${r.map((c) => `<td>${f(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>` : '';
-        html += `<section class="modal-sec"><h3 class="modal-h">${f(s.heading)}</h3>${s.intro ? `<p class="modal-intro">${f(s.intro)}</p>` : ''}${
+        html += `<section class="modal-sec"><h3 class="modal-h">${f(s.heading)}</h3>${s.flow ? flow(s.flow) : ''}${s.intro ? `<p class="modal-intro">${f(s.intro)}</p>` : ''}${
           s.quote ? `<blockquote class="modal-quote">${f(s.quote)}</blockquote>` : ''}${s.items ? list(s.items) : ''}${
           s.outro ? `<p class="modal-intro">${f(s.outro)}</p>` : ''}${s.verses ? `<ol class="modal-verses">${s.verses.map(verse).join('')}</ol>` : ''}${table}</section>`;
       });

@@ -173,6 +173,73 @@ export const PERICHORESIS_VERSES = [
    dan baris baru (\n) di dalam `text`.
    --------------------------------------------------------------------- */
 export const EXPLAINERS = {
+  /* Story 5 (Luapan Kasih) — Excess of Love */
+  'cahaya-berkumpul': {
+    "title": "Excess of Love",
+    "sections": [
+      {
+        "heading": "Hakikat *Excess of Love*: Allah Adalah Kasih (Ontologi Relasi)",
+        "intro": "Dalam pandangan teologi Ortodoks, kasih bukanlah sekadar emosi pasif atau reaksi Allah terhadap ciptaan, melainkan hakikat keberadaan (*arché*) Allah itu sendiri.",
+        "items": [
+          "**1 Yohanes 4:8:** \"Allah adalah kasih\"—sejak kekekalan sebelum alam semesta ada, persekutuan Tritunggal (Bapa, Anak, dan Roh Kudus) telah hidup dalam tarian kasih yang sempurna (*Perichoresis*).",
+          "**Kebebasan Kasih:** Allah tidak membutuhkan alam semesta untuk merasa utuh atau bahagia. Oleh karena itu, ketika Allah bertindak keluar ke dalam sejarah, tindakan itu merupakan murni *Excess of Love*—tumpahan sukarela dari kasih-Nya yang tidak terbatas."
+        ]
+      },
+      {
+        "heading": "Dimensi Kosmologis: *Excess of Love* dalam *Creatio ex Nihilo*",
+        "intro": "Mengapa Allah menciptakan alam semesta dari ketiadaan (*creatio ex nihilo*)? **Santo Gregorius dari Nyssa** memberikan jawaban langsung dalam karyanya *Catechetical Discourse*:",
+        "quote": "\"Allah Sang Logos, Hikmat, dan Kuasa, membentuk asal-usul makhluk hidup seperti manusia bukan karena didorong oleh suatu keharusan/kebutuhan, melainkan karena **limpahan kasih** (*out of an excess of love / hyperbole tes agapes*). Sebab adalah perlu bahwa Terang tidak tetap tak terlihat, kemuliaan-Nya tidak tanpa saksi, dan kebaikan-Nya tidak tanpa dinikmati...\"",
+        "items": [
+          "**Menyediakan Ruang Luar:** Melalui *Creatio ex Nihilo*, *Excess of Love* ini memanggil wujud yang sama sekali baru dari ketiadaan murni. Meskipun ada jurang ontologis (*diastema*) yang sangat jauh antara kodrat Allah yang Tak Tercipta dan kodrat ciptaan yang Tercipta, jurang alamiah tersebut dijembatani dan dirangkum oleh kasih ilahi yang tak terukur ini."
+        ]
+      },
+      {
+        "heading": "Dimensi Inkarnasional: *Ekstasis* dan *Kenosis* Sang Logos",
+        "intro": "Bagaimana *Excess of Love* bekerja saat manusia jatuh ke dalam dosa? Bapa Gereja seperti **Santo Dionysius Areopagita** dan **Santo Maksimus Pengaku Iman** (*Ambiguum* 71) menjelaskan dinamika ini melalui konsep *Ekstasis* (Allah \"keluar\" dari diri-Nya):",
+        "items": [
+          {
+            "text": "**Kehadiran Ekstatik:**",
+            "quote": "\"Sang Logos, dalam **kelimpahan kasih-Nya yang penuh kerinduan** (*in the overflow of his passionate goodness / erotikes agathotetos*), ditarik keluar dari diri-Nya (*ecstasis*) dalam pemeliharaan-Nya bagi segala sesuatu. Dipikat oleh kebaikan, kasih, dan kerinduan-Nya sendiri, Ia merendahkan diri untuk menembus segala ciptaan...\""
+          },
+          "**Pengosongan Diri** (*Kenosis*): Limpahan kasih ini mencapai puncaknya ketika Sang Logos menjadi manusia dalam Diri Yesus Kristus. Allah yang Mahatinggi rela mengecilkan diri-Nya dan membungkus kemuliaan-Nya ke dalam daging manusia agar ciptaan tidak hancur oleh kedahsyatan hakikat ilahi-Nya, melainkan dapat dipulihkan."
+        ]
+      },
+      {
+        "heading": "Dimensi Mistis dan Asketis: Pengalaman Jiwa dalam *Theosis*",
+        "intro": "Dalam kehidupan rohani, *Excess of Love* menjadi daya penggerak utama bagi penyucian batin (*katharsis*) dan pengilahian manusia (*Theosis*):",
+        "items": [
+          "**Pengalaman Santo Symeon Teolog Baru:** Dalam *Hymns of Divine Eros*, Santo Symeon menggambarkan bagaimana perjumpaan jiwa dengan Terang Ilahi menghadirkan limpahan kasih (*hyperbole tou erotos*) yang membakar hawa nafsu egois, memurnikan *nous* (mata jiwa), dan memenuhi batin dengan ratapan sukacita.",
+          "**Kasih yang Berkorban** (*Crucified Love*): Santo Yohanes Krisostomus dan Santo Nikodemos dari Gunung Athos menegaskan bahwa *Excess of Love* yang diterima dari Allah harus memancar keluar dalam bentuk kasih kepada sesama dan musuh. Bapa Gereja menyebut bahwa \"setiap kasih yang besar adalah kasih yang tersalib\" (*crucified love*)—kasih yang rela menderita dan berdoa bagi keselamatan seluruh dunia."
+        ]
+      },
+      {
+        "heading": "Rumusan",
+        "flow": [
+          "Perichoresis (Kasih Kekal Tritunggal)",
+          [
+            "Excess of Love",
+            "Creatio ex Nihilo"
+          ],
+          "Penciptaan Kosmos",
+          [
+            "Excess of Love",
+            "Kenosis / Inkarnasi"
+          ],
+          "Penebusan Kristus",
+          [
+            "Excess of Love",
+            "Energi Ilahi"
+          ],
+          "Theosis"
+        ]
+      },
+      {
+        "heading": "Kesimpulan",
+        "intro": "**Excess of Love** adalah denyut nadi utama dari seluruh sejarah keselamatan (*Divine Economy*). Alam semesta ada, Kristus berinkarnasi, dan manusia dipanggil menuju kekekalan, murni karena Allah adalah Kasih yang kelimpahan-Nya tak pernah habis untuk dibagikan."
+      }
+    ]
+  },
+
   /* Story 4 (fase akhir: manusia ilahi & salib) — Penciptaan dari Ketiadaan */
   'ex-nihilo': {
     "title": "Penciptaan dari Ketiadaan",
