@@ -503,11 +503,23 @@ html.modal-open { overflow: hidden; }
   display: grid; grid-template-columns: 1fr; gap: 3px; max-height: 34vh; overflow: auto; font-size: 11px;
   font-variant-numeric: tabular-nums; color: var(--ink-faint);
 }
-.ref-list li { display: flex; gap: 8px; align-items: baseline; padding: 2px 0; cursor: default; transition: color 0.2s; opacity: 0; transform: translateY(6px); }
+.ref-list li { display: flex; gap: 8px; align-items: baseline; padding: 2px 6px; border-radius: 3px; cursor: pointer; transition: color 0.2s; opacity: 0; transform: translateY(6px); }
 .ref-list li.in { opacity: 1; transform: none; transition: opacity 0.4s, transform 0.4s, color 0.2s; }
 .ref-list li:hover { color: var(--ink); }
 .ref-list li .arrow { color: var(--gold); }
-.drag-hint { margin: 0; font-size: 10px; letter-spacing: 0.06em; color: var(--ink-faint); line-height: 1.6; }
+.ref-list li.on { color: var(--ink); background: rgba(212, 175, 106, 0.12); }
+.ref-list li:focus-visible { outline: 1px solid var(--gold); outline-offset: 1px; }
+.ref-list { max-height: 24vh; overflow-x: hidden; }
+.ref-detail {
+  max-height: 30vh; overflow: auto; display: flex; flex-direction: column; gap: 12px;
+  padding-top: 14px; border-top: 1px solid rgba(246, 240, 228, 0.1);
+}
+.ref-detail .rd-hint { margin: 0; font-size: 10px; letter-spacing: 0.06em; color: var(--ink-faint); line-height: 1.6; }
+.ref-detail .rd-verse { animation: rdIn 0.35s ease both; }
+.ref-detail .rd-verse + .rd-verse { animation-delay: 0.08s; }
+.ref-detail .rd-ref { margin: 0 0 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; color: var(--gold); }
+.ref-detail .rd-text { margin: 0; font-size: 13px; line-height: 1.6; color: var(--ink-dim); }
+@keyframes rdIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
 /* ---------- tooltip ---------- */
 .tip {
@@ -584,7 +596,8 @@ html.modal-open { overflow: hidden; }
   .theme-list { flex-direction: row; flex-wrap: wrap; gap: 6px 16px; }
   .theme-list button { font-size: 15px; }
   .ref-list { max-height: 15vh; padding-top: 8px; }
-  .drag-hint { display: none; }
+  .ref-detail { max-height: 22vh; padding-top: 10px; gap: 8px; }
+  .ref-detail .rd-text { font-size: 12px; }
   .ch-name { display: none; }
 }
 @media (max-height: 640px) and (min-width: 761px) {

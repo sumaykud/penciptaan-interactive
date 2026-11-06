@@ -1,5 +1,5 @@
 import { STORIES } from './config.js';
-import { UNIVERSE_TIMELINE, THEMES, BOOK_GROUPS, EXPLAINERS } from './data.js';
+import { UNIVERSE_TIMELINE, THEMES, BOOK_GROUPS, EXPLAINERS, VERSE_TEXTS } from './data.js';
 import { clamp } from './core/util.js';
 import { fmtVerse } from './core/verses.js';
 
@@ -341,16 +341,15 @@ export class StoryUI {
     });
     this.refList = $('.ref-list', L);
     this.refList.classList.add('interactive');
-    $('.drag-hint', L).textContent = this.ctx.touch
-      ? 'Ketuk busur untuk melihat ayat'
-      : 'Seret diagram untuk memutar 3D · arahkan kursor ke busur untuk melihat ayat';
+    this.refDetail = $('.ref-detail', L);
+    this.refDetail.classList.add('interactive');
     this.bookBox = $('.book-labels', L);
     this.leaders = $('.leaders path', L);
     const tl = gsap.timeline({ paused: true });
     // diagram baru selesai berputar ke vertikal di ±40% story ini (lihat a7-bumi legacy())
     tl.fromTo(this.themeButtons, { opacity: 0, x: 34 }, { opacity: 1, x: 0, stagger: 0.025, duration: 0.07, ease: 'power3.out' }, 0.38)
       .fromTo($('.legend', L), { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.08 }, 0.4)
-      .fromTo([this.refList, $('.drag-hint', L)], { opacity: 0 }, { opacity: 1, duration: 0.06, stagger: 0.03 }, 0.44)
+      .fromTo([this.refList, this.refDetail], { opacity: 0 }, { opacity: 1, duration: 0.06, stagger: 0.03 }, 0.44)
       .set({}, {}, 1);
     this.tls[11] = tl;
 
@@ -403,16 +402,52 @@ export class StoryUI {
     const th = arcs.themes[i];
     if (th.hidden) { this.fillKristus(th, arcs); return; }
     this.refList.innerHTML = '';
+    arcs.setSelectedItem(null);
+    this.showRefDetail(null);
     th.items.forEach((it, k) => {
       const li = document.createElement('li');
+      li.tabIndex = 0;
+      li.setAttribute('role', 'button');
       li.innerHTML = `<span class="a"></span><span class="arrow">⟶</span><span class="b"></span>`;
       $('.a', li).textContent = it.ref.from;
       $('.b', li).textContent = it.ref.to;
       li.addEventListener('pointerenter', () => arcs.setHoverItem(it));
       li.addEventListener('pointerleave', () => arcs.setHoverItem(null));
+      const pick = () => {
+        const on = !li.classList.contains('on');
+        this.refList.querySelectorAll('li.on').forEach((x) => x.classList.remove('on'));
+        li.classList.toggle('on', on);
+        arcs.setSelectedItem(on ? it : null);
+        this.showRefDetail(on ? it.ref : null);
+      };
+      li.addEventListener('click', pick);
+      li.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
       this.refList.appendChild(li);
       setTimeout(() => li.classList.add('in'), 40 + k * 45);
     });
+  }
+
+  /* Detail ayat (TB) untuk pasangan referensi yang diklik di Keterhubungan Firman */
+  showRefDetail(ref) {
+    const box = this.refDetail;
+    if (!box) return;
+    box.innerHTML = '';
+    if (!ref) {
+      const p = document.createElement('p');
+      p.className = 'rd-hint';
+      p.textContent = this.ctx.touch ? 'Ketuk ayat di atas untuk melihat isinya' : 'Klik ayat di atas untuk melihat isinya';
+      box.appendChild(p);
+      return;
+    }
+    [ref.from, ref.to].forEach((r, k) => {
+      const v = document.createElement('div');
+      v.className = 'rd-verse';
+      v.innerHTML = `<p class="rd-ref"></p><p class="rd-text"></p>`;
+      $('.rd-ref', v).textContent = (k ? '⟶ ' : '') + r;
+      $('.rd-text', v).textContent = VERSE_TEXTS[r] || '';
+      box.appendChild(v);
+    });
+    box.scrollTop = 0;
   }
 
   /* Section KRISTUS: daftar semua ayat yang terhubung, dikelompokkan Kristofani / Inkarnasi */

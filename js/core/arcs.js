@@ -233,7 +233,11 @@ export class ArcDiagram {
     }));
   }
 
+  // busur yang dipilih (klik di daftar ayat) tetap menyala saat kursor pergi
+  setSelectedItem(it) { this.selectedItem = it || null; this.setHoverItem(it); }
+
   setHoverItem(it) {
+    it = it || this.selectedItem || null;
     if (this.hoverItem === it) return;
     if (this.hoverItem) window.gsap.to(this.hoverItem.mat.uniforms.uHover, { value: 0, duration: 0.25 });
     this.hoverItem = it;

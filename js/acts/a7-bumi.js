@@ -314,6 +314,7 @@ export class ActBumi extends Act {
     const [ax0, ay0] = proj(books[0].x0, -0.06);
     const [ax1, ay1] = proj(books[books.length - 1].x1, -0.06);
     const span = Math.abs(ay1 - ay0);
+    if (!Number.isFinite(span) || !Number.isFinite(ax0) || span < 1) return; // ukuran belum siap
     const step = span / books.length;
     const every = Math.max(1, Math.ceil(11.5 / step));
     const colX = Math.max(ax0, ax1) + 44;
@@ -323,9 +324,11 @@ export class ActBumi extends Act {
       const [bx, by] = proj(b.xc, -0.06);
       const ly = ay0 + (i + 0.5) * step;
       el.style.transform = `translate3d(${colX.toFixed(1)}px, ${ly.toFixed(1)}px, 0)`;
-      const visible = i % every === 0;
+      // setiap 'every' kitab + kitab terakhir (Wahyu) selalu tampil; label tepat sebelumnya disembunyikan bila terlalu dekat
+      const last = books.length - 1;
+      const visible = i === last || (i % every === 0 && last - i >= every);
       el.classList.toggle('on', visible);
-      if (visible) d += `M${(bx + 8).toFixed(1)} ${by.toFixed(1)}L${(colX - 14).toFixed(1)} ${by.toFixed(1)}L${(colX - 4).toFixed(1)} ${ly.toFixed(1)}`;
+      if (visible && Number.isFinite(bx) && Number.isFinite(by)) d += `M${(bx + 8).toFixed(1)} ${by.toFixed(1)}L${(colX - 14).toFixed(1)} ${by.toFixed(1)}L${(colX - 4).toFixed(1)} ${ly.toFixed(1)}`;
     });
     this.leaders.setAttribute('d', d);
   }
