@@ -64,7 +64,7 @@ void main(){
   gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
 }`;
 const LINE_FS = /* glsl */ `
-uniform float uTime, uOpacity, uRainbow, uPulse, uBase, uWave;
+uniform float uTime, uOpacity, uRainbow, uPulse, uBase, uWave, uDim;
 varying float vT; varying float vSeed; varying vec3 vCol; varying float vHover; varying float vVis;
 void main(){
   if (vVis < 0.5) discard;
@@ -73,13 +73,13 @@ void main(){
   vec3 base = mix(vec3(1.0), vCol, uRainbow);
   float a = uBase + pulse * 1.1 + vHover * 0.45 + uWave * 0.12;
   vec3 col = base * a + vec3(1.0, 0.82, 0.5) * pulse * 0.9;
-  gl_FragColor = vec4(col * uOpacity, 1.0);
+  gl_FragColor = vec4(col * uOpacity * uDim, 1.0);
 }`;
 const TUBE_VS = /* glsl */ `
 varying vec2 vUv;
 void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`;
 const TUBE_FS = /* glsl */ `
-uniform float uOn, uTime, uSeed, uHover, uDraw, uOpacity;
+uniform float uOn, uTime, uSeed, uHover, uDraw, uOpacity, uDim;
 uniform vec3 uColor;
 varying vec2 vUv;
 void main(){
@@ -88,7 +88,25 @@ void main(){
   float pulse = exp(-pow((vUv.x - ph) * 12.0, 2.0)) + exp(-pow((vUv.x - fract(ph + 0.5)) * 16.0, 2.0)) * 0.5;
   float head = exp(-pow((vUv.x - uDraw) * 26.0, 2.0)) * (1.0 - step(0.999, uDraw));
   vec3 col = uColor * (0.75 + uHover * 1.6) + vec3(1.0, 0.88, 0.62) * (pulse * 2.6 + head * 3.5);
-  gl_FragColor = vec4(col * uOn * uOpacity, 1.0);
+  gl_FragColor = vec4(col * uOn * uOpacity * uDim, 1.0);
+}`;
+/* Busur SOROT (klik ayat / nama kitab): inti terang + pendar lebar, cahaya mengalir dari nubuat → tujuan */
+const SPOT_FS = /* glsl */ `
+uniform float uOn, uTime, uSeed, uDraw, uOpacity, uHalo;
+uniform vec3 uColor;
+varying vec2 vUv;
+void main(){
+  if (vUv.x > uDraw) discard;
+  float t = uTime * 0.38 + uSeed;
+  float pulse = 0.0;
+  for (int k = 0; k < 3; k++) {
+    float ph = fract(t + float(k) / 3.0);
+    pulse += exp(-pow((vUv.x - ph) * 14.0, 2.0));
+  }
+  float head = exp(-pow((vUv.x - uDraw) * 22.0, 2.0)) * (1.0 - step(0.999, uDraw));
+  float a = mix(1.0, 0.11, uHalo);
+  vec3 col = uColor * (0.9 + 0.12 * sin(uTime * 2.4 + uSeed * 9.0)) + vec3(1.0, 0.9, 0.66) * (pulse * 2.2 + head * 3.5);
+  gl_FragColor = vec4(col * a * uOn * uOpacity, 1.0);
 }`;
 
 export class ArcDiagram {
@@ -98,6 +116,10 @@ export class ArcDiagram {
     this.root = new THREE.Group();
     this.inner = new THREE.Group();
     this.root.add(this.inner);
+    this.dim = { value: 1 }; // dipakai bersama semua busur: 1 = normal, <1 = meredup saat ada sorotan
+    this.spot = new THREE.Group();
+    this.spotMats = [];
+    this.inner.add(this.spot);
     const { books, groups } = this.layout;
 
     // batang warna kitab
@@ -147,7 +169,7 @@ export class ArcDiagram {
     this.lineMat = new THREE.ShaderMaterial({
       uniforms: {
         uFan: { value: 0 }, uDraw: { value: 1 }, uHeight: { value: 1 }, uHover: { value: new THREE.Vector2(99, 99) },
-        uTime: SHARED.uTime, uOpacity: { value: 1 }, uRainbow: { value: 1 }, uPulse: { value: 1 }, uBase: { value: 0.13 }, uWave: { value: 0 },
+        uTime: SHARED.uTime, uOpacity: { value: 1 }, uRainbow: { value: 1 }, uPulse: { value: 1 }, uBase: { value: 0.13 }, uWave: { value: 0 }, uDim: this.dim,
       },
       vertexShader: LINE_VS, fragmentShader: LINE_FS, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
     });
@@ -176,7 +198,7 @@ export class ArcDiagram {
         const mat = new THREE.ShaderMaterial({
           uniforms: {
             uOn: { value: 0 }, uTime: SHARED.uTime, uSeed: { value: k * 0.137 }, uHover: { value: 0 }, uDraw: { value: 0 },
-            uOpacity: { value: 1 }, uColor: { value: color },
+            uOpacity: { value: 1 }, uColor: { value: color }, uDim: this.dim,
           },
           vertexShader: TUBE_VS, fragmentShader: TUBE_FS, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
         });
@@ -205,6 +227,7 @@ export class ArcDiagram {
 
   setTheme(i) {
     if (i === this.active) return;
+    this.clearSpotlight();
     const prev = this.themes[this.active];
     if (prev) prev.items.forEach((it) => window.gsap.to(it.mat.uniforms.uOn, { value: 0, duration: 0.45, onComplete: () => { if (this.active !== prev.index) prev.group.visible = false; } }));
     this.active = i;
@@ -231,6 +254,69 @@ export class ArcDiagram {
       const hit = b && (it.A.book === b || it.B.book === b);
       window.gsap.to(it.mat.uniforms.uHover, { value: hit ? 1 : 0, duration: 0.25 });
     }));
+  }
+
+  /* Sorot pasangan referensi [{from, to}]: busur cahaya baru digambar dari nubuat → tujuan,
+     busur lain tidak hilang tetapi meredup (tetap bercahaya). */
+  showSpotlight(pairs) {
+    this.clearSpotlight(true);
+    const gold = new THREE.Color(1.0, 0.86, 0.6);
+    let k = 0;
+    const ends = [];
+    pairs.forEach((ref) => {
+      const A = ref.from && this.layout.locate(ref.from), B = ref.to && this.layout.locate(ref.to);
+      if (!A || !B) return;
+      const x1 = Math.min(A.x, B.x), x2 = Math.max(A.x, B.x);
+      const c = (x1 + x2) / 2, rad = Math.max((x2 - x1) / 2, 0.025);
+      const pts = [];
+      for (let s = 0; s <= 64; s++) {
+        const ang = Math.PI * (1 - s / 64);
+        pts.push(new THREE.Vector3(c + rad * Math.cos(ang), rad * Math.sin(ang), 0.02));
+      }
+      if (A.x > B.x) pts.reverse(); // cahaya mengalir dari nubuat ke tujuan
+      const curve = new THREE.CatmullRomCurve3(pts);
+      const color = new THREE.Color(BOOK_GROUPS[A.book.gi].color).lerp(gold, 0.55).multiplyScalar(1.3);
+      [[0.017, 0], [0.05, 1]].forEach(([r, halo]) => {
+        const mat = new THREE.ShaderMaterial({
+          uniforms: {
+            uOn: { value: 0 }, uTime: SHARED.uTime, uSeed: { value: k * 0.21 }, uDraw: { value: 0 },
+            uOpacity: { value: this.lineMat.uniforms.uOpacity.value }, uHalo: { value: halo }, uColor: { value: color },
+          },
+          vertexShader: TUBE_VS, fragmentShader: SPOT_FS, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+        });
+        const mesh = new THREE.Mesh(new THREE.TubeGeometry(curve, 128, r, 8, false), mat);
+        mesh.frustumCulled = false;
+        mesh.renderOrder = 11;
+        this.spot.add(mesh);
+        this.spotMats.push(mat);
+        window.gsap.to(mat.uniforms.uOn, { value: 1, duration: 0.4, delay: 0.08 * k });
+        window.gsap.to(mat.uniforms.uDraw, { value: 1, duration: 1.1, ease: 'power2.inOut', delay: 0.08 * k });
+      });
+      ends.push(A.x, B.x);
+      k++;
+    });
+    // titik terang di ujung-ujung busur sorot
+    if (ends.length) {
+      const g = new THREE.BufferGeometry();
+      g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(ends.flatMap((x) => [x, 0, 0.025])), 3));
+      const pm = new THREE.PointsMaterial({ size: 0.11, color: new THREE.Color(2.4, 2.0, 1.4), transparent: true, opacity: 0, depthWrite: false, blending: THREE.AdditiveBlending, map: this.nodes.material.map });
+      const p = new THREE.Points(g, pm);
+      p.frustumCulled = false;
+      p.renderOrder = 12;
+      this.spot.add(p);
+      this.spotPts = pm;
+      window.gsap.to(pm, { opacity: this.lineMat.uniforms.uOpacity.value, duration: 0.5 });
+    }
+    window.gsap.to(this.dim, { value: k ? 0.3 : 1, duration: 0.6, ease: 'power2.out' });
+  }
+
+  clearSpotlight(keepDim = false) {
+    const old = this.spot.children.slice();
+    this.spot.clear();
+    old.forEach((o) => { o.geometry.dispose(); o.material.dispose(); });
+    this.spotMats = [];
+    this.spotPts = null;
+    if (!keepDim) window.gsap.to(this.dim, { value: 1, duration: 0.6, ease: 'power2.out' });
   }
 
   // busur yang dipilih (klik di daftar ayat) tetap menyala saat kursor pergi
@@ -267,6 +353,8 @@ export class ArcDiagram {
     this.bar.material.opacity = v;
     this.themes.forEach((th) => th.items.forEach((it) => (it.mat.uniforms.uOpacity.value = v)));
     this.nodes.material.opacity = v;
+    this.spotMats.forEach((m) => (m.uniforms.uOpacity.value = v));
+    if (this.spotPts && !window.gsap.isTweening(this.spotPts)) this.spotPts.opacity = v;
   }
 }
 

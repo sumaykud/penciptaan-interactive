@@ -1,5 +1,5 @@
 import { STORIES } from './config.js';
-import { UNIVERSE_TIMELINE, THEMES, BOOK_GROUPS, EXPLAINERS, VERSE_TEXTS, INCARNATION_PROPHECIES, SECOND_COMING_PROPHECIES } from './data.js';
+import { UNIVERSE_TIMELINE, THEMES, BOOK_GROUPS, EXPLAINERS, VERSE_TEXTS, INCARNATION_PROPHECIES, SECOND_COMING_PROPHECIES, BOOK_SUMMARIES } from './data.js';
 import { clamp } from './core/util.js';
 import { fmtVerse } from './core/verses.js';
 
@@ -549,6 +549,7 @@ export class StoryUI {
         li.classList.toggle('on', on);
         arcs.setSelectedItem(on ? it : null);
         this.showRefDetail(on ? it.ref : null);
+        if (on) arcs.showSpotlight([it.ref]); else arcs.clearSpotlight();
       };
       li.addEventListener('click', pick);
       li.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
@@ -565,7 +566,7 @@ export class StoryUI {
     this.bookLabels.forEach((x) => x.classList.remove('sel'));
     this.refList.querySelectorAll('li.on').forEach((x) => x.classList.remove('on'));
     arcs.setSelectedItem(null);
-    if (was) { this.showRefDetail(null); return; }
+    if (was) { this.showRefDetail(null); arcs.clearSpotlight(); return; }
     el.classList.add('sel');
     const inBook = (r) => !!r && r.split(' ')[0] === b.abbr;
     const nt = b.i >= 39; // Matius..Wahyu → nubuat kedatangan Kristus yang kedua kali
@@ -590,6 +591,14 @@ export class StoryUI {
         p.className = 'rd-hint';
         p.textContent = `Belum ada nubuat langsung tentang ${title.charAt(0).toLowerCase() + title.slice(1)} yang dicatat untuk kitab ini.`;
         box.appendChild(p);
+        // ganti dengan ringkasan isi kitab (sekali saja per panel)
+        if (BOOK_SUMMARIES[b.abbr] && !box.querySelector('.rd-summary')) {
+          const s = document.createElement('div');
+          s.className = 'rd-summary';
+          s.innerHTML = '<p class="rd-kicker">Ringkasan kitab</p><p class="rd-text"></p>';
+          $('.rd-text', s).textContent = BOOK_SUMMARIES[b.abbr];
+          box.appendChild(s);
+        }
       }
       list.forEach((pr) => {
         const g = document.createElement('div');
@@ -608,6 +617,8 @@ export class StoryUI {
         box.appendChild(g);
       });
     });
+    // sorot semua busur nubuat kitab ini (busur lain meredup)
+    arcs.showSpotlight(groups.flatMap(([, list]) => list.filter((p) => p.from && p.to)));
     box.scrollTop = 0;
   }
 
