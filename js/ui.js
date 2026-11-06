@@ -189,6 +189,12 @@ export class StoryUI {
     // tombol "Lihat Ayat" kedua (Monarkhia Sang Bapa) hanya selama diagram tampil
     tl.fromTo($('.info-btn-love', L), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.03 }, 0.36)
       .to($('.info-btn-love', L), { autoAlpha: 0, duration: 0.03 }, 0.71);
+    // fase akhir (manusia ilahi + salib): judul "Penciptaan dari Ketiadaan" + tombol modal
+    const t2 = $('.s4b-title', L), info3 = $('.info-btn-nihil', L);
+    tl.fromTo(t2, { autoAlpha: 0, y: 14, filter: 'blur(8px)' }, { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.03, ease: 'power2.out' }, 0.785)
+      .to(t2, { autoAlpha: 0, filter: 'blur(10px)', duration: 0.03, ease: 'power2.in' }, 0.93)
+      .fromTo(info3, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.02 }, 0.79)
+      .to(info3, { autoAlpha: 0, duration: 0.02 }, 0.93);
     tl.set({}, {}, 1);
     this.tls[3] = tl;
   }

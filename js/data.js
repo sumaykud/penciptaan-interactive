@@ -173,6 +173,112 @@ export const PERICHORESIS_VERSES = [
    dan baris baru (\n) di dalam `text`.
    --------------------------------------------------------------------- */
 export const EXPLAINERS = {
+  /* Story 4 (fase akhir: manusia ilahi & salib) — Penciptaan dari Ketiadaan */
+  'ex-nihilo': {
+    "title": "Penciptaan dari Ketiadaan",
+    "sections": [
+      {
+        "heading": "Etimologi & Pengertian Dasar",
+        "items": [
+          "**Ketiadaan Mutlak** (*Out of Absolute Nothingness*): *Creatio ex Nihilo* menegaskan bahwa sebelum penciptaan dimulai, tidak ada materi mentah (*pre-existing matter*), bahan dasar, atau ruang-waktu yang sudah ada secara kekal mendampingi Allah.",
+          "**Bukan Pembentukan Bahan Lama:** Berbeda dengan konsep *demiurge* dalam filsafat Yunani kuno (seperti Plato) yang hanya merapikan materi acak yang sudah ada (*formless matter*), Allah menciptakan elemen dan bahan baku fisik itu sendiri dari ketiadaan murni.",
+          "**Positing of \"Outside\"** (Penciptaan Ruang Luar): Vladimir Lossky menjelaskan bahwa melalui *Creatio ex Nihilo*, Allah \"menyediakan ruang\" (*makes room*) dengan menghadirkan sebuah realitas baru yang sepenuhnya berada di \"luar\" Allah. Realitas baru ini terpisah dari Allah bukan oleh lokasi/jarak geografis, melainkan oleh perbedaan kodrat/substansi (*ou topō, alla physei*)."
+        ]
+      },
+      {
+        "heading": "Pembedaan Patristik Krusial: *Penciptaan* vs *Kelahiran*",
+        "intro": "Para Bapa Gereja (seperti **Santo Athanasius Agung**, **Santo Sirilus dari Aleksandria**, dan **Santo Yohanes dari Damaskus**) merumuskan pembedaan dogmatis yang sangat tegas untuk menjaga ketepatan iman:",
+        "table": {
+          "head": [
+            "Dimensi",
+            "Kelahiran Sang Anak (*Generation / Begetting*)",
+            "Penciptaan Kosmos (*Creation / Creatio*)"
+          ],
+          "rows": [
+            [
+              "**Kategori Tindakan**",
+              "Tindakan **Kodrat/Esensi Allah** (*kat’ physin / by nature*).",
+              "Tindakan **Kehendak Bebas Allah** (*ek boulematos / by will*)."
+            ],
+            [
+              "**Sifat Keberadaan**",
+              "**Kekal, tanpa awal, dan sehakikat** (*Homoousios*) dengan Bapa.",
+              "**Memiliki awal, kontingen, dan diciptakan dari ketiadaan** (*ex nihilo*)."
+            ],
+            [
+              "**Substansi Hasil**",
+              "Sang Anak adalah \"Allah dari Allah\", meluncur dari Esensi Bapa sejak kekekalan.",
+              "Alam semesta bersifat \"heterogen\" (berbeda kodrat) dan bukan berasal dari esensi Allah."
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "Peran Sang *Logos* dan *Logoi* Penciptaan (Santo Maksimus Pengaku Iman)",
+        "intro": "Bagaimana tindakan *Creatio ex Nihilo* ini berlangsung secara metafisik? Santo Maksimus Pengaku Iman menjelaskan hubungan antara Sang *Logos* dan *Logoi* penciptaan:",
+        "items": [
+          "**Keberadaan Pra-Tekstual Logoi:** Sebelum dunia diciptakan secara fisik, *logoi*—yaitu rancangan, maksud, cetak biru, dan tujuan ilahi bagi setiap makhluk—telah pre-eksis secara tak tercipta di dalam pikiran dan kehendak Sang *Logos* (Kristus).",
+          "**Aktualisasi dari Ketiadaan** (*Ex Nihilo*): Ketika waktu dimulai, Allah memanggil dan mengaktualisasikan *logoi* tersebut dari ketiadaan murni (*ex nihilo*) menjadi wujud fisik/ciptaan nyata.",
+          "**Pusat Kesatuan Kosmis:** Sang *Logos* adalah \"Satu\" dan *logoi* adalah \"Banyak\". Setiap ciptaan memiliki *logos*-nya sendiri yang memberi identitas unik, sekaligus menghubungkan ciptaan tersebut kepada Kristus untuk ditarik masuk dalam proses pengilahian (*Theosis*)."
+        ]
+      },
+      {
+        "heading": "Dasar Teks Alkitabiah Utama",
+        "intro": "Doktrin *Creatio ex Nihilo* ditopang oleh penyataan Kitab Suci:",
+        "verses": [
+          {
+            "ref": "2 Makabe 7:28",
+            "note": "Teks Eksplisit Bahasa Yunani",
+            "text": "\"Aku memohon kepadamu, anakku, pandanglah langit dan bumi... dan ketahuilah bahwa Allah membuat semuanya itu **bukan dari barang yang sudah ada** (*ek ouk onton / out of nothing*)...\""
+          },
+          {
+            "ref": "Roma 4:17",
+            "note": "Panggilan Eksistensial",
+            "text": "\"...Allah yang menghidupkan orang mati dan yang **memanggil dengan nama-Nya apa yang tidak ada menjadi ada**.\""
+          },
+          {
+            "ref": "Ibrani 11:3",
+            "note": "Realitas Tak Tampak ke Tampak",
+            "text": "\"Karena iman kita mengerti, bahwa alam semesta telah dijadikan oleh firman Allah, sehingga apa yang kita lihat telah terjadi **dari apa yang tidak dapat kita lihat**.\""
+          },
+          {
+            "ref": "Yohanes 1:3 & Mazmur 33:6",
+            "note": "Tritunggal dalam Penciptaan",
+            "text": "\"**Segala sesuatu dijadikan oleh Dia** [*Logos*] dan tanpa Dia tidak ada suatu pun yang telah jadi dari segala yang telah dijadikan.\""
+          }
+        ]
+      },
+      {
+        "heading": "Implikasi Asketis, Keselamatan, dan Sains Modern",
+        "items": [
+          {
+            "text": "**Ketergantungan Mutlak & Pemeliharaan Kontinu:**",
+            "items": [
+              "Karena diciptakan dari ketiadaan, alam semesta tidak memiliki daya hidup yang otonom atau mandiri.",
+              "Setiap detik keberadaan kosmos ditopang secara aktif oleh Energi Ilahi (*Uncreated Energies*) dan kehendak Allah. Jika Allah menarik Energi-Nya, alam semesta akan runtuh kembali ke dalam ketiadaan."
+            ]
+          },
+          {
+            "text": "**Landasan Kehendak Bebas dan Sinergi:**",
+            "items": [
+              "*Creatio ex Nihilo* menjamin kebebasan ciptaan. Manusia diberi kehendak bebas sejati untuk bekerja sama (*synergy*) dengan rahmat Allah demi mencapai pengilahian (*Theosis*)."
+            ]
+          },
+          {
+            "text": "**Keterhubungan dengan Fisika Modern:**",
+            "items": [
+              "Dalam sains kontemporer (seperti Big Bang dan Fisika Kuantum), disepakati bahwa ruang, waktu, dan materi memiliki titik awal mula bersamaan dari ketiadaan fisik. Ini selaras dengan ajaran Ortodoks bahwa alam semesta tidak bersifat abadi, melainkan memiliki permulaan di dalam waktu (*archē*)."
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Kesimpulan",
+        "intro": "**Creatio ex Nihilo** mengajarkan kita kerendahan hati bahwa keberadaan kita adalah murni **misteri kasih karunia dan kehendak bebas Allah**. Kita dipanggil dari ketiadaan bukan untuk berakhir dalam kebinasaan, melainkan untuk menyatu dengan Sang *Logos* dalam tarian kasih kekal-Nya."
+      }
+    ]
+  },
+
   /* Story 4 (fase diagram "Overflow of Love") — Monarkhia Sang Bapa */
   monarkhia: {
     title: 'Monarkhia Sang Bapa',
