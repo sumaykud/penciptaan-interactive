@@ -1,5 +1,5 @@
 import { STORIES } from './config.js';
-import { UNIVERSE_TIMELINE, THEMES, BOOK_GROUPS, EXPLAINERS, VERSE_TEXTS } from './data.js';
+import { UNIVERSE_TIMELINE, THEMES, BOOK_GROUPS, EXPLAINERS, VERSE_TEXTS, INCARNATION_PROPHECIES, SECOND_COMING_PROPHECIES } from './data.js';
 import { clamp } from './core/util.js';
 import { fmtVerse } from './core/verses.js';
 
@@ -520,6 +520,7 @@ export class StoryUI {
       $('span', el).textContent = b.name;
       el.addEventListener('pointerenter', () => { arcs.setHoverBook(b); el.classList.add('hot'); });
       el.addEventListener('pointerleave', () => { arcs.setHoverBook(null); el.classList.remove('hot'); });
+      el.addEventListener('click', () => this.showBookProphecies(b, el, arcs));
       this.bookBox.appendChild(el);
       return el;
     });
@@ -556,15 +557,72 @@ export class StoryUI {
     });
   }
 
+  /* Klik nama kitab → nubuat "Firman menjadi manusia" yang terhubung dengan kitab itu */
+  showBookProphecies(b, el, arcs) {
+    const box = this.refDetail;
+    if (!box) return;
+    const was = el.classList.contains('sel');
+    this.bookLabels.forEach((x) => x.classList.remove('sel'));
+    this.refList.querySelectorAll('li.on').forEach((x) => x.classList.remove('on'));
+    arcs.setSelectedItem(null);
+    if (was) { this.showRefDetail(null); return; }
+    el.classList.add('sel');
+    const inBook = (r) => !!r && r.split(' ')[0] === b.abbr;
+    const nt = b.i >= 39; // Matius..Wahyu → nubuat kedatangan Kristus yang kedua kali
+    const pick = (arr) => arr.filter((p) => inBook(p.from) || inBook(p.to));
+    // [judul, daftar, label nas PL, label nas PB]
+    const groups = [];
+    if (!nt) groups.push(['Firman menjadi manusia', pick(INCARNATION_PROPHECIES), 'Nubuat: ', '⟶ Digenapi: ']);
+    const second = pick(SECOND_COMING_PROPHECIES);
+    if (nt || second.length) groups.push(['Kedatangan Kristus yang kedua kali', second, 'Akar Perjanjian Lama: ', 'Nubuat: ']);
+    box.innerHTML = '';
+    const book = document.createElement('p');
+    book.className = 'rd-book';
+    book.textContent = b.name;
+    box.appendChild(book);
+    groups.forEach(([title, list, la, lb]) => {
+      const h = document.createElement('p');
+      h.className = 'rd-kicker';
+      h.textContent = `Nubuat · ${title}`;
+      box.appendChild(h);
+      if (!list.length) {
+        const p = document.createElement('p');
+        p.className = 'rd-hint';
+        p.textContent = `Belum ada nubuat langsung tentang ${title.charAt(0).toLowerCase() + title.slice(1)} yang dicatat untuk kitab ini.`;
+        box.appendChild(p);
+      }
+      list.forEach((pr) => {
+        const g = document.createElement('div');
+        g.className = 'rd-pair';
+        g.innerHTML = '<p class="rd-note"></p>';
+        $('.rd-note', g).textContent = pr.note;
+        [[pr.from, la], [pr.to, pr.from ? lb : 'Nubuat: ']].forEach(([r, label]) => {
+          if (!r) return;
+          const v = document.createElement('div');
+          v.className = 'rd-verse';
+          v.innerHTML = '<p class="rd-ref"></p><p class="rd-text"></p>';
+          $('.rd-ref', v).textContent = label + r;
+          $('.rd-text', v).textContent = VERSE_TEXTS[r] || '';
+          g.appendChild(v);
+        });
+        box.appendChild(g);
+      });
+    });
+    box.scrollTop = 0;
+  }
+
   /* Detail ayat (TB) untuk pasangan referensi yang diklik di Keterhubungan Firman */
   showRefDetail(ref) {
     const box = this.refDetail;
     if (!box) return;
     box.innerHTML = '';
+    this.bookLabels?.forEach((x) => x.classList.remove('sel'));
     if (!ref) {
       const p = document.createElement('p');
       p.className = 'rd-hint';
-      p.textContent = this.ctx.touch ? 'Ketuk ayat di atas untuk melihat isinya' : 'Klik ayat di atas untuk melihat isinya';
+      p.textContent = this.ctx.touch
+        ? 'Ketuk ayat di atas, atau nama kitab untuk melihat nubuat Firman yang menjadi manusia'
+        : 'Klik ayat di atas, atau nama kitab untuk melihat nubuat Firman yang menjadi manusia';
       box.appendChild(p);
       return;
     }

@@ -1619,5 +1619,471 @@ export const VERSE_TEXTS = {
   "Yoh 5:22": "Bapa tidak menghakimi siapapun, melainkan telah menyerahkan penghakiman itu seluruhnya kepada Anak,",
   "Kis 10:42": "Dan Ia telah menugaskan kami memberitakan kepada seluruh bangsa dan bersaksi, bahwa Dialah yang ditentukan Allah menjadi Hakim atas orang-orang hidup dan orang-orang mati.",
   "Rm 2:16": "Hal itu akan nampak pada hari, bilamana Allah, sesuai dengan Injil yang kuberitakan, akan menghakimi segala sesuatu yang tersembunyi dalam hati manusia, oleh Kristus Yesus.",
-  "Ibr 9:27": "Dan sama seperti manusia ditetapkan untuk mati hanya satu kali saja, dan sesudah itu dihakimi,"
+  "Ibr 9:27": "Dan sama seperti manusia ditetapkan untuk mati hanya satu kali saja, dan sesudah itu dihakimi,",
+  "Kej 22:18": "Oleh keturunanmulah semua bangsa di bumi akan mendapat berkat, karena engkau mendengarkan firman-Ku.\"",
+  "Gal 3:16": "Adapun kepada Abraham diucapkan segala janji itu dan kepada keturunannya. Tidak dikatakan \"kepada keturunan-keturunannya\" seolah-olah dimaksud banyak orang, tetapi hanya satu orang: \"dan kepada keturunanmu\", yaitu Kristus.",
+  "Kej 49:10": "Tongkat kerajaan tidak akan beranjak dari Yehuda ataupun lambang pemerintahan dari antara kakinya, sampai dia datang yang berhak atasnya, maka kepadanya akan takluk bangsa-bangsa.",
+  "Luk 1:32-33": "Ia akan menjadi besar dan akan disebut Anak Allah Yang Mahatinggi. Dan Tuhan Allah akan mengaruniakan kepada-Nya takhta Daud, bapa leluhur-Nya, dan Ia akan menjadi raja atas kaum keturunan Yakub sampai selama-lamanya dan Kerajaan-Nya tidak akan berkesudahan.\"",
+  "Kel 12:46": "Paskah itu harus dimakan dalam satu rumah juga; tidak boleh kaubawa sedikitpun dari daging itu keluar rumah; satu tulangpun tidak boleh kamu patahkan.",
+  "Yoh 19:36": "Sebab hal itu terjadi, supaya genaplah yang tertulis dalam Kitab Suci: \"Tidak ada tulang-Nya yang akan dipatahkan.\"",
+  "Im 17:11": "Karena nyawa makhluk ada di dalam darahnya dan Aku telah memberikan darah itu kepadamu di atas mezbah untuk mengadakan pendamaian bagi nyawamu, karena darah mengadakan pendamaian dengan perantaraan nyawa.",
+  "Ibr 9:22": "Dan hampir segala sesuatu disucikan menurut hukum Taurat dengan darah, dan tanpa penumpahan darah tidak ada pengampunan.",
+  "Bil 24:17": "Aku melihat dia, tetapi bukan sekarang; aku memandang dia, tetapi bukan dari dekat; bintang terbit dari Yakub, tongkat kerajaan timbul dari Israel, dan meremukkan pelipis-pelipis Moab, dan menghancurkan semua anak Set.",
+  "Mat 2:2": "dan bertanya-tanya: \"Di manakah Dia, raja orang Yahudi yang baru dilahirkan itu? Kami telah melihat bintang-Nya di Timur dan kami datang untuk menyembah Dia.\"",
+  "Ul 18:15": "Seorang nabi dari tengah-tengahmu, dari antara saudara-saudaramu, sama seperti aku, akan dibangkitkan bagimu oleh TUHAN, Allahmu; dialah yang harus kamu dengarkan.",
+  "Kis 3:22": "Bukankah telah dikatakan Musa: Tuhan Allah akan membangkitkan bagimu seorang nabi dari antara saudara-saudaramu, sama seperti aku: Dengarkanlah dia dalam segala sesuatu yang akan dikatakannya kepadamu.",
+  "Rut 4:17": "Dan tetangga-tetangga perempuan memberi nama kepada anak itu, katanya: \"Pada Naomi telah lahir seorang anak laki-laki\"; lalu mereka menyebutkan namanya Obed. Dialah ayah Isai, ayah Daud.",
+  "Mat 1:5": "Salmon memperanakkan Boas dari Rahab, Boas memperanakkan Obed dari Rut, Obed memperanakkan Isai,",
+  "2Sam 7:12-13": "Apabila umurmu sudah genap dan engkau telah mendapat perhentian bersama-sama dengan nenek moyangmu, maka Aku akan membangkitkan keturunanmu yang kemudian, anak kandungmu, dan Aku akan mengokohkan kerajaannya. Dialah yang akan mendirikan rumah bagi nama-Ku dan Aku akan mengokohkan takhta kerajaannya untuk selama-lamanya.",
+  "2Sam 7:14": "Aku akan menjadi Bapanya, dan ia akan menjadi anak-Ku. Apabila ia melakukan kesalahan, maka Aku akan menghukum dia dengan rotan yang dipakai orang dan dengan pukulan yang diberikan anak-anak manusia.",
+  "Ibr 1:5": "Karena kepada siapakah di antara malaikat-malaikat itu pernah Ia katakan: \"Anak-Ku Engkau! Engkau telah Kuperanakkan pada hari ini?\" dan \"Aku akan menjadi Bapa-Nya, dan Ia akan menjadi Anak-Ku?\"",
+  "1Taw 17:11": "Apabila umurmu sudah genap untuk pergi mengikuti nenek moyangmu, maka Aku akan membangkitkan keturunanmu yang kemudian, salah seorang anakmu sendiri, dan Aku akan mengokohkan kerajaannya.",
+  "Kis 13:23": "Dan dari keturunannyalah, sesuai dengan yang telah dijanjikan-Nya, Allah telah membangkitkan Juruselamat bagi orang Israel, yaitu Yesus.",
+  "Mzm 2:7": "Aku mau menceritakan tentang ketetapan TUHAN; Ia berkata kepadaku: \"Anak-Ku engkau! Engkau telah Kuperanakkan pada hari ini.",
+  "Mzm 16:10": "sebab Engkau tidak menyerahkan aku ke dunia orang mati, dan tidak membiarkan Orang Kudus-Mu melihat kebinasaan.",
+  "Kis 2:31": "Karena itu ia telah melihat ke depan dan telah berbicara tentang kebangkitan Mesias, ketika ia mengatakan, bahwa Dia tidak ditinggalkan di dalam dunia orang mati, dan bahwa daging-Nya tidak mengalami kebinasaan.",
+  "Mzm 22:16": "Sebab anjing-anjing mengerumuni aku, gerombolan penjahat mengepung aku, mereka menusuk tangan dan kakiku.",
+  "Luk 24:39": "Lihatlah tangan-Ku dan kaki-Ku: Aku sendirilah ini; rabalah Aku dan lihatlah, karena hantu tidak ada daging dan tulangnya, seperti yang kamu lihat ada pada-Ku.\"",
+  "Mzm 22:18": "Mereka membagi-bagi pakaianku di antara mereka, dan mereka membuang undi atas jubahku.",
+  "Yoh 19:24": "Karena itu mereka berkata seorang kepada yang lain: \"Janganlah kita membaginya menjadi beberapa potong, tetapi baiklah kita membuang undi untuk menentukan siapa yang mendapatnya.\" Demikianlah hendaknya supaya genaplah yang ada tertulis dalam Kitab Suci: \"Mereka membagi-bagi pakaian-Ku di antara mereka dan mereka membuang undi atas jubah-Ku.\" Hal itu telah dilakukan prajurit-prajurit itu.",
+  "Mzm 40:6-8": "Engkau tidak berkenan kepada korban sembelihan dan korban sajian, tetapi Engkau telah membuka telingaku; korban bakaran dan korban penghapus dosa tidak Engkau tuntut. Lalu aku berkata: \"Sungguh, aku datang; dalam gulungan kitab ada tertulis tentang aku; aku suka melakukan kehendak-Mu, ya Allahku; Taurat-Mu ada dalam dadaku.\"",
+  "Ibr 10:5-7": "Karena itu ketika Ia masuk ke dunia, Ia berkata: \"Korban dan persembahan tidak Engkau kehendaki--tetapi Engkau telah menyediakan tubuh bagiku--. Kepada korban bakaran dan korban penghapus dosa Engkau tidak berkenan. Lalu Aku berkata: Sungguh, Aku datang; dalam gulungan kitab ada tertulis tentang Aku untuk melakukan kehendak-Mu, ya Allah-Ku.\"",
+  "Mzm 110:1": "Mazmur Daud. Demikianlah firman TUHAN kepada tuanku: \"Duduklah di sebelah kanan-Ku, sampai Kubuat musuh-musuhmu menjadi tumpuan kakimu.\"",
+  "Mat 22:44": "Tuhan telah berfirman kepada Tuanku: duduklah di sebelah kanan-Ku, sampai musuh-musuh-Mu Kutaruh di bawah kaki-Mu.",
+  "Mzm 110:4": "TUHAN telah bersumpah, dan Ia tidak akan menyesal: \"Engkau adalah imam untuk selama-lamanya, menurut Melkisedek.\"",
+  "Ibr 5:6": "sebagaimana firman-Nya dalam suatu nas lain: \"Engkau adalah Imam untuk selama-lamanya, menurut peraturan Melkisedek.\"",
+  "Ams 30:4": "Siapakah yang naik ke sorga lalu turun? Siapakah yang telah mengumpulkan angin dalam genggamnya? Siapakah yang telah membungkus air dengan kain? Siapakah yang telah menetapkan segala ujung bumi? Siapa namanya dan siapa nama anaknya? Engkau tentu tahu!",
+  "Yoh 3:13": "Tidak ada seorangpun yang telah naik ke sorga, selain dari pada Dia yang telah turun dari sorga, yaitu Anak Manusia.",
+  "Yes 7:14": "Sebab itu Tuhan sendirilah yang akan memberikan kepadamu suatu pertanda: Sesungguhnya, seorang perempuan muda mengandung dan akan melahirkan seorang anak laki-laki, dan ia akan menamakan Dia Imanuel.",
+  "Mat 1:22-23": "Hal itu terjadi supaya genaplah yang difirmankan Tuhan oleh nabi: \"Sesungguhnya, anak dara itu akan mengandung dan melahirkan seorang anak laki-laki, dan mereka akan menamakan Dia Imanuel\" --yang berarti: Allah menyertai kita.",
+  "Yes 9:6": "Sebab seorang anak telah lahir untuk kita, seorang putera telah diberikan untuk kita; lambang pemerintahan ada di atas bahunya, dan namanya disebutkan orang: Penasihat Ajaib, Allah yang Perkasa, Bapa yang Kekal, Raja Damai.",
+  "Luk 2:11": "Hari ini telah lahir bagimu Juruselamat, yaitu Kristus, Tuhan, di kota Daud.",
+  "Yes 11:1": "Suatu tunas akan keluar dari tunggul Isai, dan taruk yang akan tumbuh dari pangkalnya akan berbuah.",
+  "Rm 15:12": "Dan selanjutnya kata Yesaya: \"Taruk dari pangkal Isai akan terbit, dan Ia akan bangkit untuk memerintah bangsa-bangsa, dan kepada-Nyalah bangsa-bangsa akan menaruh harapan.\"",
+  "Yes 40:3": "Ada suara yang berseru-seru: \"Persiapkanlah di padang gurun jalan untuk TUHAN, luruskanlah di padang belantara jalan raya bagi Allah kita!",
+  "Mat 3:3": "Sesungguhnya dialah yang dimaksudkan nabi Yesaya ketika ia berkata: \"Ada suara orang yang berseru-seru di padang gurun: Persiapkanlah jalan untuk Tuhan, luruskanlah jalan bagi-Nya.\"",
+  "Yes 61:1": "Roh Tuhan ALLAH ada padaku, oleh karena TUHAN telah mengurapi aku; Ia telah mengutus aku untuk menyampaikan kabar baik kepada orang-orang sengsara, dan merawat orang-orang yang remuk hati, untuk memberitakan pembebasan kepada orang-orang tawanan, dan kepada orang-orang yang terkurung kelepasan dari penjara,",
+  "Luk 4:18": "\"Roh Tuhan ada pada-Ku, oleh sebab Ia telah mengurapi Aku, untuk menyampaikan kabar baik kepada orang-orang miskin; dan Ia telah mengutus Aku",
+  "Yer 23:5": "Sesungguhnya, waktunya akan datang, demikianlah firman TUHAN, bahwa Aku akan menumbuhkan Tunas adil bagi Daud. Ia akan memerintah sebagai raja yang bijaksana dan akan melakukan keadilan dan kebenaran di negeri.",
+  "Yoh 7:42": "Karena Kitab Suci mengatakan, bahwa Mesias berasal dari keturunan Daud dan dari kampung Betlehem, tempat Daud dahulu tinggal.\"",
+  "Yer 31:15": "Beginilah firman TUHAN: Dengar! Di Rama terdengar ratapan, tangisan yang pahit pedih: Rahel menangisi anak-anaknya, ia tidak mau dihibur karena anak-anaknya, sebab mereka tidak ada lagi.",
+  "Mat 2:17-18": "Dengan demikian genaplah firman yang disampaikan oleh nabi Yeremia: \"Terdengarlah suara di Rama, tangis dan ratap yang amat sedih; Rahel menangisi anak-anaknya dan ia tidak mau dihibur, sebab mereka tidak ada lagi.\"",
+  "Yeh 34:23": "Aku akan mengangkat satu orang gembala atas mereka, yang akan menggembalakannya, yaitu Daud, hamba-Ku; dia akan menggembalakan mereka, dan menjadi gembalanya.",
+  "Yoh 10:11": "Akulah gembala yang baik. Gembala yang baik memberikan nyawanya bagi domba-dombanya;",
+  "Dan 7:13": "Aku terus melihat dalam penglihatan malam itu, tampak datang dengan awan-awan dari langit seorang seperti anak manusia; datanglah ia kepada Yang Lanjut Usianya itu, dan ia dibawa ke hadapan-Nya.",
+  "Mat 26:64": "Jawab Yesus: \"Engkau telah mengatakannya. Akan tetapi, Aku berkata kepadamu, mulai sekarang kamu akan melihat Anak Manusia duduk di sebelah kanan Yang Mahakuasa dan datang di atas awan-awan di langit.\"",
+  "Hos 11:1": "Ketika Israel masih muda, Kukasihi dia, dan dari Mesir Kupanggil anak-Ku itu.",
+  "Mat 2:15": "dan tinggal di sana hingga Herodes mati. Hal itu terjadi supaya genaplah yang difirmankan Tuhan oleh nabi: \"Dari Mesir Kupanggil Anak-Ku.\"",
+  "Am 9:11": "\"Pada hari itu Aku akan mendirikan kembali pondok Daud yang telah roboh; Aku akan menutup pecahan dindingnya, dan akan mendirikan kembali reruntuhannya; Aku akan membangunnya kembali seperti di zaman dahulu kala,",
+  "Kis 15:16": "Kemudian Aku akan kembali dan membangunkan kembali pondok Daud yang telah roboh, dan reruntuhannya akan Kubangun kembali dan akan Kuteguhkan,",
+  "Yun 1:17": "Maka atas penentuan TUHAN datanglah seekor ikan besar yang menelan Yunus; dan Yunus tinggal di dalam perut ikan itu tiga hari tiga malam lamanya.",
+  "Mat 12:40": "Sebab seperti Yunus tinggal di dalam perut ikan tiga hari tiga malam, demikian juga Anak Manusia akan tinggal di dalam rahim bumi tiga hari tiga malam.",
+  "Mi 5:2": "Tetapi engkau, hai Betlehem Efrata, hai yang terkecil di antara kaum-kaum Yehuda, dari padamu akan bangkit bagi-Ku seorang yang akan memerintah Israel, yang permulaannya sudah sejak purbakala, sejak dahulu kala.",
+  "Mat 2:6": "Dan engkau Betlehem, tanah Yehuda, engkau sekali-kali bukanlah yang terkecil di antara mereka yang memerintah Yehuda, karena dari padamulah akan bangkit seorang pemimpin, yang akan menggembalakan umat-Ku Israel.\"",
+  "Za 9:9": "Bersorak-soraklah dengan nyaring, hai puteri Sion, bersorak-sorailah, hai puteri Yerusalem! Lihat, rajamu datang kepadamu; ia adil dan jaya. Ia lemah lembut dan mengendarai seekor keledai, seekor keledai beban yang muda.",
+  "Mat 21:5": "\"Katakanlah kepada puteri Sion: Lihat, Rajamu datang kepadamu, Ia lemah lembut dan mengendarai seekor keledai, seekor keledai beban yang muda.\"",
+  "Za 11:12": "Lalu aku berkata kepada mereka: \"Jika itu kamu anggap baik, berikanlah upahku, dan jika tidak, biarkanlah!\" Maka mereka membayar upahku dengan menimbang tiga puluh uang perak.",
+  "Mat 26:15": "Ia berkata: \"Apa yang hendak kamu berikan kepadaku, supaya aku menyerahkan Dia kepada kamu?\" Mereka membayar tiga puluh uang perak kepadanya.",
+  "Za 12:10": "\"Aku akan mencurahkan roh pengasihan dan roh permohonan atas keluarga Daud dan atas penduduk Yerusalem, dan mereka akan memandang kepada dia yang telah mereka tikam, dan akan meratapi dia seperti orang meratapi anak tunggal, dan akan menangisi dia dengan pedih seperti orang menangisi anak sulung.",
+  "Yoh 19:37": "Dan ada pula nas yang mengatakan: \"Mereka akan memandang kepada Dia yang telah mereka tikam.\"",
+  "Mal 3:1": "Lihat, Aku menyuruh utusan-Ku, supaya ia mempersiapkan jalan di hadapan-Ku! Dengan mendadak Tuhan yang kamu cari itu akan masuk ke bait-Nya! Malaikat Perjanjian yang kamu kehendaki itu, sesungguhnya, Ia datang, firman TUHAN semesta alam.",
+  "Mat 11:10": "Karena tentang dia ada tertulis: Lihatlah, Aku menyuruh utusan-Ku mendahului Engkau, ia akan mempersiapkan jalan-Mu di hadapan-Mu.",
+  "Mal 4:5": "Sesungguhnya Aku akan mengutus nabi Elia kepadamu menjelang datangnya hari TUHAN yang besar dan dahsyat itu.",
+  "Mat 11:14": "dan--jika kamu mau menerimanya--ialah Elia yang akan datang itu.",
+  "Mat 24:30": "Pada waktu itu akan tampak tanda Anak Manusia di langit dan semua bangsa di bumi akan meratap dan mereka akan melihat Anak Manusia itu datang di atas awan-awan di langit dengan segala kekuasaan dan kemuliaan-Nya.",
+  "Mrk 13:26": "Pada waktu itu orang akan melihat Anak Manusia datang dalam awan-awan dengan segala kekuasaan dan kemuliaan-Nya.",
+  "Luk 21:27": "Pada waktu itu orang akan melihat Anak Manusia datang dalam awan dengan segala kekuasaan dan kemuliaan-Nya.",
+  "Yoh 5:28-29": "Janganlah kamu heran akan hal itu, sebab saatnya akan tiba, bahwa semua orang yang di dalam kuburan akan mendengar suara-Nya, dan mereka yang telah berbuat baik akan keluar dan bangkit untuk hidup yang kekal, tetapi mereka yang telah berbuat jahat akan bangkit untuk dihukum.",
+  "Yoh 14:3": "Dan apabila Aku telah pergi ke situ dan telah menyediakan tempat bagimu, Aku akan datang kembali dan membawa kamu ke tempat-Ku, supaya di tempat di mana Aku berada, kamupun berada.",
+  "Za 14:4": "Pada waktu itu kaki-Nya akan berjejak di bukit Zaitun yang terletak di depan Yerusalem di sebelah timur. Bukit Zaitun itu akan terbelah dua dari timur ke barat, sehingga terjadi suatu lembah yang sangat besar; setengah dari bukit itu akan bergeser ke utara dan setengah lagi ke selatan.",
+  "Kis 1:11": "dan berkata kepada mereka: \"Hai orang-orang Galilea, mengapakah kamu berdiri melihat ke langit? Yesus ini, yang terangkat ke sorga meninggalkan kamu, akan datang kembali dengan cara yang sama seperti kamu melihat Dia naik ke sorga.\"",
+  "Yes 59:20": "Dan Ia akan datang sebagai Penebus untuk Sion dan untuk orang-orang Yakub yang bertobat dari pemberontakannya, demikianlah firman TUHAN.",
+  "Rm 11:26": "Dengan jalan demikian seluruh Israel akan diselamatkan, seperti ada tertulis: \"Dari Sion akan datang Penebus, Ia akan menyingkirkan segala kefasikan dari pada Yakub.",
+  "1Kor 15:23": "Tetapi tiap-tiap orang menurut urutannya: Kristus sebagai buah sulung; sesudah itu mereka yang menjadi milik-Nya pada waktu kedatangan-Nya.",
+  "1Kor 11:26": "Sebab setiap kali kamu makan roti ini dan minum cawan ini, kamu memberitakan kematian Tuhan sampai Ia datang.",
+  "Flp 3:20-21": "Karena kewargaan kita adalah di dalam sorga, dan dari situ juga kita menantikan Tuhan Yesus Kristus sebagai Juruselamat, yang akan mengubah tubuh kita yang hina ini, sehingga serupa dengan tubuh-Nya yang mulia, menurut kuasa-Nya yang dapat menaklukkan segala sesuatu kepada diri-Nya.",
+  "Kol 3:4": "Apabila Kristus, yang adalah hidup kita, menyatakan diri kelak, kamupun akan menyatakan diri bersama dengan Dia dalam kemuliaan.",
+  "1Tes 4:16-17": "Sebab pada waktu tanda diberi, yaitu pada waktu penghulu malaikat berseru dan sangkakala Allah berbunyi, maka Tuhan sendiri akan turun dari sorga dan mereka yang mati dalam Kristus akan lebih dahulu bangkit; sesudah itu, kita yang hidup, yang masih tinggal, akan diangkat bersama-sama dengan mereka dalam awan menyongsong Tuhan di angkasa. Demikianlah kita akan selama-lamanya bersama-sama dengan Tuhan.",
+  "Yl 2:31": "Matahari akan berubah menjadi gelap gulita dan bulan menjadi darah sebelum datangnya hari TUHAN yang hebat dan dahsyat itu.",
+  "1Tes 5:2": "karena kamu sendiri tahu benar-benar, bahwa hari Tuhan datang seperti pencuri pada malam.",
+  "Yes 66:15": "Sebab sesungguhnya, TUHAN akan datang dengan api, dan kereta-kereta-Nya akan seperti puting beliung, untuk melampiaskan murka-Nya dengan kepanasan dan hardik-Nya dengan nyala api.",
+  "2Tes 1:7-8": "dan untuk memberikan kelegaan kepada kamu yang ditindas, dan juga kepada kami, pada waktu Tuhan Yesus dari dalam sorga menyatakan diri-Nya bersama-sama dengan malaikat-malaikat-Nya, dalam kuasa-Nya, di dalam api yang bernyala-nyala, dan mengadakan pembalasan terhadap mereka yang tidak mau mengenal Allah dan tidak mentaati Injil Yesus, Tuhan kita.",
+  "1Tim 6:14": "Turutilah perintah ini, dengan tidak bercacat dan tidak bercela, hingga pada saat Tuhan kita Yesus Kristus menyatakan diri-Nya,",
+  "2Tim 4:8": "Sekarang telah tersedia bagiku mahkota kebenaran yang akan dikaruniakan kepadaku oleh Tuhan, Hakim yang adil, pada hari-Nya; tetapi bukan hanya kepadaku, melainkan juga kepada semua orang yang merindukan kedatangan-Nya.",
+  "Tit 2:13": "dengan menantikan penggenapan pengharapan kita yang penuh bahagia dan penyataan kemuliaan Allah yang Mahabesar dan Juruselamat kita Yesus Kristus,",
+  "Ibr 9:28": "demikian pula Kristus hanya satu kali saja mengorbankan diri-Nya untuk menanggung dosa banyak orang. Sesudah itu Ia akan menyatakan diri-Nya sekali lagi tanpa menanggung dosa untuk menganugerahkan keselamatan kepada mereka, yang menantikan Dia.",
+  "Hab 2:3": "Sebab penglihatan itu masih menanti saatnya, tetapi ia bersegera menuju kesudahannya dengan tidak menipu; apabila berlambat-lambat, nantikanlah itu, sebab itu sungguh-sungguh akan datang dan tidak akan bertangguh.",
+  "Ibr 10:37": "\"Sebab sedikit, bahkan sangat sedikit waktu lagi, dan Ia yang akan datang, sudah akan ada, tanpa menangguhkan kedatangan-Nya.",
+  "Yak 5:8": "Kamu juga harus bersabar dan harus meneguhkan hatimu, karena kedatangan Tuhan sudah dekat!",
+  "1Ptr 5:4": "Maka kamu, apabila Gembala Agung datang, kamu akan menerima mahkota kemuliaan yang tidak dapat layu.",
+  "2Ptr 3:10": "Tetapi hari Tuhan akan tiba seperti pencuri. Pada hari itu langit akan lenyap dengan gemuruh yang dahsyat dan unsur-unsur dunia akan hangus dalam nyala api, dan bumi dan segala yang ada di atasnya akan hilang lenyap.",
+  "1Yoh 3:2": "Saudara-saudaraku yang kekasih, sekarang kita adalah anak-anak Allah, tetapi belum nyata apa keadaan kita kelak; akan tetapi kita tahu, bahwa apabila Kristus menyatakan diri-Nya, kita akan menjadi sama seperti Dia, sebab kita akan melihat Dia dalam keadaan-Nya yang sebenarnya.",
+  "Za 14:5": "Maka tertutuplah lembah gunung-gunung-Ku, sebab lembah gunung itu akan menyentuh sisinya; dan kamu akan melarikan diri seperti kamu pernah melarikan diri oleh karena gempa bumi pada zaman Uzia, raja Yehuda. Lalu TUHAN, Allahku, akan datang, dan semua orang kudus bersama-sama Dia.",
+  "Yud 1:14": "Juga tentang mereka Henokh, keturunan ketujuh dari Adam, telah bernubuat, katanya: \"Sesungguhnya Tuhan datang dengan beribu-ribu orang kudus-Nya,",
+  "Why 1:7": "Lihatlah, Ia datang dengan awan-awan dan setiap mata akan melihat Dia, juga mereka yang telah menikam Dia. Dan semua bangsa di bumi akan meratapi Dia. Ya, amin.",
+  "Yes 40:10": "Lihat, itu Tuhan ALLAH, Ia datang dengan kekuatan dan dengan tangan-Nya Ia berkuasa. Lihat, mereka yang menjadi upah jerih payah-Nya ada bersama-sama Dia, dan mereka yang diperoleh-Nya berjalan di hadapan-Nya.",
+  "Why 22:20": "Ia yang memberi kesaksian tentang semuanya ini, berfirman: \"Ya, Aku datang segera!\" Amin, datanglah, Tuhan Yesus!"
 };
+
+/* ---------------------------------------------------------------------
+   NUBUAT "FIRMAN MENJADI MANUSIA" — klik nama kitab di Keterhubungan Firman.
+   Pasangan nubuat (PL) → penggenapan (PB). Teks TB di VERSE_TEXTS (alkitab.sabda.org).
+   Kitab menampilkan semua pasangan yang salah satu sisinya ada di kitab itu.
+   --------------------------------------------------------------------- */
+export const INCARNATION_PROPHECIES = [
+  {
+    "from": "Kej 3:15",
+    "to": "Gal 4:4",
+    "note": "Keturunan perempuan yang meremukkan kepala ular"
+  },
+  {
+    "from": "Kej 22:18",
+    "to": "Gal 3:16",
+    "note": "Keturunan Abraham yang memberkati segala bangsa"
+  },
+  {
+    "from": "Kej 49:10",
+    "to": "Luk 1:32-33",
+    "note": "Tongkat kerajaan tidak beranjak dari Yehuda"
+  },
+  {
+    "from": "Kel 12:46",
+    "to": "Yoh 19:36",
+    "note": "Anak domba Paskah: tulang-Nya tidak dipatahkan"
+  },
+  {
+    "from": "Im 17:11",
+    "to": "Ibr 9:22",
+    "note": "Darah yang mengadakan pendamaian"
+  },
+  {
+    "from": "Bil 24:17",
+    "to": "Mat 2:2",
+    "note": "Bintang terbit dari Yakub"
+  },
+  {
+    "from": "Bil 21:9",
+    "to": "Yoh 3:14-15",
+    "note": "Ular tembaga yang ditinggikan"
+  },
+  {
+    "from": "Ul 18:15",
+    "to": "Kis 3:22",
+    "note": "Seorang nabi seperti Musa"
+  },
+  {
+    "from": "Rut 4:17",
+    "to": "Mat 1:5",
+    "note": "Silsilah Daud melalui Rut"
+  },
+  {
+    "from": "2Sam 7:12-13",
+    "to": "Luk 1:32-33",
+    "note": "Takhta Daud yang kekal"
+  },
+  {
+    "from": "2Sam 7:14",
+    "to": "Ibr 1:5",
+    "note": "Aku akan menjadi Bapa-Nya"
+  },
+  {
+    "from": "1Taw 17:11",
+    "to": "Kis 13:23",
+    "note": "Juruselamat dari keturunan Daud"
+  },
+  {
+    "from": "Mzm 2:7",
+    "to": "Ibr 1:5",
+    "note": "Anak-Ku Engkau"
+  },
+  {
+    "from": "Mzm 16:10",
+    "to": "Kis 2:31",
+    "note": "Tidak dibiarkan melihat kebinasaan"
+  },
+  {
+    "from": "Mzm 22:16",
+    "to": "Luk 24:39",
+    "note": "Tangan dan kaki yang ditusuk"
+  },
+  {
+    "from": "Mzm 22:18",
+    "to": "Yoh 19:24",
+    "note": "Membuang undi atas jubah-Nya"
+  },
+  {
+    "from": "Mzm 40:6-8",
+    "to": "Ibr 10:5-7",
+    "note": "Sungguh, Aku datang — tubuh disediakan bagi-Nya"
+  },
+  {
+    "from": "Mzm 110:1",
+    "to": "Mat 22:44",
+    "note": "Tuhan bagi Daud"
+  },
+  {
+    "from": "Mzm 110:4",
+    "to": "Ibr 5:6",
+    "note": "Imam menurut peraturan Melkisedek"
+  },
+  {
+    "from": "Mzm 118:22",
+    "to": "1Ptr 2:7",
+    "note": "Batu yang dibuang menjadi batu penjuru"
+  },
+  {
+    "from": "Ams 30:4",
+    "to": "Yoh 3:13",
+    "note": "Yang naik ke sorga dan turun"
+  },
+  {
+    "from": "Yes 7:14",
+    "to": "Mat 1:22-23",
+    "note": "Perawan mengandung: Imanuel"
+  },
+  {
+    "from": "Yes 9:6",
+    "to": "Luk 2:11",
+    "note": "Seorang anak telah lahir untuk kita"
+  },
+  {
+    "from": "Yes 11:1",
+    "to": "Rm 15:12",
+    "note": "Tunas dari tunggul Isai"
+  },
+  {
+    "from": "Yes 40:3",
+    "to": "Mat 3:3",
+    "note": "Suara yang berseru di padang gurun"
+  },
+  {
+    "from": "Yes 53:5",
+    "to": "1Ptr 2:24",
+    "note": "Oleh bilur-bilur-Nya kita sembuh"
+  },
+  {
+    "from": "Yes 61:1",
+    "to": "Luk 4:18",
+    "note": "Roh Tuhan ada pada-Ku"
+  },
+  {
+    "from": "Yer 23:5",
+    "to": "Yoh 7:42",
+    "note": "Tunas adil bagi Daud"
+  },
+  {
+    "from": "Yer 31:15",
+    "to": "Mat 2:17-18",
+    "note": "Ratapan di Rama"
+  },
+  {
+    "from": "Yer 31:31",
+    "to": "Ibr 8:8",
+    "note": "Perjanjian baru"
+  },
+  {
+    "from": "Yeh 34:23",
+    "to": "Yoh 10:11",
+    "note": "Seorang gembala, hamba-Ku Daud"
+  },
+  {
+    "from": "Dan 7:13",
+    "to": "Mat 26:64",
+    "note": "Anak Manusia datang dengan awan"
+  },
+  {
+    "from": "Hos 11:1",
+    "to": "Mat 2:15",
+    "note": "Dari Mesir Kupanggil anak-Ku"
+  },
+  {
+    "from": "Yl 2:32",
+    "to": "Rm 10:13",
+    "note": "Berseru kepada nama Tuhan"
+  },
+  {
+    "from": "Am 9:11",
+    "to": "Kis 15:16",
+    "note": "Pondok Daud dibangun kembali"
+  },
+  {
+    "from": "Yun 1:17",
+    "to": "Mat 12:40",
+    "note": "Tiga hari tiga malam"
+  },
+  {
+    "from": "Mi 5:2",
+    "to": "Mat 2:6",
+    "note": "Lahir di Betlehem"
+  },
+  {
+    "from": "Za 9:9",
+    "to": "Mat 21:5",
+    "note": "Raja yang menunggang keledai"
+  },
+  {
+    "from": "Za 11:12",
+    "to": "Mat 26:15",
+    "note": "Tiga puluh uang perak"
+  },
+  {
+    "from": "Za 12:10",
+    "to": "Yoh 19:37",
+    "note": "Memandang Dia yang ditikam"
+  },
+  {
+    "from": "Mal 3:1",
+    "to": "Mat 11:10",
+    "note": "Utusan yang mempersiapkan jalan"
+  },
+  {
+    "from": "Mal 4:5",
+    "to": "Mat 11:14",
+    "note": "Elia yang akan datang"
+  }
+];
+
+/* Nubuat KEDATANGAN KRISTUS YANG KEDUA KALI — Matius..Wahyu (dan akar PL-nya).
+   `from` = akar Perjanjian Lama (boleh null), `to` = nas Perjanjian Baru. Teks TB di VERSE_TEXTS. */
+export const SECOND_COMING_PROPHECIES = [
+  {
+    "from": "Dan 7:13",
+    "to": "Mat 24:30",
+    "note": "Anak Manusia datang di atas awan-awan"
+  },
+  {
+    "from": null,
+    "to": "Mat 25:31",
+    "note": "Bersemayam di atas takhta kemuliaan-Nya"
+  },
+  {
+    "from": "Dan 7:13",
+    "to": "Mrk 13:26",
+    "note": "Datang dalam awan dengan segala kekuasaan"
+  },
+  {
+    "from": null,
+    "to": "Luk 21:27",
+    "note": "Datang dalam awan dengan kemuliaan-Nya"
+  },
+  {
+    "from": "Dan 12:2",
+    "to": "Yoh 5:28-29",
+    "note": "Orang mati bangkit mendengar suara-Nya"
+  },
+  {
+    "from": null,
+    "to": "Yoh 14:3",
+    "note": "Aku akan datang kembali"
+  },
+  {
+    "from": "Za 14:4",
+    "to": "Kis 1:11",
+    "note": "Kembali dengan cara yang sama (Bukit Zaitun)"
+  },
+  {
+    "from": "Yes 59:20",
+    "to": "Rm 11:26",
+    "note": "Penebus akan datang dari Sion"
+  },
+  {
+    "from": null,
+    "to": "1Kor 15:23",
+    "note": "Pada waktu kedatangan-Nya"
+  },
+  {
+    "from": null,
+    "to": "1Kor 11:26",
+    "note": "Sampai Ia datang"
+  },
+  {
+    "from": null,
+    "to": "Flp 3:20-21",
+    "note": "Menantikan Juruselamat dari sorga"
+  },
+  {
+    "from": null,
+    "to": "Kol 3:4",
+    "note": "Apabila Kristus menyatakan diri kelak"
+  },
+  {
+    "from": null,
+    "to": "1Tes 4:16-17",
+    "note": "Tuhan sendiri akan turun dari sorga"
+  },
+  {
+    "from": "Yl 2:31",
+    "to": "1Tes 5:2",
+    "note": "Hari Tuhan datang seperti pencuri"
+  },
+  {
+    "from": "Yes 66:15",
+    "to": "2Tes 1:7-8",
+    "note": "Dinyatakan dalam api yang bernyala-nyala"
+  },
+  {
+    "from": null,
+    "to": "1Tim 6:14",
+    "note": "Sampai Yesus Kristus menyatakan diri"
+  },
+  {
+    "from": null,
+    "to": "2Tim 4:8",
+    "note": "Semua yang merindukan kedatangan-Nya"
+  },
+  {
+    "from": null,
+    "to": "Tit 2:13",
+    "note": "Pengharapan yang penuh bahagia"
+  },
+  {
+    "from": null,
+    "to": "Ibr 9:28",
+    "note": "Menyatakan diri-Nya sekali lagi"
+  },
+  {
+    "from": "Hab 2:3",
+    "to": "Ibr 10:37",
+    "note": "Ia yang akan datang tidak akan menangguhkan"
+  },
+  {
+    "from": null,
+    "to": "Yak 5:8",
+    "note": "Kedatangan Tuhan sudah dekat"
+  },
+  {
+    "from": null,
+    "to": "1Ptr 5:4",
+    "note": "Apabila Gembala Agung datang"
+  },
+  {
+    "from": null,
+    "to": "2Ptr 3:10",
+    "note": "Hari Tuhan tiba seperti pencuri"
+  },
+  {
+    "from": null,
+    "to": "1Yoh 3:2",
+    "note": "Kita akan menjadi sama seperti Dia"
+  },
+  {
+    "from": "Za 14:5",
+    "to": "Yud 1:14",
+    "note": "Datang dengan beribu-ribu orang kudus-Nya"
+  },
+  {
+    "from": "Za 12:10",
+    "to": "Why 1:7",
+    "note": "Setiap mata akan melihat Dia"
+  },
+  {
+    "from": "Yes 40:10",
+    "to": "Why 22:12",
+    "note": "Aku datang segera membawa upah-Ku"
+  },
+  {
+    "from": null,
+    "to": "Why 22:20",
+    "note": "Ya, Aku datang segera"
+  }
+];
