@@ -447,6 +447,13 @@ html.modal-open { overflow: hidden; }
   margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(46px, 6.4vw, 100px); line-height: 1; color: var(--ink);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6), 0 0 40px rgba(140, 190, 255, 0.35);
 }
+.eden-sub { display: block; margin-top: 0.18em; font-size: 0.42em; font-style: italic; letter-spacing: 0.02em; color: #efe4cf; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9), 0 0 18px rgba(0, 0, 0, 0.8); }
+.eden-cap {
+  margin: clamp(12px, 1.8vh, 20px) auto 0; max-width: 40rem; padding: 10px 40px; font-size: 14px; line-height: 1.6; color: var(--ink);
+  background: radial-gradient(ellipse closest-side, rgba(4, 6, 10, 0.75), rgba(4, 6, 10, 0.55) 65%, rgba(4, 6, 10, 0));
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85), 0 0 16px rgba(0, 0, 0, 0.75);
+}
+.eden-cap strong { color: #fff6e6; font-weight: 600; }
 .mn-text {
   position: absolute; left: var(--gutter-l); right: var(--gutter-r); bottom: clamp(64px, 11vh, 130px);
   margin: 0 auto; max-width: 56rem; text-align: center; isolation: isolate;

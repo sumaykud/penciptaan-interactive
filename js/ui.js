@@ -482,10 +482,11 @@ export class StoryUI {
       .set({}, {}, 1);
     this.tls[11] = tl;
 
-    // Taman Eden: judul tampil di awal, hilang sebelum kamera menukik ke Bumi
+    // Teofani (dulu Taman Eden): judul + caption tampil di awal, hilang sebelum kamera menukik ke Bumi
     const E = this.layers[9];
     const te = gsap.timeline({ paused: true });
     te.fromTo($('.eden-title', E), { opacity: 0, y: 16, letterSpacing: '0.12em', filter: 'blur(10px)' }, { opacity: 1, y: 0, letterSpacing: '0.02em', filter: 'blur(0px)', duration: 0.12, ease: 'power3.out' }, 0.06)
+      .fromTo($('.eden-cap', E), { opacity: 0, y: 10, filter: 'blur(6px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.08, ease: 'power2.out' }, 0.14)
       .to($('.eden-head', E), { opacity: 0, y: -20, filter: 'blur(8px)', duration: 0.08, ease: 'power2.in' }, 0.5)
       .set({}, {}, 1);
     this.tls[9] = te;
