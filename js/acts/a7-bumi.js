@@ -82,7 +82,9 @@ export class ActBumi extends Act {
     this.eden = ed && {
       root: ed, bg: ed.querySelector('.eden-bg'), kf: ed.querySelector('.eden-kf'), white: ed.querySelector('.eden-white'),
       christ: ed.querySelector('.kf-christ'), spark: ed.querySelector('.kf-spark'), adam: ed.querySelector('.kf-adam'),
+      frame: ed.querySelector('.eden-frame'),
     };
+    if (this.eden) [this.eden.bg, this.eden.kf].forEach((im) => { if (im.decode) im.decode().catch(() => {}); });
     const r = rng(8);
 
     // bintang latar
@@ -177,7 +179,8 @@ export class ActBumi extends Act {
     const zin = 1 - smooth(0.8, 1.0, P);
     const kb = smooth(1.0, 2.0, P);
     E.root.style.setProperty('--eden-scale', (1 + 0.35 * zin + 0.06 * kb).toFixed(4));
-    E.root.style.setProperty('--eden-blur', `${(14 * zin).toFixed(2)}px`);
+    // blur hanya saat masuk; filter dimatikan setelahnya supaya HP tidak merender layer blur besar terus-menerus
+    E.frame.style.filter = zin > 0.002 ? `blur(${(14 * zin).toFixed(2)}px)` : 'none';
     // kilat putih lembut saat menembus atmosfer & saat kembali ke bumi
     E.white.style.opacity = (0.75 * bell(0.86, 1.02, P) + 0.6 * bell(1.86, 2.0, P)).toFixed(3);
     // Kristofani: cahaya Kristus muncul → cahaya mengalir ke manusia → manusia terbentuk → gambar penuh
@@ -204,7 +207,16 @@ export class ActBumi extends Act {
     return { r: r - 1, back: 1 };
   }
 
+  /* pramuat gambar kartu Sejarah begitu act Bumi aktif (Teofani), supaya kartu tidak kosong saat
+     discroll cepat / di HP (lazy-load Safari baru memuat saat kartu hampir terlihat) */
+  preloadSejarah() {
+    this.sjPre = SEJARAH_CARDS.filter((c) => c.img).map((c) => {
+      const im = new Image(); im.decoding = 'async'; im.src = c.img; return im;
+    });
+  }
+
   update(rawP, w, t) {
+    if (w > 0 && !this.sjPre) this.preloadSejarah();
     const m = this.mapP(rawP);
     this.updateOld(m.r, w, t);
     this.syncSejarah(rawP, w, t);
@@ -232,7 +244,7 @@ export class ActBumi extends Act {
     const cards = SEJARAH_CARDS.map((c) => {
       const el = document.createElement('div');
       el.className = 'sm-card' + (c.mark === 'cross' ? ' sm-card-cross' : '');
-      if (c.img) { const im = new Image(); im.src = c.img; im.alt = c.title; im.loading = 'lazy'; el.appendChild(im); }
+      if (c.img) { const im = new Image(); im.src = c.img; im.alt = c.title; im.decoding = 'async'; el.appendChild(im); }
       else el.innerHTML = '<div class="ph"><b></b><span></span></div>';
       if (!c.img) { el.querySelector('b').textContent = c.ref; el.querySelector('span').textContent = c.title; }
       cardsBox.appendChild(el);

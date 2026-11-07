@@ -418,7 +418,7 @@ html.modal-open { overflow: hidden; }
 /* bingkai "cover" dengan rasio gambar (±1,792) → posisi % di dalamnya = posisi di gambar */
 .eden-frame {
   position: absolute; left: 50%; top: 50%; width: max(100vw, calc(100vh * 1.792)); aspect-ratio: 2000 / 1116;
-  transform: translate(-50%, -50%) scale(var(--eden-scale, 1)); filter: blur(var(--eden-blur, 0px)); will-change: transform, filter;
+  transform: translate(-50%, -50%) scale(var(--eden-scale, 1)); will-change: transform;
 }
 .eden-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 .eden-kf {
