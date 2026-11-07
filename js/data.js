@@ -494,6 +494,226 @@ export const EXPLAINERS = {
           }
         ]
       }
+    ],
+    /* lanjutan setelah ayat-ayat: Hamartiologi / Dosa */
+    "afterTitle": "Hamartiologi / Dosa",
+    "sectionsAfter": [
+      {
+        "intro": "***Hamartia*** (bahasa Yunani: **ἁμαρτία**) memiliki kedalaman makna ontologis dan medis yang sangat berbeda dari pendekatan yuridis/hukum Barat modern. Dosa tidak dipandang sebagai sekadar \"pelanggaran aturan\" yang menuntut hukuman, melainkan sebagai **penyakit rohani** dan pergeseran manusia dari tujuan hakiki penciptaannya."
+      },
+      {
+        "heading": "Etimologi dan Makna Hakiki *Hamartia*",
+        "items": [
+          "**Makna Harfiah (*To Miss the Mark*):** Secara etimologis Yunani Kuno, kata *Hamartia* berasal dari dunia pemanahan, yang berarti \"meleset dari sasaran\" (*to miss the mark*) atau gagal mencapai target.",
+          "**Konteks Teologis:** Sasaran utama (target) penciptaan manusia adalah untuk hidup selaras dengan Gambar Allah (*Imago Dei*) dan bertumbuh menuju Rupa Allah melalui pengilahian (*Theosis*). Ketika manusia melakukan *Hamartia*, ia bukannya mencapai puncak kemuliaan tersebut, melainkan meleset dan jatuh pendek dari kehendak serta rancangan ilahi Allah."
+        ]
+      },
+      {
+        "heading": "Ontologi Dosa: Penyakit Rohani vs Pelanggaran Hukum",
+        "intro": "Dosa dipahami sebagai parasit spiritual. Kejahatan dan dosa tidak memiliki keberadaan ontologis yang mandiri, melainkan merupakan **distorsi atau salah guna (*misuse*) atas fakultas-fakultas alami jiwa** yang pada dasarnya diciptakan baik oleh Allah.",
+        "table": {
+          "head": [
+            "Dimensi",
+            "Perspektif Hukum Barat (Yuridis)",
+            "Perspektif Patristik Ortodoks (Medis)"
+          ],
+          "rows": [
+            [
+              "Hakikat Dosa",
+              "Transaksi atau pelanggaran hukum di ruang pengadilan.",
+              "**Penyakit rohani** (*spiritual illness*) dan pembusukan jiwa."
+            ],
+            [
+              "Status Manusia",
+              "Terdakwa yang berdosa dan terancam hukuman legalistik.",
+              "**Orang sakit** yang terluka oleh kejahatan dan terpisah dari Sang Sumber Hidup."
+            ],
+            [
+              "Fungsi Gereja",
+              "Tempat keputusan status pengadilan.",
+              "**Rumah Sakit Rohani** (*Spiritual Hospital*) tempat pengobatan jiwa."
+            ],
+            [
+              "Peran Allah",
+              "Hakim kejam yang mencari kesalahan untuk menghukum.",
+              "**Tabib Agung** (*Divine Physician*) yang rindu menyembuhkan dan menyelamatkan manusia."
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "Dosa Leluhur (*Ancestral Sin*) vs Dosa Waris",
+        "intro": "Teologi Ortodoks menolak doktrin Barat tentang \"Rasa Bersalah Total Warisan Adam\" (*Original Sin / Guilt*):",
+        "items": [
+          "**Tidak Mewarisi Rasa Bersalah Adam:** Manusia modern tidak mewarisi kesalahan atau dosa personal Adam di Taman Eden, karena kesalahan personal hanya ditanggung oleh orang yang melakukannya.",
+          "**Mewarisi Akibat Kejatuhan (*Ancestral Corruption & Mortality*):** Yang diwarisi manusia dari kejatuhan Adam adalah akibatnya—yaitu kerusakan kodrat, kefanaan/kematian fisik (*mortality*), serta kecenderungan dan kerentanan batin untuk berbuat dosa."
+        ]
+      },
+      {
+        "heading": "Tahapan Psikologi Terjadinya Dosa (Dari *Logismoi* ke *Pathos*)",
+        "intro": "Para Bapa Asketis (seperti St. Mark the Ascetic dan St. Yohanes dari Damaskus) merumuskan urutan psikologis bagaimana sebuah gagasan berubah menjadi ikatan dosa:",
+        "flowAt": "mid",
+        "flowSteps": true,
+        "flow": [
+          {
+            "label": "1. *Prosvoli*",
+            "text": "Bisikan / Umpan",
+            "sub": "(Belum Berdosa)"
+          },
+          [
+            ""
+          ],
+          {
+            "label": "2. *Synduasmos*",
+            "text": "Mulai Menikmati",
+            "sub": "(Perpaduan Pikiran)"
+          },
+          [
+            ""
+          ],
+          {
+            "label": "3. *Synkatathesis*",
+            "text": "Persetujuan Hati",
+            "sub": "(Ketaatan Kehendak)"
+          },
+          [
+            ""
+          ],
+          {
+            "label": "4. *Energeia*",
+            "text": "Tindakan Dosa",
+            "sub": "(Perbuatan Fisik)"
+          },
+          [
+            ""
+          ],
+          {
+            "label": "5. *Pathos*",
+            "text": "Keterikatan Hawa Nafsu",
+            "sub": "(Keterbudakan Jiwa)"
+          }
+        ],
+        "items": [
+          "**Provokasi / Umpan (*Prosvoli*):** Kemunculan awal bayangan pikiran (*logismoi*) yang dibisikkan oleh Iblis di luar kehendak batin. Pada tahap ini, hal tersebut belum dianggap dosa karena belum ada keterlibatan kehendak bebas manusia.",
+          "**Perpaduan / Kompromi (*Synduasmos*):** Manusia mulai melakukan dialog batin dan memikirkan atau merenungkan bayangan dosa tersebut.",
+          "**Persetujuan (*Synkatathesis*):** Akal budi dan kehendak mengambil keputusan tegas untuk menyetujui dan berencana mengaktualisasikan gagasan tersebut. Di titik inilah dosa batin telah terjadi.",
+          "**Tindakan (*Energeia / Act*):** Diwujudkannya persetujuan batin tersebut ke dalam perbuatan fisik yang nyata.",
+          "**Keterikatan Hawa Nafsu (*Pathos / Passion*):** Ketika perbuatan dosa dilakukan berulang kali, ia berakar menjadi ketergantungan atau hawa nafsu (*passion*) yang membelenggu dan memperbudak kebebasan jiwa."
+        ]
+      },
+      {
+        "heading": "Dosa Iblis vs Dosa Manusia",
+        "intro": "Dalam teologi Patristik dan Dogmatika Ortodoks, terdapat perbedaan mendasar antara **dosa dan kejatuhan Iblis** dengan **dosa dan kejatuhan manusia**. Perbedaan ini menentukan mengapa Iblis tidak dapat diampuni dan telah menetap dalam kebinasaan kekal, sedangkan manusia diberikan pintu pertobatan (*metanoia*) serta jalan penebusan melalui Inkarnasi Kristus."
+      },
+      {
+        "heading": "Inisiatif dan Sumber Dosa (Internal vs Eksternal)",
+        "items": [
+          {
+            "text": "**Dosa Iblis (Pemberontakan Murni Tanpa Pengaruh Luar):**",
+            "items": [
+              "Iblis (Lucifer) diciptakan sebagai malaikat yang sangat mulia di tempat tinggi. Kejatuhannya bukan disebabkan oleh adanya godaan dari pihak ketiga, melainkan murni bersumber dari kesombongan radikal (*colossal pride*) dan iri hati (*envy*) di dalam batinnya sendiri.",
+              "Ia secara sukarela dan tanpa hasutan memusatkan kehendaknya untuk menentang Allah dan menuntut untuk menyamai Yang Mahatinggi. Oleh karena itu, Iblis adalah pencipta dan sumber utama kejahatan (*father of lies*)."
+            ]
+          },
+          {
+            "text": "**Dosa Manusia (Kejatuhan Akibat Tipu Daya dan Perdayaan Luar):**",
+            "items": [
+              "Manusia pertama (Adam dan Hawa) tidak jatuh karena inisiatif murni membenci Allah dari dalam dirinya. Manusia jatuh karena diperdaya, dibohongi, dan dihasut oleh tipu muslihat si Ular (Iblis).",
+              "Kehendak manusia terseret oleh persetujuan terhadap pengaruh kehendak asing (*alien will*) yang menawarkan janji palsu bahwa manusia dapat \"menjadi seperti Allah\". Manusia bertindak karena kecerobohan dan kebodohan pikiran yang terkecoh, bukan karena kebencian murni kepada Sang Pencipta."
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Status Kodrat dan Tingkat Kesadaran Spiritual",
+        "items": [
+          {
+            "text": "**Iblis (Makhluk Roh Murni Tanpa Fisik):**",
+            "items": [
+              "Sebagai entitas rohani murni (*bodiless spirit*), Iblis memiliki pengetahuan spiritual yang penuh dan tidak terhalang oleh keterbatasan fisik.",
+              "Keputusan Iblis untuk memberontak diambil dalam kondisi terang pengetahuan murni, sehingga pilihannya untuk menolak rahmat Allah bersifat mutlak, final, dan tidak dapat diubah (*eternally fixed in enmity*)."
+            ]
+          },
+          {
+            "text": "**Manusia (Makhluk Dwitunggal Jiwa dan Tubuh yang Fana):**",
+            "items": [
+              "Manusia diciptakan di dalam ruang dan waktu dengan kodrat yang memiliki keterbatasan persepsi indrawi.",
+              "Ketika manusia tergoda, kecenderungan jiwanya silau oleh penampakan kebaikan palsu. Kerentanan kodrat fisik dan kepolosan batin manusia membuat kejatuhannya dipandang sebagai luka atau penyakit rohani yang membutuhkan penyembuhan."
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Implikasi Soteriologis: Mengapa Manusia Diampuni sedangkan Iblis Tidak?",
+        "items": [
+          {
+            "text": "**Kebinasaan Kekal Iblis (*No Repentance for Demons*):**",
+            "items": [
+              "Karena Iblis adalah penyesat itu sendiri yang memilih kegelapan secara sadar dan tidak pernah menyesali tindakannya, ia tidak memiliki kapasitas batin untuk bertobat.",
+              "Iblis telah menetapkan kehendaknya ke arah ketidakberadaan (*non-being*) dan kebencian mutlak kepada Allah, sehingga tempatnya terikat pada hukuman api kekal yang disiapkan bagi Iblis dan malaikat-malaikatnya."
+            ]
+          },
+          {
+            "text": "**Belas Kasihan dan Restorasi Manusia (*Redemption in Christ*):**",
+            "items": [
+              "Allah dalam keadilan dan kasih-Nya memandang manusia sebagai ciptaan-Nya yang terluka akibat tipu daya si penyesat.",
+              "Oleh karena itu, Allah tidak membiarkan manusia binasa dalam kematian. Melalui Inkarnasi Sang *Logos* (Yesus Kristus), Allah Bapa mengutus Anak-Nya untuk mengambil kodrat manusia, menipu kembali Sang Penipu (Iblis) melalui kayu salib, mematahkan sengat maut, dan membukakan pintu pertobatan (*metanoia*) serta pengilahian (*Theosis*) bagi seluruh umat manusia."
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Pemulihan dan Penyembuhan (*Metanoia*, Sakramen, & *Nepsis*)",
+        "intro": "Karena dosa dipahami sebagai penyakit, jalan keluarnya bukanlah sekadar pengampunan formal, melainkan proses penyembuhan yang aktif:",
+        "items": [
+          "**Pertobatan Sejati (*Metanoia*):** Kata *Metanoia* berarti \"perubahan akal budi dan orientasi jiwa\" (*transformation of the mind*), bukan sekadar penyesalan emosional sesaat.",
+          "**Pengobatan Melalui Sakramen:** Sakramen Pengakuan Dosa disediakan Gereja sebagai wadah terapeutik untuk memoles jiwa yang terluka dan memulihkan ikatan persekutuan dengan Kristus.",
+          "**Kewaspadaan Batin (*Nepsis*):** Praktik penjagaan akal budi (*nous*) dan kedisiplinan doa (seperti Doa Yesus) untuk memotong *logismoi* sejak tahap *prosvoli* sebelum berkembang menjadi hawa nafsu.",
+          "**Tujuan Akhir (*Theosis*):** Melalui penyucian hawa nafsu (*katharsis*), rahmat Allah memulihkan manusia sehingga ia kembali berpartisipasi dalam Energi Ilahi Allah (*Theosis*)."
+        ]
+      },
+      {
+        "heading": "Tabel Komparatif Perbedaan Dosa Iblis vs Dosa Manusia",
+        "table": {
+          "head": [
+            "Dimensi Perbandingan",
+            "Dosa Iblis (Dosa Kekal)",
+            "Dosa Manusia (Dosa Terperdaya)"
+          ],
+          "rows": [
+            [
+              "Penyebab Utama",
+              "Kesombongan murni (*colossal pride*) dan iri hati tanpa ada pencoba luar.",
+              "Penyesatan, tipu muslihat, dan janji palsu dari si Ular/Iblis."
+            ],
+            [
+              "Kondisi Pengetahuan",
+              "Dilakukan dalam kesadaran rohani murni yang penuh.",
+              "Dilakukan dalam kecerobohan dan kebutaan pikiran yang terkecoh."
+            ],
+            [
+              "Status Penyesatan",
+              "Iblis adalah **Bapa Penyesat** (*The Deceiver*).",
+              "Manusia adalah **Korban Penyesatan** (*The Deceived*)."
+            ],
+            [
+              "Kapasitas Pertobatan",
+              "Menolak rahmat secara menetap; tidak ada pertobatan.",
+              "Diberikan rahmat pertobatan (*metanoia*) dan pemulihan."
+            ],
+            [
+              "Hasil Soteriologis",
+              "Dihukum kekal di tempat siksaan yang disiapkan baginya.",
+              "Ditebus oleh Kristus dan diangkat menuju pengilahian (*Theosis*)."
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "Kesimpulan",
+        "intro": "Iblis jatuh karena **pemberontakan murni dari dalam batinnya** yang ingin menjadi Allah tanpa Allah, sehingga dosanya menetap secara kekal. Sebaliknya, manusia jatuh karena **diperdaya oleh muslihat Iblis**. Karena belas kasihan-Nya terhadap manusia yang terperdaya, Allah berinkarnasi dalam Yesus Kristus untuk mematahkan belenggu Iblis dan memulihkan manusia kembali kepada persekutuan kekal.",
+        "outro": "*Hamartia* adalah kenyataan bahwa manusia telah **meleset dari sasaran mulia pengilahian (*Theosis*)** dan menderita luka rohani akibat keterasingan dari Allah. Namun melalui Tabib Agung Yesus Kristus, *Hamartia* disembuhkan melalui pertobatan sejati (*metanoia*), persekutuan sakramental, dan perjuangan kewaspadaan batin (*nepsis*)."
+      }
     ]
   },
 

@@ -340,9 +340,12 @@ export class StoryUI {
       ? `<li>${f(it)}</li>`
       : `<li>${f(it.text)}${it.quote ? `<blockquote class="modal-quote">${f(it.quote)}</blockquote>` : ''}${it.items?.length ? list(it.items, 'modal-points sub') : ''}</li>`)).join('')}</ul>`;
     // rumusan panah: ['A', ['atas', 'bawah'], 'B', ...] → A —atas/bawah→ B
-    const flow = (steps) => `<div class="modal-flow">${steps.map((s) => (Array.isArray(s)
+    // node bisa berupa { label, text, sub } untuk tahapan bertingkat (isSteps = tata letak tahapan)
+    const flow = (steps, isSteps) => `<div class="modal-flow${isSteps ? ' steps' : ''}">${steps.map((s) => (Array.isArray(s)
       ? `<span class="mf-arrow"><span class="mf-top">${f(s[0])}</span><span class="mf-line" aria-hidden="true"></span><span class="mf-bot">${f(s[1] || '')}</span></span>`
-      : `<span class="mf-node">${f(s)}</span>`)).join('')}</div>`;
+      : typeof s === 'object'
+        ? `<span class="mf-node mf-step"><span class="mf-lab">${f(s.label)}</span><span class="mf-txt">${f(s.text)}</span>${s.sub ? `<span class="mf-sub">${f(s.sub)}</span>` : ''}</span>`
+        : `<span class="mf-node">${f(s)}</span>`)).join('')}</div>`;
     const node = (n, cls = '') => `<div class="md-node ${cls}"><p class="md-t">${f(n.title)}</p>${n.sub ? `<p class="md-s">${f(n.sub)}</p>` : ''}${
       (n.lines || []).map((l) => `<p class="md-l">${f(l)}</p>`).join('')}${n.ref ? `<p class="md-ref">${f(n.ref)}</p>` : ''}</div>`;
     const diagram = (g) => `<figure class="mdiag" aria-label="Diagram">${node(g.top, 'md-top')}
@@ -351,6 +354,16 @@ export class StoryUI {
       <div class="md-merge"></div><div class="md-stem"></div>${node(g.bottom, 'md-bottom')}</figure>`;
     const verse = (v) => `<li><p class="mv-ref">${f(v.ref)}</p>${v.note ? `<p class="mv-note">${f(v.note)}</p>` : ''}
       <p class="mv-txt">${f(v.text)}</p>${v.comment ? `<p class="mv-cmt">${v.commentLabel ? `<span class="mv-cmt-label">${f(v.commentLabel)}</span>` : ''}${f(v.comment)}</p>` : ''}</li>`;
+    // satu bagian modal; rumusan panah default di atas, flowAfter = di akhir, flowAt 'mid' = setelah intro
+    const sec = (s) => {
+      const table = s.table ? `<div class="modal-table-wrap"><table class="modal-table"><thead><tr>${s.table.head.map((h) => `<th>${f(h)}</th>`).join('')}</tr></thead><tbody>${
+        s.table.rows.map((r) => `<tr>${r.map((c) => `<td>${f(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>` : '';
+      const fl = s.flow ? flow(s.flow, s.flowSteps) : '';
+      const at = s.flowAt || (s.flowAfter ? 'end' : 'top');
+      return `<section class="modal-sec">${s.heading ? `<h3 class="modal-h">${f(s.heading)}</h3>` : ''}${at === 'top' ? fl : ''}${s.intro ? `<p class="modal-intro">${f(s.intro)}</p>` : ''}${at === 'mid' ? fl : ''}${
+        s.quote ? `<blockquote class="modal-quote">${f(s.quote)}</blockquote>` : ''}${s.items ? list(s.items) : ''}${
+        s.outro ? `<p class="modal-intro">${f(s.outro)}</p>` : ''}${s.verses ? `<ol class="modal-verses">${s.verses.map(verse).join('')}</ol>` : ''}${table}${at === 'end' ? fl : ''}</section>`;
+    };
     const fill = (id) => {
       const d = EXPLAINERS[id];
       if (!d) return false;
@@ -358,19 +371,18 @@ export class StoryUI {
       let html = d.lead ? `<blockquote class="modal-lead"><p>${f(d.lead.text)}</p><cite>${f(d.lead.ref)}</cite></blockquote>` : '';
       if (d.diagram) html += diagram(d.diagram);
       if (d.points) html += list(d.points);
-      (d.sections || []).forEach((s) => {
-        const table = s.table ? `<div class="modal-table-wrap"><table class="modal-table"><thead><tr>${s.table.head.map((h) => `<th>${f(h)}</th>`).join('')}</tr></thead><tbody>${
-          s.table.rows.map((r) => `<tr>${r.map((c) => `<td>${f(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>` : '';
-        html += `<section class="modal-sec"><h3 class="modal-h">${f(s.heading)}</h3>${s.flow && !s.flowAfter ? flow(s.flow) : ''}${s.intro ? `<p class="modal-intro">${f(s.intro)}</p>` : ''}${
-          s.quote ? `<blockquote class="modal-quote">${f(s.quote)}</blockquote>` : ''}${s.items ? list(s.items) : ''}${
-          s.outro ? `<p class="modal-intro">${f(s.outro)}</p>` : ''}${s.verses ? `<ol class="modal-verses">${s.verses.map(verse).join('')}</ol>` : ''}${table}${s.flow && s.flowAfter ? flow(s.flow) : ''}</section>`;
-      });
+      (d.sections || []).forEach((s) => { html += sec(s); });
       const groups = d.verseGroups || (d.verses ? [{ verses: d.verses }] : []);
       if (groups.length) {
         html += `<h3 class="modal-sub">${f(d.versesTitle || 'Ayat-ayat Referensi')}</h3>`;
         groups.forEach((gr) => {
           html += `${gr.title ? `<h4 class="modal-gtitle">${f(gr.title)}</h4>` : ''}${gr.intro ? `<p class="modal-intro">${f(gr.intro)}</p>` : ''}<ol class="modal-verses">${gr.verses.map(verse).join('')}</ol>`;
         });
+      }
+      // bagian lanjutan setelah ayat-ayat (mis. Hamartiologi di modal Logoi)
+      if (d.sectionsAfter) {
+        if (d.afterTitle) html += `<h3 class="modal-sub">${f(d.afterTitle)}</h3>`;
+        d.sectionsAfter.forEach((s) => { html += sec(s); });
       }
       $('.modal-body', dlg).innerHTML = html;
       return true;
