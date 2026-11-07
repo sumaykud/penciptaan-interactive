@@ -454,6 +454,67 @@ html.modal-open { overflow: hidden; }
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85), 0 0 16px rgba(0, 0, 0, 0.75);
 }
 .eden-cap strong { color: #fff6e6; font-weight: 600; }
+
+/* ---------- STORY 12 · Sejarah Manusia ---------- */
+.sm-logoi {
+  position: absolute; left: 3%; width: 33%; top: calc(50% + 27vh); text-align: center;
+  opacity: 0; visibility: hidden; pointer-events: none;
+}
+.sm-logoi-t { margin: 0; font-family: var(--sans); font-size: clamp(15px, 1.35vw, 19px); color: var(--ink); text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9); }
+.sm-logoi-t span { color: var(--ink-dim); }
+.sm-logoi-s { margin: 6px 0 0; font-size: 11px; letter-spacing: 0.04em; color: var(--ink-dim); }
+.sm-tl {
+  position: absolute; left: calc(var(--gutter-l) + var(--tl-left, 0%)); right: var(--gutter-r); bottom: clamp(56px, 8vh, 90px);
+  opacity: 0; visibility: hidden; pointer-events: none; overflow: hidden;
+}
+.sm-tl-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin: 0 0 8px 4%; min-height: 24px; }
+.sm-tl-kick { margin: 0; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); }
+.sm-tl-ref { margin: 0; font-family: var(--serif); font-size: clamp(20px, 1.8vw, 26px); color: var(--ink); }
+.sm-tl-ref.long { font-size: clamp(15px, 1.2vw, 18px); }
+.sm-tl-title { margin: 0; max-width: 52ch; font-size: 12px; line-height: 1.4; color: var(--ink-dim); }
+.sm-ruler { position: relative; height: 26px; margin: 0 max(4%, 56px); border-bottom: 1px solid rgba(246, 240, 228, 0.55); }
+.sm-ruler i { position: absolute; bottom: 0; width: 1px; height: 9px; background: rgba(246, 240, 228, 0.45); }
+.sm-ruler i.mj { height: 24px; background: rgba(246, 240, 228, 0.75); }
+.sm-ruler b { position: absolute; bottom: -4px; width: 7px; height: 7px; margin-left: -3px; border-radius: 50%; background: #ffe2a8; box-shadow: 0 0 10px 2px rgba(255, 200, 120, 0.8); }
+.sm-ao {
+  position: absolute; bottom: -15px; width: 30px; height: 30px; display: grid; place-items: center;
+  font-family: var(--serif); font-size: 25px; line-height: 1; color: #fff1d2;
+  opacity: calc(0.5 + 0.5 * var(--k, 0.5));
+  text-shadow: 0 0 calc(4px + 16px * var(--k, 0.5)) rgba(255, 200, 120, calc(0.3 + 0.6 * var(--k, 0.5))), 0 0 2px rgba(255, 240, 210, 0.9);
+  transform: scale(calc(0.92 + 0.16 * var(--k, 0.5)));
+  animation: ao-pulse 3.2s ease-in-out infinite;
+}
+.sm-ao.a { left: -40px; }
+.sm-ao.o { right: -40px; animation-delay: -1.6s; }
+/* cincin cahaya yang berputar mengelilingi huruf */
+.sm-ao::before, .sm-ao::after { content: ""; position: absolute; inset: -7px; border-radius: 50%; pointer-events: none; }
+.sm-ao::before { border: 1px solid rgba(255, 226, 168, calc(0.12 + 0.25 * var(--k, 0.5))); }
+.sm-ao::after {
+  border: 1.5px solid transparent; border-top-color: rgba(255, 236, 196, calc(0.4 + 0.6 * var(--k, 0.5)));
+  filter: drop-shadow(0 0 4px rgba(255, 200, 120, 0.9)); animation: ao-spin 6s linear infinite;
+}
+.sm-ao.o::after { animation-direction: reverse; }
+@keyframes ao-pulse { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.4); } }
+@keyframes ao-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .sm-ao, .sm-ao::after { animation: none; } }
+.sm-cards { position: relative; height: clamp(140px, 21vh, 200px); margin-top: 12px; perspective: 900px; perspective-origin: 20% 50%; }
+.sm-card {
+  position: absolute; left: 0; top: 0; height: 100%; aspect-ratio: 3 / 4; border-radius: 3px; overflow: hidden;
+  transform-origin: 50% 50%; backface-visibility: hidden; will-change: transform, opacity;
+  background: radial-gradient(120% 90% at 50% 20%, #5a4a32 0%, #2a2015 55%, #120d08 100%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 226, 168, 0.18) inset;
+}
+.sm-card img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; display: block; }
+.sm-card .ph { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 10px; gap: 4px; }
+.sm-card .ph::before { content: ""; position: absolute; left: 50%; top: 32%; width: 46%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 246, 220, 0.95) 0%, rgba(255, 210, 140, 0.35) 35%, rgba(255, 190, 110, 0) 70%); }
+.sm-card .ph b { position: relative; font-family: var(--serif); font-weight: 400; font-size: 17px; color: #fff3da; }
+.sm-card .ph span { position: relative; font-size: 10px; line-height: 1.35; color: rgba(246, 240, 228, 0.75); }
+@media (max-width: 760px) {
+  .sm-logoi { left: 0; width: 100%; top: calc(50% - 15vh); }
+  .sm-cards { height: 120px; }
+  .sm-tl-head { margin-left: 4%; flex-wrap: wrap; gap: 4px 10px; }
+}
 .mn-text {
   position: absolute; left: var(--gutter-l); right: var(--gutter-r); bottom: clamp(64px, 11vh, 130px);
   margin: 0 auto; max-width: 56rem; text-align: center; isolation: isolate;
@@ -746,3 +807,31 @@ html.modal-open { overflow: hidden; }
 @supports not selector(::-webkit-scrollbar) {
   * { scrollbar-width: thin; scrollbar-color: #e8c27a rgba(246, 240, 228, 0.06); }
 }
+
+/* Sejarah Manusia — gambar kartu dibuka besar */
+.layer.live .sm-card { cursor: zoom-in; transition: filter 0.2s, box-shadow 0.2s; }
+.layer.live .sm-card:hover, .sm-card.pin { filter: brightness(1.15); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 0 1.5px rgba(255, 226, 168, 0.8), 0 0 18px rgba(255, 200, 120, 0.45); }
+.sm-preview {
+  position: absolute; left: 50%; top: 10vh; height: 52vh; margin: 0; transform: translate(-50%, 12px) scale(0.96);
+  opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+  border-radius: 6px; overflow: hidden; background: #0b0906;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 226, 168, 0.35), 0 0 40px rgba(255, 200, 120, 0.25);
+}
+.sm-preview.on { opacity: 1; visibility: visible; transform: translate(-50%, 0) scale(1); }
+.sm-preview img { display: block; height: 100%; width: auto; max-width: 60vw; object-fit: cover; }
+.sm-preview figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 26px 14px 12px; display: flex; flex-direction: column; gap: 3px;
+  background: linear-gradient(transparent, rgba(5, 4, 3, 0.88));
+}
+.sm-preview b { font-family: var(--serif); font-weight: 400; font-size: 17px; color: #ffe9bd; }
+.sm-preview span { font-size: 12px; line-height: 1.45; color: rgba(246, 240, 228, 0.85); }
+.sm-full {
+  position: fixed; inset: 0; z-index: 90; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+  padding: 56px 16px 28px; background: rgba(5, 4, 3, 0.95); opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
+}
+.sm-full.on { opacity: 1; visibility: visible; }
+.sm-full img { max-width: 100%; max-height: 68vh; object-fit: contain; border-radius: 6px; box-shadow: 0 0 0 1px rgba(255, 226, 168, 0.3), 0 0 30px rgba(255, 200, 120, 0.2); }
+.sm-full-cap { max-width: 34rem; text-align: center; }
+.sm-full-cap .r { margin: 0 0 6px; font-family: var(--serif); font-size: 20px; color: #ffe9bd; }
+.sm-full-cap .t { margin: 0; font-size: 14px; line-height: 1.55; color: var(--ink); }
+.sm-full-x { position: absolute; top: 12px; right: 14px; width: 40px; height: 40px; border: 1px solid rgba(246, 240, 228, 0.3); border-radius: 50%; background: rgba(0, 0, 0, 0.4); color: var(--ink); font-size: 24px; line-height: 1; cursor: pointer; }

@@ -11,6 +11,7 @@ export const STORIES = [
   { id: 'big-bang', label: '7 Hari Penciptaan', vh: 420 },
   { id: 'bumi', label: 'Teofani', vh: 300 },
   { id: 'manusia', label: 'Manusia', vh: 380 },
+  { id: 'sejarah-manusia', label: 'Sejarah Manusia', vh: 1900 },
   { id: 'keterhubungan', label: 'Keterhubungan Firman', vh: 600 },
   { id: 'kristus', label: 'Kristus', vh: 760 },
 ];

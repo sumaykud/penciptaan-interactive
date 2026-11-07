@@ -2,6 +2,8 @@ import * as THREE from 'three';
 import { Act, V } from './act.js';
 import { points, SHARED } from '../core/materials.js';
 import { ArcDiagram } from '../core/arcs.js';
+import { buildHumanGeometry, humanMeshes } from '../core/human.js';
+import { SEJARAH_CARDS } from '../data.js';
 import { smooth, lerp, rng, range, easeInOut, bell } from '../core/util.js';
 
 /* STORY 9 · Bumi — planet dengan cahaya matahari dramatis dari atas; scroll memunculkan
@@ -72,8 +74,8 @@ const UPY = new THREE.Vector3(0, 1, 0);
 
 export class ActBumi extends Act {
   constructor(ctx) {
-    super(ctx, { start: 9, end: 12 });
-    this.crossEl = document.querySelector('#L12 .kr-cross');
+    super(ctx, { start: 9, end: 13 });
+    this.crossEl = document.querySelector('#L13 .kr-cross');
     // DOM Taman Eden + Kristofani (overlay di atas canvas, di bawah teks)
     const ed = document.getElementById('eden');
     this.eden = ed && {
@@ -192,7 +194,232 @@ export class ActBumi extends Act {
     E.adam.style.opacity = (bell(1.52, 1.74, P) * 1.0).toFixed(3);
   }
 
+  /* Story 12 "Sejarah Manusia" disisipkan setelah Manusia (P mentah 2..3): kamera mundur dari Bumi
+     tanpa diagram. Semua logika lama memakai P mentah lama, jadi P baru dipetakan:
+       <2 → sama | 2..3 → 2 (kamera mundur lewat `back`) | ≥3 → P-1 (Keterhubungan, Kristus). */
+  mapP(r) {
+    if (r < 2) return { r, back: null };
+    if (r < 3) return { r: 2, back: easeInOut(range(2.0, 2.22, r)) };
+    return { r: r - 1, back: 1 };
+  }
+
   update(rawP, w, t) {
+    const m = this.mapP(rawP);
+    this.updateOld(m.r, w, t);
+    this.syncSejarah(rawP, w, t);
+  }
+
+  /* ---------- STORY 12 · Sejarah Manusia (P mentah 2..3, s = 0..1)
+     0.00–0.22 kamera mundur dari Bumi · 0.24–0.40 Bumi bergeser ke kanan & figur Logoi muncul di kiri
+     0.30–0.52 figur "terbentuk" (dissolve) · 0.44–0.90 cahaya mengalir dari Logoi ke Bumi
+     0.42–0.92 timeline + kartu Kristofani (cover-flow mengikuti scroll) · 0.88–0.98 kembali ke tengah */
+  buildSejarah() {
+    if (this.sj) return;
+    const geo = buildHumanGeometry(this.ctx.mobile ? 64 : 84, 'stand');
+    const { pre, glowMesh, mat } = humanMeshes(geo);
+    const g = new THREE.Group();
+    g.add(pre, glowMesh);
+    this.group.add(g);
+    // cahaya mengalir dari Logoi (ide Allah) ke ciptaan (Bumi)
+    const r = rng(31), N = this.ctx.mobile ? 80 : 160;
+    const seeds = [];
+    const flow = points(N, (i) => { seeds.push({ o: r(), sp: 0.05 + r() * 0.07, j: (r() - 0.5) * 0.6, s: 0.012 + r() * 0.03 }); return { p: [0, 0, 0], c: [1, 0.92, 0.75], s: seeds[i].s, a: 0.85 }; }, { soft: 0.9, twinkle: 0.25 });
+    this.group.add(flow);
+    // DOM
+    const L = document.getElementById('L11');
+    const cardsBox = L.querySelector('.sm-cards'), ruler = L.querySelector('.sm-ruler');
+    const cards = SEJARAH_CARDS.map((c) => {
+      const el = document.createElement('div');
+      el.className = 'sm-card';
+      if (c.img) { const im = new Image(); im.src = c.img; im.alt = c.title; im.loading = 'lazy'; el.appendChild(im); }
+      else el.innerHTML = '<div class="ph"><b></b><span></span></div>';
+      if (!c.img) { el.querySelector('b').textContent = c.ref; el.querySelector('span').textContent = c.title; }
+      cardsBox.appendChild(el);
+      return el;
+    });
+    // penggaris: satu garis besar per kartu, 5 garis kecil di antaranya
+    const n = SEJARAH_CARDS.length;
+    let html = '';
+    for (let i = 0; i < n; i++) {
+      const x0 = (i / (n - 1)) * 100;
+      html += `<i class="mj" style="left:${x0.toFixed(3)}%"></i>`;
+      if (i < n - 1) for (let k = 1; k < 6; k++) html += `<i style="left:${(x0 + (k / 6) * (100 / (n - 1))).toFixed(3)}%"></i>`;
+    }
+    // Alpha & Omega di kedua ujung penggaris (Why 22:13 — "Akulah Alfa dan Omega, Yang Pertama dan Yang Terkemudian")
+    ruler.innerHTML = html + '<b></b><span class="sm-ao a" title="Alfa">Α</span><span class="sm-ao o" title="Omega">Ω</span>';
+    this.sj = {
+      g, mat, pre, glowMesh, flow, seeds, cards, L, marker: ruler.querySelector('b'),
+      tl: L.querySelector('.sm-tl'), logoi: L.querySelector('.sm-logoi'),
+      alpha: ruler.querySelector('.sm-ao.a'), omega: ruler.querySelector('.sm-ao.o'), cardsBox, rulerEl: ruler,
+      ref: L.querySelector('.sm-tl-ref'), title: L.querySelector('.sm-tl-title'), last: -1, pinned: -1,
+    };
+    this.bindSejarahViewer();
+  }
+
+  /* Gambar kartu dibuka besar:
+     - desktop (hover + kursor): hover → pratinjau besar di tengah layar; klik → dikunci / dilepas
+     - layar sentuh / mobile: tap → layar penuh beserta ayat & judul */
+  bindSejarahViewer() {
+    const S = this.sj;
+    const desktop = () => window.matchMedia('(hover: hover) and (pointer: fine)').matches && window.innerWidth > 760;
+    // pratinjau desktop
+    const pv = document.createElement('figure');
+    pv.className = 'sm-preview';
+    pv.innerHTML = '<img alt=""><figcaption><b></b><span></span></figcaption>';
+    S.L.appendChild(pv);
+    // layar penuh mobile
+    const full = document.createElement('div');
+    full.className = 'sm-full';
+    full.setAttribute('role', 'dialog');
+    full.setAttribute('aria-modal', 'true');
+    full.innerHTML = '<button class="sm-full-x" type="button" aria-label="Tutup">×</button><img alt=""><div class="sm-full-cap"><p class="r"></p><p class="t"></p></div>';
+    document.body.appendChild(full);
+    const fill = (root, i, refSel, titleSel) => {
+      const c = SEJARAH_CARDS[i];
+      const im = root.querySelector('img');
+      if (c.img) { im.src = c.img; im.alt = c.title; im.style.display = ''; } else im.style.display = 'none';
+      root.querySelector(refSel).textContent = c.ref;
+      root.querySelector(titleSel).textContent = c.title;
+    };
+    S.preview = pv;
+    S.showPreview = (i) => { fill(pv, i, 'b', 'span'); pv.classList.add('on'); };
+    S.hidePreview = () => { pv.classList.remove('on'); S.pinned = -1; S.cards.forEach((c) => c.classList.remove('pin')); };
+    const openFull = (i) => {
+      fill(full, i, '.r', '.t');
+      full.classList.add('on');
+      this.ctx.setScrollLock?.(true);
+    };
+    const closeFull = () => { full.classList.remove('on'); this.ctx.setScrollLock?.(false); };
+    full.addEventListener('click', closeFull);
+    window.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      if (full.classList.contains('on')) closeFull();
+      else if (S.pinned >= 0) S.hidePreview();
+    });
+    S.cards.forEach((el, i) => {
+      el.classList.add('interactive');
+      el.setAttribute('role', 'button');
+      el.setAttribute('aria-label', `${SEJARAH_CARDS[i].ref} — ${SEJARAH_CARDS[i].title}`);
+      el.addEventListener('pointerenter', () => { if (desktop() && S.pinned < 0) S.showPreview(i); });
+      el.addEventListener('pointerleave', () => { if (desktop() && S.pinned < 0) pv.classList.remove('on'); });
+      el.addEventListener('click', () => {
+        if (!desktop()) { openFull(i); return; }
+        const same = S.pinned === i;
+        S.cards.forEach((c) => c.classList.remove('pin'));
+        if (same) { S.pinned = -1; pv.classList.remove('on'); return; }
+        S.pinned = i;
+        el.classList.add('pin');
+        S.showPreview(i);
+      });
+    });
+  }
+
+  syncSejarah(rawP, w, t) {
+    const s = rawP - 2;
+    const near = s > -0.6 && s < 1.05;
+    if (near && !this.sj) this.buildSejarah();
+    const S = this.sj;
+    if (!S) return;
+    const ss = Math.max(0, Math.min(1, s));
+    const out = easeInOut(range(0.88, 0.98, ss));
+    const sh = easeInOut(range(0.24, 0.4, ss)) * (1 - easeInOut(range(0.58, 0.68, ss))) * (1 - out) * (s >= 0 && s <= 1 ? 1 : 0);
+    const wide = easeInOut(range(0.6, 0.7, ss)); // timeline melebar penuh setelah figur memudar
+    const portrait = this.ctx.size.w / this.ctx.size.h < 0.9;
+    // Bumi bergeser ke kanan & mengecil (tetap kembali ke tengah sebelum Keterhubungan)
+    if (sh > 0) {
+      const ex = portrait ? 0.9 : 2.7, ey = portrait ? 1.7 : 0.75, es = portrait ? 0.5 : 0.6;
+      this.earthGroup.position.set(ex * sh, ey * sh, 0);
+      const sc = lerp(1, es, sh);
+      this.earthGroup.scale.setScalar(sc);
+      // atmosfer dihitung di shader dalam satuan dunia → jari-jarinya ikut diskalakan (tetap tersembunyi di belakang Bumi)
+      this.atmMat.uniforms.uR.value = R_EARTH * sc;
+      this.atmMat.uniforms.uShell.value = R_EARTH * 1.16 * sc;
+      this.atmMat.uniforms.uCenter.value.copy(this.earthGroup.position);
+    } else if (this.earthGroup.scale.x !== 1) {
+      this.earthGroup.scale.setScalar(1);
+      this.atmMat.uniforms.uR.value = R_EARTH;
+      this.atmMat.uniforms.uShell.value = R_EARTH * 1.16;
+    }
+    // Bumi berputar lebih cepat selama timeline di-scroll: tepat satu putaran penuh,
+    // jadi orientasinya sama persis saat masuk ke Keterhubungan Firman (tanpa lompatan)
+    if (s > 0 && s < 1.05) this.earth.rotation.y += Math.PI * 2 * easeInOut(range(0.44, 0.92, ss));
+    // figur Logoi di kiri
+    const hv = w * sh;
+    const hx = portrait ? -0.05 : -3.05, hy = portrait ? -0.95 : -0.8, hsc = portrait ? 1.0 : 1.1;
+    S.g.position.set(hx, hy, 0.6);
+    S.g.scale.setScalar(hsc);
+    S.g.rotation.y = Math.sin(t * 0.3) * 0.12;
+    // muncul & menghilang dengan dissolve (bukan sekadar memudar → tidak jadi siluet gelap)
+    S.mat.uniforms.uReveal.value = range(0.3, 0.52, ss) * (1 - range(0.54, 0.64, ss));
+    S.mat.uniforms.uOpacity.value = w * smooth(0.24, 0.32, ss) * (ss < 0.66 ? 1 : 0) * (s >= 0 && s <= 1 ? 1 : 0);
+    S.mat.uniforms.uIntensity.value = 1.35 + 0.12 * Math.sin(t * 1.4);
+    S.g.visible = S.mat.uniforms.uOpacity.value > 0.002 && S.mat.uniforms.uReveal.value > 0.001;
+    S.pre.visible = S.mat.uniforms.uReveal.value > 0.15; // penutup kedalaman hanya saat tubuh sudah cukup terbentuk
+    // cahaya mengalir Logoi → Bumi
+    const fv = w * sh * smooth(0.4, 0.48, ss);
+    S.flow.visible = fv > 0.002;
+    if (S.flow.visible) {
+      const pos = S.flow.geometry.attributes.position.array;
+      const a = new THREE.Vector3(hx, hy + 0.55 * hsc, 0.6), b = this.earthGroup.position.clone();
+      const ctrl = a.clone().lerp(b, 0.5).add(V(0, 1.4, 0.4));
+      S.seeds.forEach((sd, i) => {
+        const u = (sd.o + t * sd.sp) % 1;
+        const p = a.clone().multiplyScalar((1 - u) * (1 - u)).add(ctrl.clone().multiplyScalar(2 * u * (1 - u))).add(b.clone().multiplyScalar(u * u));
+        p.y += Math.sin(u * Math.PI) * sd.j; p.z += Math.cos(u * 7 + sd.o * 6) * 0.08;
+        pos[i * 3] = p.x; pos[i * 3 + 1] = p.y; pos[i * 3 + 2] = p.z;
+      });
+      S.flow.geometry.attributes.position.needsUpdate = true;
+      S.flow.material.uniforms.uOpacity.value = fv;
+    }
+    // DOM: keterangan Logoi
+    const lv = w * sh * smooth(0.34, 0.42, ss);
+    S.logoi.style.opacity = lv.toFixed(3);
+    S.logoi.style.visibility = lv > 0.01 ? 'visible' : 'hidden';
+    // DOM: timeline + kartu cover-flow
+    const tv = w * smooth(0.42, 0.5, ss) * (1 - smooth(0.86, 0.92, ss)) * (s >= 0 && s <= 1 ? 1 : 0);
+    S.tl.style.opacity = tv.toFixed(3);
+    S.tl.style.setProperty('--tl-left', portrait ? '0' : (38 * (1 - wide)).toFixed(2) + '%');
+    S.tl.style.visibility = tv > 0.01 ? 'visible' : 'hidden';
+    if (tv <= 0.01 && S.preview?.classList.contains('on')) S.hidePreview();
+    if (tv > 0.01) {
+      const n = S.cards.length;
+      const act = range(0.48, 0.84, ss) * (n - 1); // kartu terakhir sempat diam sebelum timeline memudar
+      const gap = portrait ? 26 : 46, first = portrait ? 104 : 172;
+      // posisi dasar = titik penanda di penggaris → kartu pertama di Alfa, kartu terakhir terbuka di Omega
+      const pr0 = act / (n - 1);
+      const boxW = S.cardsBox.clientWidth, cw = S.cards[0].offsetWidth || 150;
+      const rl = S.rulerEl.offsetLeft, rw = S.rulerEl.offsetWidth;
+      const base = Math.max(0, Math.min(boxW - cw, rl + rw * pr0 - cw / 2));
+      S.cardsBox.style.perspectiveOrigin = `${(base + cw / 2).toFixed(0)}px 50%`; // perspektif berpusat di kartu aktif
+      S.cards.forEach((el, i) => {
+        const off = i - act, ao = Math.abs(off), sg = Math.sign(off);
+        const x = base + (ao < 1 ? off * first : sg * (first + (ao - 1) * gap));
+        const rot = -sg * Math.min(1, ao) * 62;
+        const z = -Math.min(1, ao) * 120;
+        const o = Math.max(0, 1 - Math.max(0, ao - (off < 0 ? 9 : 14)) * 0.4) * (x < -cw || x > boxW ? 0 : 1);
+        el.style.transform = `translate3d(${x.toFixed(1)}px, 0, ${z.toFixed(1)}px) rotateY(${rot.toFixed(2)}deg)`;
+        el.style.opacity = o.toFixed(3);
+        el.style.zIndex = String(100 - Math.round(ao * 2));
+      });
+      const k = Math.min(n - 1, Math.round(act));
+      if (k !== S.last) {
+        S.last = k;
+        S.ref.textContent = SEJARAH_CARDS[k].ref;
+        S.ref.classList.toggle('long', SEJARAH_CARDS[k].ref.length > 34);
+        S.title.textContent = SEJARAH_CARDS[k].title;
+      }
+      S.marker.style.left = `${((act / (n - 1)) * 100).toFixed(3)}%`;
+      // Alfa menyala di awal timeline, Omega makin terang saat mendekati akhir
+      const pr = act / (n - 1);
+      S.alpha.style.setProperty('--k', (1 - range(0, 0.3, pr) * 0.7).toFixed(3));
+      S.omega.style.setProperty('--k', (0.3 + 0.7 * range(0.6, 1, pr)).toFixed(3));
+    }
+  }
+
+  pose(rawP) { const m = this.mapP(rawP); return this.poseOld(m.r, m.back); }
+  post(rawP) { return this.postOld(this.mapP(rawP).r); }
+
+  updateOld(rawP, w, t) {
     this.syncEden(rawP, w);
     this.rawP = rawP;
     const P = this.legacy(rawP);
@@ -349,7 +576,7 @@ export class ActBumi extends Act {
     }
   }
 
-  pose(rawP) {
+  poseOld(rawP, backOverride = null) {
     const portrait = this.ctx.size.w / this.ctx.size.h < 0.9;
     // Taman Eden: bumi sedikit lebih jauh, lalu menukik sampai menembus atmosfer
     const far = V(0, 0, portrait ? 12.5 : 9.0), farLook = V(0, 0.1, 0);
@@ -364,7 +591,7 @@ export class ActBumi extends Act {
     const look1 = V(0, lerp(0.35, -0.85, k), 0);
     const L2 = this.layout2();
     const pos = pos1.lerp(L2.cam, q), look = look1.lerp(L2.look, q);
-    const back = easeInOut(range(2.0, 2.2, rawP)); // zoom out bumi
+    const back = backOverride ?? easeInOut(range(2.0, 2.2, rawP)); // zoom out bumi (Sejarah Manusia)
     const p = near.clone().lerp(pos, back), l = nearLook.clone().lerp(look, back);
     const kr = this.kristusK(rawP);
     if (kr > 0) {
@@ -379,7 +606,7 @@ export class ActBumi extends Act {
     return { pos: p, look: l, fov: 40 };
   }
 
-  post(rawP) {
+  postOld(rawP) {
     const P = this.legacy(rawP);
     const q = range(0.88, 1.24, P);
     const flashIn = 1 - smooth(0.0, 0.08, rawP);

@@ -443,14 +443,14 @@ export class StoryUI {
 
   /* STORY 9–10: label kelompok, label kitab, legend, navigasi tema, daftar referensi */
   buildStory9and10() {
-    const gbox = $('.group-labels', this.layers[11]);
+    const gbox = $('.group-labels', this.layers[12]);
     this.groupLabels = BOOK_GROUPS.map((g) => {
       const el = document.createElement('div');
       el.className = 'gl'; el.textContent = g.name;
       gbox.appendChild(el);
       return el;
     });
-    const L = this.layers[11];
+    const L = this.layers[12];
     const leg = $('.legend ul', L);
     BOOK_GROUPS.forEach((g) => {
       const li = document.createElement('li');
@@ -480,7 +480,7 @@ export class StoryUI {
       .fromTo($('.legend', L), { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.08 }, 0.4)
       .fromTo([this.refList, this.refDetail], { opacity: 0 }, { opacity: 1, duration: 0.06, stagger: 0.03 }, 0.44)
       .set({}, {}, 1);
-    this.tls[11] = tl;
+    this.tls[12] = tl;
 
     // Teofani (dulu Taman Eden): judul + caption tampil di awal, hilang sebelum kamera menukik ke Bumi
     const E = this.layers[9];
@@ -490,6 +490,15 @@ export class StoryUI {
       .to($('.eden-head', E), { opacity: 0, y: -20, filter: 'blur(8px)', duration: 0.08, ease: 'power2.in' }, 0.5)
       .set({}, {}, 1);
     this.tls[9] = te;
+
+    // Sejarah Manusia: judul + caption saat kamera mundur dari Bumi
+    const SM = this.layers[11];
+    const ts = gsap.timeline({ paused: true });
+    ts.fromTo($('.eden-title', SM), { opacity: 0, y: 16, letterSpacing: '0.12em', filter: 'blur(10px)' }, { opacity: 1, y: 0, letterSpacing: '0.02em', filter: 'blur(0px)', duration: 0.12, ease: 'power3.out' }, 0.12)
+      .fromTo($('.eden-cap', SM), { opacity: 0, y: 10, filter: 'blur(6px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.1, ease: 'power2.out' }, 0.2)
+      .to($('.sm-head', SM), { opacity: 0, y: -20, filter: 'blur(8px)', duration: 0.1, ease: 'power2.in' }, 0.86)
+      .set({}, {}, 1);
+    this.tls[11] = ts;
 
     // Manusia: kalimat pembuka → ayat Kejadian 1:27 → referensi; hilang sebelum gambar memudar
     const M = this.layers[10];
@@ -502,14 +511,14 @@ export class StoryUI {
     this.tls[10] = tm;
 
     // KRISTUS: judul + daftar ayat muncul setelah diagram kembali horizontal (salib digerakkan act Bumi)
-    const K = this.layers[12];
+    const K = this.layers[13];
     const tk = gsap.timeline({ paused: true });
     tk.fromTo($('.kr-panel', K), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.04 }, 0.2)
       .fromTo($('.kr-title', K), { opacity: 0, y: 18, filter: 'blur(8px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.08, ease: 'power3.out' }, 0.22)
       .fromTo($('.kr-sub', K), { opacity: 0 }, { opacity: 1, duration: 0.06 }, 0.27)
       .fromTo($('.kr-grid', K), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.08 }, 0.3)
       .set({}, {}, 1);
-    this.tls[12] = tk;
+    this.tls[13] = tk;
   }
 
   bindBookLabels(books, arcs) {
@@ -651,7 +660,7 @@ export class StoryUI {
 
   /* Section KRISTUS: daftar semua ayat yang terhubung, dikelompokkan Kristofani / Inkarnasi */
   fillKristus(th, arcs) {
-    const box = $('.kr-grid', this.layers[12]);
+    const box = $('.kr-grid', this.layers[13]);
     if (!box || box.dataset.filled) return;
     box.dataset.filled = '1';
     const cats = [

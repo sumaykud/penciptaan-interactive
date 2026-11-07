@@ -27,6 +27,8 @@ function smin(a, b, k) {
   return Math.min(a, b) - h * h * k * 0.25;
 }
 
+let POSE = 'cross'; // 'cross' = tangan terentang, 'stand' = berdiri, tangan di samping
+
 function sdHuman(x, y, z) {
   const ax = Math.abs(x); // simetri kiri-kanan
   // kepala & leher
@@ -38,10 +40,18 @@ function sdHuman(x, y, z) {
   torso = smin(torso, ellipsoid(x, y, z, 0, 0.26, 0.004, 0.118, 0.14, 0.078), 0.06);
   torso = smin(torso, ellipsoid(x, y, z, 0, 0.085, 0, 0.135, 0.092, 0.084), 0.06);
   d = smin(d, torso, 0.045);
-  // lengan terentang
-  let arm = capsule(ax, y, z, 0.17, 0.548, 0, 0.45, 0.556, 0, 0.046, 0.036);
-  arm = smin(arm, capsule(ax, y, z, 0.45, 0.556, 0, 0.70, 0.562, 0.004, 0.035, 0.027), 0.025);
-  arm = smin(arm, ellipsoid(ax, y, z, 0.765, 0.562, 0.004, 0.058, 0.032, 0.024), 0.02);
+  let arm;
+  if (POSE === 'stand') {
+    // lengan turun di samping badan
+    arm = capsule(ax, y, z, 0.17, 0.53, 0, 0.205, 0.22, 0.004, 0.044, 0.034);
+    arm = smin(arm, capsule(ax, y, z, 0.205, 0.22, 0.004, 0.225, -0.07, 0.02, 0.033, 0.026), 0.025);
+    arm = smin(arm, ellipsoid(ax, y, z, 0.228, -0.14, 0.02, 0.03, 0.058, 0.024), 0.02);
+  } else {
+    // lengan terentang
+    arm = capsule(ax, y, z, 0.17, 0.548, 0, 0.45, 0.556, 0, 0.046, 0.036);
+    arm = smin(arm, capsule(ax, y, z, 0.45, 0.556, 0, 0.70, 0.562, 0.004, 0.035, 0.027), 0.025);
+    arm = smin(arm, ellipsoid(ax, y, z, 0.765, 0.562, 0.004, 0.058, 0.032, 0.024), 0.02);
+  }
   d = smin(d, arm, 0.04);
   // kaki
   let leg = capsule(ax, y, z, 0.072, 0.04, 0, 0.064, -0.4, 0.01, 0.068, 0.047);
@@ -51,7 +61,8 @@ function sdHuman(x, y, z) {
   return d;
 }
 
-export function buildHumanGeometry(res = 96) {
+export function buildHumanGeometry(res = 96, pose = 'cross') {
+  POSE = pose;
   const mc = new MarchingCubes(res, new THREE.MeshBasicMaterial(), false, false, 160000);
   mc.isolation = 80;
   const f = mc.field;
@@ -64,7 +75,10 @@ export function buildHumanGeometry(res = 96) {
         const x = (i - half) / half;
         let d;
         // bounding box kasar supaya cepat
-        if (Math.abs(z) > 0.2 || y > 0.9 || y < -0.92 || Math.abs(x) > 0.86 || (Math.abs(x) > 0.24 && (y < 0.47 || y > 0.64))) d = 0.2;
+        const out = pose === 'stand'
+          ? Math.abs(x) > 0.3 || y < -0.92 || y > 0.9 || Math.abs(z) > 0.2
+          : Math.abs(z) > 0.2 || y > 0.9 || y < -0.92 || Math.abs(x) > 0.86 || (Math.abs(x) > 0.24 && (y < 0.47 || y > 0.64));
+        if (out) d = 0.2;
         else d = sdHuman(x, y, z);
         f[i + j * res + k * res * res] = 80 - d * 1200;
       }
