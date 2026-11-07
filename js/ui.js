@@ -497,6 +497,8 @@ export class StoryUI {
     ts.fromTo($('.eden-title', SM), { opacity: 0, y: 16, letterSpacing: '0.12em', filter: 'blur(10px)' }, { opacity: 1, y: 0, letterSpacing: '0.02em', filter: 'blur(0px)', duration: 0.12, ease: 'power3.out' }, 0.12)
       .fromTo($('.eden-cap', SM), { opacity: 0, y: 10, filter: 'blur(6px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.1, ease: 'power2.out' }, 0.2)
       .to($('.sm-head', SM), { opacity: 0, y: -20, filter: 'blur(8px)', duration: 0.1, ease: 'power2.in' }, 0.86)
+      .fromTo($('.info-btn', SM), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.04 }, 0.1)
+      .to($('.info-btn', SM), { autoAlpha: 0, duration: 0.04 }, 0.9)
       .set({}, {}, 1);
     this.tls[11] = ts;
 

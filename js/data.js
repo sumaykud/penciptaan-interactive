@@ -173,6 +173,330 @@ export const PERICHORESIS_VERSES = [
    dan baris baru (\n) di dalam `text`.
    --------------------------------------------------------------------- */
 export const EXPLAINERS = {
+  /* Story 12 (Sejarah Manusia) — Penciptaan Manusia dalam IDE Allah (Logoi) */
+  'logoi': {
+    "title": "Penciptaan Manusia dalam IDE Allah (*Logoi*)",
+    "sections": [
+      {
+        "heading": "Penciptaan Manusia dalam IDE Allah (*Logoi*)",
+        "intro": "Secara teologis, sebelum alam semesta dipanggil dari ketiadaan (*creatio ex nihilo*), tidak ada wujud jiwa atau tubuh fisik manusia yang melayang-layang di alam kekal. Yang pre-eksis secara kekal di dalam pikiran dan Diri Sang *Logos* (Kristus) adalah **Logoi Penciptaan**—yaitu cetak biru, pikiran, kehendak, dan rancangan ilahi (*volitional thoughts / thelemata*) bagi seluruh ciptaan, termasuk bagi setiap individu manusia.",
+        "items": [
+          "**Satu *Logos* dan Banyak *Logoi*:** Santo Maksimus Pengaku Iman menegaskan bahwa Sang *Logos* yang tunggal memuat seluruh *logoi* ciptaan secara kekal dan tak terbagi. Di dalam Diri Kristus, rancangan mengenai keberadaan, identitas, dan tujuan akhir setiap manusia yang akan lahir di bumi (dari Adam hingga manusia terakhir) sudah ada secara simultan, sempurna, dan selesai sebelum segala zaman.",
+          "**Potensi ke Aktualisasi:** Sebelum waktu ada, *logoi* individu manusia berada dalam status potensial di dalam kehendak Allah. Ketika individu tersebut dikandung di dalam sejarah, Allah mengaktualisasikan *logos* tersebut dari ketiadaan murni (*ex nihilo*) menjadi wujud aktual yang terdiri dari jiwa dan tubuh secara bersamaan."
+        ]
+      },
+      {
+        "heading": "Mengapa Ini BUKAN \"Takdir Kaku\" (Predestinasi Fatalistik)",
+        "intro": "Jika semua ide manusia sudah ada sejak awal di dalam Allah, apakah itu berarti hidup manusia hanyalah \"skenario film\" atau takdir yang sudah ditentukan tanpa bisa diubah? Para Bapa Gereja secara tegas menjawab **TIDAK**. Santo Maksimus Pengaku Iman menjelaskan pembedaan antara ***Logos* Kodrat** (*Logos of Nature*) dan ***Tropos* Keberadaan** (*Tropos of Existence*):",
+        "items": [
+          {
+            "text": "**1. *Logos* (Cetak Biru Ilahi / Panggilan Utama):**",
+            "items": [
+              "Ini adalah ide Allah tentang siapa diri kita dan potensi kebaikan tertinggi kita (yaitu untuk menyatu dengan Allah / *Theosis*). *Logos* ini tidak pernah berubah dan selalu baik."
+            ]
+          },
+          {
+            "text": "**2. *Tropos* (Pilihan Cara Hidup / Kehendak Bebas Manusia):**",
+            "items": [
+              "Ini adalah bagaimana manusia menggunakan kehendak bebasnya (*autexousion*) di dalam sejarah untuk merespons panggilan Allah tersebut.",
+              "**Bukan Takdir Fatalistik:** Santo Maksimus menegaskan bahwa *logoi* bukanlah bentuk predestinasi fatalistik. Allah tidak memaksakan *logos* itu kepada manusia seperti robot. Sebaliknya, *logos* adalah tawaran dialog kasih (*dia-logos*).",
+              "Manusia diberi kebebasan sejati untuk menerima dan bekerja sama (*sinergi*) dengan rahmat Allah demi mengaktualisasikan *logos*-nya menuju pengilahian (*Theosis*), atau menolak dan berpaling menuju ketidakberadaan/kebinasaan moral."
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Bagaimana Semua Manusia Sudah Ada dalam \"IDE Allah\" (*Logoi* Penciptaan)?",
+        "intro": "Jika jiwa dan tubuh individu baru diwujudkan di dalam waktu saat manusia itu dikandung, lalu dalam arti apa manusia sudah \"ada\" dan \"selesai\" sebelum ada waktu? Jawabannya terletak pada doktrin ***Logoi* Penciptaan** (*Logoi of Creation*) yang dirumuskan oleh Santo Maksimus Pengaku Iman:",
+        "items": [
+          {
+            "text": "**1. Cetak Biru Kekal di dalam Sang *Logos*:**",
+            "items": [
+              "Sebelum ruang dan waktu diciptakan, di dalam Diri Sang *Logos* (Kristus) telah pre-eksis secara kekal *logoi*—yaitu ide, rancangan, tujuan, dan kehendak ilahi bagi seluruh ciptaan, termasuk bagi setiap individu manusia yang akan lahir sepanjang sejarah."
+            ]
+          },
+          {
+            "text": "**2. Perbedaan Antara \"IDE/Rencana Ilahi\" dan \"Wujud Jiwa-Tubuh\":**",
+            "items": [
+              "**IDE Allah (*Logoi*):** Bersifat tak diciptakan (*uncreated*) karena merupakan kehendak dan pikiran Allah sendiri di dalam keekalan. Dalam pikiran Allah, rancangan dan takdir keselamatan setiap manusia sudah sempurna dan \"selesai\".",
+              "**Wujud Jiwa & Tubuh:** Bersifat diciptakan (*created*) dari ketiadaan murni (*creatio ex nihilo*) di dalam waktu.",
+              "Jadi, yang ada sebelum waktu bukanlah jiwa atau tubuh fisik yang melayang-layang, melainkan Kehendak dan Cetak Biru Ilahi (*uncreated acts of divine will*)."
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Alur Penciptaan: Dari Adam hingga Manusia di Segala Zaman",
+        "intro": "Bagaimana proses ini berlangsung dari Adam sampai manusia abad ini?",
+        "items": [
+          {
+            "text": "**Penciptaan Adam (Manusia Pertama):**",
+            "items": [
+              "Adam diciptakan dari tanah dan dihembusi jiwa secara bersamaan (*simultaneous*) di dalam waktu. Adam merupakan akar dan awal dari seluruh kodrat manusia (*common human nature*)."
+            ]
+          },
+          {
+            "text": "**Kelahiran Manusia di Segala Zaman:**",
+            "items": [
+              "Setiap manusia yang lahir setelah Adam tidak diciptakan melalui pra-eksistensi jiwa, melainkan diwujudkan pada momen spesifik di dalam sejarah (melalui proses pembuahan/kelahiran).",
+              "Pada momen inilah, IDE/Kehendak Allah (*logos*) yang kekal mengenai individu tersebut diaktualisasikan di dalam waktu, di mana Allah menciptakan jiwa dan tubuh pribadi tersebut secara bersamaan."
+            ]
+          },
+          {
+            "text": "**Tidak Ada Jeda Waktu di Masing-Masing Individu:**",
+            "items": [
+              "Saat seorang bayi dikandung di rahim ibunya, pada detik itulah jiwa yang berakal budi dan tubuh fisiknya mulai ada secara serentak—memenuhi cetak biru (*logos*) yang telah dirancangkan Allah baginya sejak sebelum dunia dijadikan."
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Penolakan terhadap Pra-Eksistensi Jiwa (Bantahan atas Origenisme)",
+        "intro": "Untuk memahami mengapa penciptaan jiwa dan tubuh bersifat simultan, kita perlu melihat latar belakang perdebatan teologis abad ke-4 hingga ke-7:",
+        "items": [
+          "**Pandangan Origenisme (Filsafat Yunani/Platonis):** Mengajarkan bahwa semua jiwa manusia sudah diciptakan terlebih dahulu di surga dalam sebuah kelompok kekal (*henad*), lalu karena kejatuhan moral, jiwa-jiwa tersebut diutus jatuh ke dalam tubuh fisik di bumi. Dalam pandangan ini, tubuh hanyalah wadah atau penjara sementara bagi jiwa.",
+          "**Koreksi Santo Maksimus dan Santo Gregorius dari Nyssa:** Santo Maksimus dalam *Ambiguum* 7 dan *Ambiguum* 42 secara tegas menolak gagasan ini. Manusia bukanlah jiwa yang \"terperangkap\" dalam tubuh, melainkan kesatuan dwitunggal yang utuh (*composite species*) antara jiwa berakal budi (*noetic soul*) dan tubuh fisik (*bodily nature*).",
+          "**Prinsip Hubungan Relasional (*Relational Co-existence*):** Jiwa dan tubuh memiliki hubungan kodrat yang tidak terpisahkan. Oleh karena itu, jiwa tidak pernah ada sebelum tubuh, dan tubuh tidak pernah ada sebelum jiwa—keduanya dipanggil menuju keberadaan secara bersamaan (*simultaneously*) pada momen awal penciptaan individu tersebut di dalam sejarah."
+        ]
+      },
+      {
+        "heading": "Perbandingan antara Antropologi Patristik (*Logoi* & Penciptaan Simultan) dan Doktrin TULIP Calvinisme",
+        "intro": "**I. Titik Kesamaan (*Common Ground*)** — Meskipun teologi Ortodoks Patristik dan Calvinisme memiliki sistem soteriologi yang berbeda, keduanya membagi beberapa titik kesamaan mendasar terkait doktrin penciptaan dan kedaulatan Allah:",
+        "items": [
+          {
+            "text": "**1. Penolakan terhadap Pra-Eksistensi Jiwa (Bantahan atas Origenisme):**",
+            "items": [
+              "Baik Tradisi Patristik Ortodoks maupun Tradisi Reformasi (Calvinisme) secara tegas menolak doktrin pra-eksistensi jiwa Origenis.",
+              "Kedua tradisi sepakat bahwa jiwa manusia tidak melayang-layang atau ada secara fisik/substansial di surga sebelum kelahiran. Manusia adalah ciptaan kontingen yang jiwa dan tubuhnya diwujudkan di dalam waktu."
+            ]
+          },
+          {
+            "text": "**2. Kedaulatan dan Rencana Kekal Allah Sebelum Waktu:**",
+            "items": [
+              "Kedua tradisi sepakat bahwa sebelum dunia diciptakan, Allah di dalam keekalan-Nya telah memiliki cetak biru, pikiran, dan rencana keselamatan bagi ciptaan.",
+              "Dalam Calvinisme, ini dipahami sebagai penetapan ketetapan kekal (*decrees of God*), sedangkan dalam Patristik Ortodoks, ini dirumuskan sebagai *Logoi* Penciptaan di dalam Sang *Logos*."
+            ]
+          },
+          {
+            "text": "**3. Inisiatif Mutlak Rahmat Allah:**",
+            "items": [
+              "Kedua tradisi menolak paham Pelagianisme (pandangan bahwa manusia dapat menyelamatkan dirinya sendiri tanpa Allah). Keselamatan selalu dimulai dari inisiatif kasih karunia Allah yang terlebih dahulu memanggil manusia."
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "II. Titik Perbedaan Mendasar (*Contrasting Differences*)",
+        "intro": "Meskipun ada kesamaan di atas, pemaknaan Patristik mengenai *Logoi* dan penciptaan manusia **berseberangan secara diametris dengan 5 Poin TULIP Calvinisme** (diputuskan dalam *Canons of Dort* 1618–1619):",
+        "table": {
+          "head": [
+            "Doktrin TULIP Calvinisme",
+            "Antropologi Patristik Ortodoks"
+          ],
+          "rows": [
+            [
+              "**T** – *Total Depravity* (Kerusakan Total)",
+              "*Imago Dei* Terluka, Bebas Merespons"
+            ],
+            [
+              "**U** – *Unconditional Election* (Tanpa Syarat)",
+              "*Logoi* Penciptaan & Sinergi"
+            ],
+            [
+              "**L** – *Limited Atonement* (Penebusan Terbatas)",
+              "Penebusan Kosmis Universal"
+            ],
+            [
+              "**I** – *Irresistible Grace* (Tak Terlawan)",
+              "Rahmat Dialogis & Kehendak Bebas"
+            ],
+            [
+              "**P** – *Perseverance of Saints* (Pasti Selamat)",
+              "Kemungkinan Murtad / Perjuangan (*Nepsis*)"
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "Kupas Ajaran TULIP yang Tidak Alkitabiah",
+        "items": [
+          {
+            "text": "**U – *Unconditional Election* (Pemilihan Tanpa Syarat) vs. *Logoi* & Sinergi**",
+            "items": [
+              "**Calvinisme (TULIP):** Mengajarkan Predestinasi Ganda (*Double Predestination*). Sebelum dunia dijadikan, Allah menulis dua daftar kaku: siapa yang dipilih selamat (*elect*) dan siapa yang ditentukan binasa (*reprobate*), tanpa memedulikan kehendak atau respons manusia.",
+              "**Patristik Ortodoks:** Santo Maksimus Pengaku Iman menjelaskan bahwa *Logoi* bukanlah takdir fatalistik atau penetapan mekanis. *Logoi* adalah cetak biru panggilan ilahi (*vocation*) bagi potensi kebaikan tertinggi manusia. Keberhasilan rancangan ini membutuhkan **Sinergi** (kerjasama antara rahmat Allah 100% dan kehendak bebas manusia 100%)."
+            ]
+          },
+          {
+            "text": "**T – *Total Depravity* (Kerusakan Total) vs. *Imago Dei* yang Terluka**",
+            "items": [
+              "**Calvinisme (TULIP):** Menyatakan bahwa akibat kejatuhan Adam, kehendak bebas manusia musnah/hancur total (*Total Depravity*) sehingga manusia sama sekali tidak mampu memilih Allah atau merespons kebaikan.",
+              "**Patristik Ortodoks:** Bapa-Bapa Gereja (seperti St. Basil Agung, St. Gregorius dari Nyssa, dan St. Markus sang Rahib) menegaskan bahwa akibat kejatuhan Adam, manusia mewarisi kerusakan dan kematian fisik (*ancestral mortality and corruption*). Namun, Gambar Allah (*Imago Dei*) dan kehendak bebas (*autexousion*) manusia tidak hilang, melainkan hanya terluka/lemah. Manusia tetap memiliki daya pilih sukarela untuk menerima atau menolak rahmat Allah."
+            ]
+          },
+          {
+            "text": "**I – *Irresistible Grace* (Rahmat Tak Terlawan) vs. Kebebasan yang Dihormati**",
+            "items": [
+              "**Calvinisme (TULIP):** Mengajarkan Monergisme—ketika Allah memilih seseorang, rahmat-Nya bekerja secara sepihak dan tidak dapat ditolak (*irresistible*). Manusia tidak memiliki pilihan selain diselamatkan.",
+              "**Patristik Ortodoks:** Allah tidak pernah mendobrak atau menghapus kehendak bebas manusia seperti robot. Sebagaimana ditunjukkan dalam peristiwa Anunsiasi Maria, Allah meminta persetujuan manusia (*fiat mihi*). Rahmat Allah bersifat ajakan kasih yang dapat ditolak oleh kebebasan manusia."
+            ]
+          },
+          {
+            "text": "**L – *Limited Atonement* & P – *Perseverance of the Saints***",
+            "items": [
+              "**Calvinisme (TULIP):** Mengajarkan bahwa pengorbanan Kristus di kayu salib hanya disediakan secara khusus bagi orang-orang pilihan (*Limited Atonement*), dan mereka yang telah dipilih tidak akan pernah bisa jatuh dari keselamatan (*Perseverance of the Saints*).",
+              "**Patristik Ortodoks:** Menolak kedua poin ini. Kristus mati dan bangkit untuk memulihkan seluruh kosmos dan menawarkan keselamatan kepada seluruh umat manusia tanpa terkecuali (1 Timotius 2:4, Yohanes 3:16). Namun, karena kehendak bebas tetap ada, seorang beriman bisa membuang kasih karunia dan murtad jika ia tidak menjaga imannya melalui pertobatan dan kewaspadaan rohani (*Nepsis*)."
+            ]
+          }
+        ],
+        "outro": "Meskipun Patristik Ortodoks dan Calvinisme sama-sama menolak Origenisme (pra-eksistensi jiwa) dan sama-sama mengakui kedaulatan rencana Allah sebelum waktu ada, **keduanya bertolak belakang di dalam melihat bagaimana rencana itu bekerja**. Calvinisme melihat rencana Allah sebagai **predestinasi sepihak dan kaku (Monergisme)**, sedangkan Tradisi Patristik melihat *Logoi* Allah sebagai **panggilan relasional yang mengundang kehendak bebas manusia dalam kerangka Sinergi kasih**."
+      },
+      {
+        "heading": "Ringkasan Pemetaan Teologis",
+        "table": {
+          "head": [
+            "Dimensi",
+            "Sisi Allah (Di Dalam IDE / Kekekalan)",
+            "Sisi Manusia (Di Dalam Waktu & Sejarah)"
+          ],
+          "rows": [
+            [
+              "**Status Keberadaan**",
+              "**IYA:** Seluruh individu manusia sudah ada secara **simultan** dalam pikiran & kehendak kekal Allah (*Logoi*).",
+              "Manusia dipanggil dari ketiadaan murni (*ex nihilo*) menjadi wujud jiwa dan tubuh secara serentak (*simultaneous*) pada momen kelahirannya di sejarah."
+            ],
+            [
+              "**Sifat Rancangan**",
+              "Rancangan kebaikan, tujuan mulia, dan panggilan pengilahian (*Theosis*) bagi setiap pribadi.",
+              "**Bukan Takdir Kaku:** Memerlukan keputusan kehendak bebas (*autexousion*) dan pilihan hidup (*tropos*) manusia untuk merespons Allah."
+            ],
+            [
+              "**Hasil Akhir**",
+              "Ditawarkan secara universal kepada semua orang tanpa terkecuali (*Antecedent Will*).",
+              "Ditetapkan melalui dialog kasih dan kerjasama (*sinergi*) antara rahmat Allah dan ketaatan sukarela manusia."
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "Kesimpulan",
+        "intro": "**Seluruh manusia diciptakan bersamaan di dalam IDE ALLAH (*Logoi*).** Namun, ide tersebut bukanlah takdir mekanis yang membelenggu. Anda ada di dunia ini karena Allah telah mengenal dan mencintai cetak biru (*logos*) diri Anda sejak kekekalan, dan di dalam waktu, Ia memberikan Anda anugerah kehendak bebas untuk mengukir perjalanan kasih bersama-Nya menuju keabadian lewat KESALEHAN (**Eusebeia**) Anda."
+      }
+    ],
+    "versesTitle": "Ayat Referensi",
+    "verseGroups": [
+      {
+        "title": "Ayat-Ayat *Logos* Kodrat: Cetak Biru & Panggilan Ilahi bagi Manusia",
+        "intro": "*Logos* merujuk pada ide, maksud, dan potensi kebaikan tertinggi yang dirancangkan Allah bagi manusia sejak sebelum dunia dijadikan (yaitu untuk mencapai *Theosis* / penyatuan dengan Allah).",
+        "verses": [
+          {
+            "ref": "1 Timotius 2:4",
+            "note": "Panggilan Universal Keselamatan",
+            "text": "\"Dia menghendaki supaya **semua orang diselamatkan** dan memperoleh pengetahuan akan kebenaran.\"",
+            "commentLabel": "Analisis:",
+            "comment": "*Logos* atau kehendak dasar Allah (*antecedent will*) bagi seluruh manusia adalah keselamatan universal. Allah tidak pernah merancangkan penciptaan manusia untuk ditentukan masuk kebinasaan (*reprobation*) secara sepihak."
+          },
+          {
+            "ref": "2 Petrus 1:4",
+            "note": "Tujuan Utama Cetak Biru Manusia — *Theosis*",
+            "text": "\"...supaya olehnya kamu boleh **mengambil bagian dalam kodrat ilahi** [*partakers of the divine nature*], dan luput dari kepenuhan hawa nafsu duniawi.\"",
+            "commentLabel": "Analisis:",
+            "comment": "Inilah *logos* atau target penciptaan manusia: bukan sekadar menjadi makhluk moral yang baik, melainkan berpartisipasi dalam Energi Ilahi Allah (*Theosis*)."
+          },
+          {
+            "ref": "Efesus 1:4",
+            "note": "Rancangan Kekal Sebelum Waktu",
+            "text": "\"Sebab di dalam Dia Allah telah memilih kita **sebelum dunia dijadikan**, supaya kita kudus dan tak bercacat di hadapan-Nya.\"",
+            "commentLabel": "Analisis:",
+            "comment": "Sebelum ruang dan waktu diwujudkan, rancangan dan cetak biru (*logoi*) keberadaan manusia di dalam Kristus sudah sempurna di dalam kehendak Allah."
+          }
+        ]
+      },
+      {
+        "title": "Ayat-Ayat *Tropos* & Kehendak Bebas (*Autexousion*): Manusia Bukan Robot",
+        "intro": "*Tropos* dan *Autexousion* adalah kebebasan berdaulat yang diberikan Allah kepada manusia untuk memilih merespons panggilan ilahi tersebut atau menolaknya.",
+        "verses": [
+          {
+            "ref": "Sirakh 15:14–17",
+            "note": "Teks Deuterokanonika",
+            "text": "\"Pada awal mulanya Allah menjadikan manusia dan menyerahkannya ke tangan **kehendaknya sendiri** (*autexousion*). Jika engkau mau, engkau dapat menepati hukum-Nya... Di hadapan manusia dihadapkan kehidupan dan kematian, apa yang disukainya akan diberikan kepadanya.\"",
+            "commentLabel": "Analisis Patristik:",
+            "comment": "Para Bapa Gereja (seperti Faustus dari Riez) mengutip teks ini untuk menegaskan bahwa Allah sengaja menanamkan benih kehendak bebas (*free will*) agar ketaatan manusia bernilai kasih sejati, bukan paksaan."
+          },
+          {
+            "ref": "Wahyu 3:20",
+            "note": "Kristus Mengetuk, Manusia Membuka",
+            "text": "\"Lihat, Aku berdiri di muka pintu dan **mengetok**; jikalau ada orang yang mendengar suara-Ku dan **membukakan pintu**, Aku akan masuk mendapatkannya...\"",
+            "commentLabel": "Analisis:",
+            "comment": "Kristus tidak mendobrak pintu hati manusia secara paksa (*irresistible grace*). Pintu hati manusia hanya memiliki gagang dari dalam; manusia harus menggerakkan kehendaknya (*tropos*) secara sukarela untuk membukanya."
+          },
+          {
+            "ref": "Matius 23:37",
+            "note": "Kehendak Bebas yang Menolak Rahmat",
+            "text": "\"Yerusalem, Yerusalem... berkali-kali Aku **rindu mengumpulkan anak-anakmu**... tetapi **kamu tidak mau**.\"",
+            "commentLabel": "Analisis:",
+            "comment": "Ayat ini secara telak membantah predestinasi fatalistik. Kehendak Allah adalah mengumpulkan dan menyelamatkan, namun manusia menggunakan kehendak bebasnya (*autexousion*) untuk berkata \"tidak mau\"."
+          },
+          {
+            "ref": "Ulangan 30:19",
+            "note": "Pilihan Eksistensial",
+            "text": "\"...Aku menghadapkan kepadamu kehidupan dan kematian, berkat dan kutuk. **Pilihlah kehidupan**, supaya engkau hidup, baik engkau maupun keturunanmu.\""
+          }
+        ]
+      },
+      {
+        "title": "Ayat-Ayat Sinergi: Kerjasama Rahmat Allah & Kehendak Manusia",
+        "intro": "Keselamatan adalah perpaduan 100% Rahmat Allah (sumber daya dan pengampunan) dan 100% Kehendak Manusia (respons dan usaha ketaatan).",
+        "verses": [
+          {
+            "ref": "Filipi 2:12–13",
+            "note": "Teks Jangkar Sinergi",
+            "text": "\"...tetaplah **kerjakan keselamatanmu** dengan takut dan gentar [*usaha manusia*], karena **Allahlah yang mengerjakan di dalam kamu** baik kemauan maupun pekerjaan menurut kerelaan-Nya [*rahmat Allah*].\"",
+            "commentLabel": "Analisis Patristik:",
+            "comment": "Rasul Paulus tidak membenturkan usaha manusia dengan rahmat Allah. Kehendak Allah memberi Energi (*energōn*) dan dorongan, tetapi manusia wajib mengaktualisasikan (*katergazesthe*) rahmat tersebut di dalam perjuangan hidup sehari-hari."
+          },
+          {
+            "ref": "1 Korintus 3:9",
+            "note": "Manusia sebagai Kawan Kerja Allah",
+            "text": "\"Karena kami adalah **kawan kerja Allah** [*synergoi Theou*]; kamu adalah ladang Allah, bangunan Allah.\"",
+            "commentLabel": "Analisis:",
+            "comment": "Kata Yunani *Synergoi* secara harfiah berarti \"rekan kerja bersama\" atau Sinergi."
+          },
+          {
+            "ref": "Yakobus 2:22, 26",
+            "note": "Iman dan Perbuatan Berpadu",
+            "text": "\"Kamu lihat, bahwa **iman bekerja sama dengan perbuatan-perbuatan** dan oleh perbuatan-perbuatan itu iman menjadi sempurna... Sebab seperti tubuh tanpa roh adalah mati, demikian pulalah **iman tanpa perbuatan-perbuatan adalah mati**.\""
+          },
+          {
+            "ref": "Yohanes 15:5",
+            "note": "Kebergantungan Mutlak pada Rahmat",
+            "text": "\"Akulah pokok anggur dan kamulah ranting-rantingnya... sebab **di luar Aku kamu tidak dapat berbuat apa-apa**.\"",
+            "commentLabel": "Analisis:",
+            "comment": "Sinergi menolak Pelagianisme. Manusia tidak bisa berbuah tanpa Pokok Anggur (Kristus), tetapi ranting harus memilih untuk tetap bersatu sukarela di dalam Pokok Anggur tersebut."
+          }
+        ]
+      },
+      {
+        "title": "Ayat-Ayat Penyelarasan Kehendak (*Dyothelitism* & Teladan Kristus)",
+        "intro": "Bagaimana manusia melatih *tropos*-nya agar selaras kembali dengan *logos* penciptaan? Melalui penyelarasan kehendak seperti yang diteladani oleh Kristus di Getsemani.",
+        "verses": [
+          {
+            "ref": "Matius 26:39",
+            "note": "Puncak Penyelarasan Kehendak",
+            "text": "\"Ya Bapa-Ku... jikalau sekiranya mungkin, biarlah cawan ini lalu dari pada-Ku, tetapi **janganlah seperti yang Kukehendaki, melainkan seperti yang Engkau kehendaki**.\"",
+            "commentLabel": "Analisis Kristologi (Konsili Konstantinopel III):",
+            "comment": "Kristus memiliki dua kehendak (*Dyothelitism*): Kehendak Ilahi dan Kehendak Manusia. Di Getsemani, Kehendak Manusia Yesus secara sukarela menundukkan diri selaras dengan Kehendak Ilahi untuk menyembuhkan ketidaktaatan Adam pertama."
+          },
+          {
+            "ref": "2 Korintus 10:5",
+            "note": "Menawan Pikiran & Kehendak",
+            "text": "\"Kami mematahkan setiap siasat orang... Kami **menawan segala pikiran** [*logismoi*] dan menaklukkannya kepada Kristus.\""
+          }
+        ]
+      }
+    ]
+  },
+
   /* Story 5 (Luapan Kasih) — Excess of Love */
   'cahaya-berkumpul': {
     "title": "Excess of Love",
