@@ -49,7 +49,7 @@ const ATM_VS = /* glsl */ `
 varying vec3 vPw;
 void main(){ vec4 wp = modelMatrix * vec4(position, 1.0); vPw = wp.xyz; gl_Position = projectionMatrix * viewMatrix * wp; }`;
 const ATM_FS = /* glsl */ `
-uniform vec3 uCenter, uSun; uniform float uR, uShell, uOpacity;
+uniform vec3 uCenter, uSun; uniform float uR, uShell, uOpacity, uGold;
 varying vec3 vPw;
 void main(){
   vec3 ro = cameraPosition; vec3 rd = normalize(vPw - cameraPosition);
@@ -62,7 +62,8 @@ void main(){
   vec3 side = normalize(pc - uCenter);
   float sun = smoothstep(-0.35, 0.65, dot(side, normalize(uSun)));
   vec3 col = mix(vec3(0.25, 0.5, 1.0), vec3(0.6, 0.82, 1.0), sun);
-  gl_FragColor = vec4(col * g * (0.06 + 0.7 * sun) * uOpacity, 1.0);
+  col = mix(col, vec3(1.0, 0.8, 0.4), uGold);
+  gl_FragColor = vec4(col * g * (0.06 + 0.7 * sun + 0.6 * uGold) * uOpacity, 1.0);
 }`;
 
 const R_EARTH = 2.0;
@@ -109,7 +110,7 @@ export class ActBumi extends Act {
     this.earth = new THREE.Mesh(new THREE.SphereGeometry(R_EARTH, 128, 96), this.earthMat);
     this.earthTilt.add(this.earth);
     this.atmMat = new THREE.ShaderMaterial({
-      uniforms: { uCenter: { value: new THREE.Vector3() }, uSun: { value: this.sun }, uR: { value: R_EARTH }, uShell: { value: R_EARTH * 1.16 }, uOpacity: { value: 1 } },
+      uniforms: { uCenter: { value: new THREE.Vector3() }, uSun: { value: this.sun }, uR: { value: R_EARTH }, uShell: { value: R_EARTH * 1.16 }, uOpacity: { value: 1 }, uGold: { value: 0 } },
       vertexShader: ATM_VS, fragmentShader: ATM_FS, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.BackSide,
     });
     this.atm = new THREE.Mesh(new THREE.SphereGeometry(R_EARTH * 1.16, 96, 64), this.atmMat);
@@ -230,7 +231,7 @@ export class ActBumi extends Act {
     const cardsBox = L.querySelector('.sm-cards'), ruler = L.querySelector('.sm-ruler');
     const cards = SEJARAH_CARDS.map((c) => {
       const el = document.createElement('div');
-      el.className = 'sm-card';
+      el.className = 'sm-card' + (c.mark === 'cross' ? ' sm-card-cross' : '');
       if (c.img) { const im = new Image(); im.src = c.img; im.alt = c.title; im.loading = 'lazy'; el.appendChild(im); }
       else el.innerHTML = '<div class="ph"><b></b><span></span></div>';
       if (!c.img) { el.querySelector('b').textContent = c.ref; el.querySelector('span').textContent = c.title; }
@@ -246,6 +247,9 @@ export class ActBumi extends Act {
       if (i < n - 1) for (let k = 1; k < 6; k++) html += `<i style="left:${(x0 + (k / 6) * (100 / (n - 1))).toFixed(3)}%"></i>`;
     }
     // Alpha & Omega di kedua ujung penggaris (Why 22:13 — "Akulah Alfa dan Omega, Yang Pertama dan Yang Terkemudian")
+    // Salib emas penanda zaman di penggaris (kartu Penyaliban)
+    const ci = SEJARAH_CARDS.findIndex((c) => c.mark === 'cross');
+    if (ci >= 0) html += `<span class="sm-x" style="left:${((ci / (n - 1)) * 100).toFixed(3)}%" title="Salib — penanda zaman"><svg viewBox="0 0 20 30" aria-hidden="true"><path d="M8.4 0h3.2v8.4H20v3.2h-8.4V30H8.4V11.6H0V8.4h8.4z"/></svg></span>`;
     ruler.innerHTML = html + '<b></b><span class="sm-ao a" title="Alfa">Α</span><span class="sm-ao o" title="Omega">Ω</span>';
     this.sj = {
       g, mat, pre, glowMesh, flow, seeds, cards, L, marker: ruler.querySelector('b'),
@@ -282,7 +286,17 @@ export class ActBumi extends Act {
       root.querySelector(titleSel).textContent = c.title;
     };
     S.preview = pv;
-    S.showPreview = (i) => { fill(pv, i, 'b', 'span'); pv.classList.add('on'); };
+    const gold = document.createElement('div');
+    gold.className = 'sm-gold';
+    S.L.insertBefore(gold, S.L.firstChild);
+    S.goldEl = gold;
+    S.goldFrom = SEJARAH_CARDS.findIndex((c) => c.mark === 'cross');
+    S.goldTo = SEJARAH_CARDS.findIndex((c) => c.mark === 'gold-end');
+    S.showPreview = (i) => {
+      fill(pv, i, 'b', 'span');
+      pv.classList.toggle('gold', S.goldFrom >= 0 && i >= S.goldFrom && i <= S.goldTo);
+      pv.classList.add('on');
+    };
     S.hidePreview = () => { pv.classList.remove('on'); S.pinned = -1; S.cards.forEach((c) => c.classList.remove('pin')); };
     const openFull = (i) => {
       fill(full, i, '.r', '.t');
@@ -381,6 +395,7 @@ export class ActBumi extends Act {
     S.tl.style.setProperty('--tl-left', portrait ? '0' : (38 * (1 - wide)).toFixed(2) + '%');
     S.tl.style.visibility = tv > 0.01 ? 'visible' : 'hidden';
     if (tv <= 0.01 && S.preview?.classList.contains('on')) S.hidePreview();
+    let gk = 0;
     if (tv > 0.01) {
       const n = S.cards.length;
       const act = range(0.48, 0.84, ss) * (n - 1); // kartu terakhir sempat diam sebelum timeline memudar
@@ -409,10 +424,26 @@ export class ActBumi extends Act {
         S.title.textContent = SEJARAH_CARDS[k].title;
       }
       S.marker.style.left = `${((act / (n - 1)) * 100).toFixed(3)}%`;
+      if (S.goldFrom >= 0) gk = smooth(S.goldFrom - 0.5, S.goldFrom, act) * (1 - smooth(S.goldTo + 0.2, S.goldTo + 0.9, act));
+      // kartu besar mengikuti kartu aktif selama masa keemasan (kecuali sedang di-hover / dikunci)
+      if (gk > 0.5 && S.pinned < 0 && !S.preview.matches(':hover')) {
+        const k2 = Math.min(n - 1, Math.round(act));
+        if (S.autoGold !== k2) { S.autoGold = k2; S.showPreview(k2); }
+      } else if (S.autoGold != null && gk <= 0.5) { S.autoGold = null; if (S.pinned < 0) S.preview.classList.remove('on'); }
       // Alfa menyala di awal timeline, Omega makin terang saat mendekati akhir
       const pr = act / (n - 1);
       S.alpha.style.setProperty('--k', (1 - range(0, 0.3, pr) * 0.7).toFixed(3));
       S.omega.style.setProperty('--k', (0.3 + 0.7 * range(0.6, 1, pr)).toFixed(3));
+    }
+    const gw = gk * tv;
+    this.atmMat.uniforms.uGold.value = gw;
+    if (S.goldEl) {
+      S.goldEl.style.opacity = gw.toFixed(3);
+      if (gw > 0.002) {
+        const p = this.earthGroup.position.clone().project(this.ctx.camera);
+        S.goldEl.style.setProperty('--gx', `${((p.x * 0.5 + 0.5) * 100).toFixed(1)}%`);
+        S.goldEl.style.setProperty('--gy', `${((-p.y * 0.5 + 0.5) * 100).toFixed(1)}%`);
+      }
     }
   }
 
