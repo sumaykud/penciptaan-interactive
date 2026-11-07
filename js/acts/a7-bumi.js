@@ -256,6 +256,7 @@ export class ActBumi extends Act {
       tl: L.querySelector('.sm-tl'), logoi: L.querySelector('.sm-logoi'),
       alpha: ruler.querySelector('.sm-ao.a'), omega: ruler.querySelector('.sm-ao.o'), cardsBox, rulerEl: ruler,
       ref: L.querySelector('.sm-tl-ref'), title: L.querySelector('.sm-tl-title'), last: -1, pinned: -1,
+      capEl: L.querySelector('.sm-cap-txt'), capDefault: L.querySelector('.sm-cap-txt')?.textContent || '', capNow: null,
     };
     this.bindSejarahViewer();
   }
@@ -420,6 +421,16 @@ export class ActBumi extends Act {
       if (k !== S.last) {
         S.last = k;
         S.ref.textContent = SEJARAH_CARDS[k].ref;
+        // caption atas berganti bila kartu punya caption khusus (mis. Hagar), lalu kembali semula
+        // caption bertahan: dipakai caption terakhir yang ditetapkan pada kartu ini atau sebelumnya
+        let cap = S.capDefault;
+        for (let j = 0; j <= k; j++) if (SEJARAH_CARDS[j].cap) cap = SEJARAH_CARDS[j].cap;
+        if (S.capEl && cap !== S.capNow) {
+          S.capNow = cap;
+          S.capEl.classList.add('swap');
+          clearTimeout(S.capT);
+          S.capT = setTimeout(() => { S.capEl.textContent = cap; S.capEl.classList.remove('swap'); }, 280);
+        }
         S.ref.classList.toggle('long', SEJARAH_CARDS[k].ref.length > 34);
         S.title.textContent = SEJARAH_CARDS[k].title;
       }
