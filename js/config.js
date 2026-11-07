@@ -12,7 +12,7 @@ export const STORIES = [
   { id: 'bumi', label: 'Taman Eden', vh: 300 },
   { id: 'manusia', label: 'Manusia', vh: 380 },
   { id: 'keterhubungan', label: 'Keterhubungan Firman', vh: 600 },
-  { id: 'kristus', label: 'Kristus', vh: 380 },
+  { id: 'kristus', label: 'Kristus', vh: 760 },
 ];
 
 export const CROSSFADE = 0.06; // lebar crossfade antar act (dalam satuan track)

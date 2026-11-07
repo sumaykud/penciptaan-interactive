@@ -349,6 +349,7 @@ html.modal-open { overflow: hidden; }
   background: #1b1612; border-radius: 4px; color: #f6efe2; font-family: var(--serif);
 }
 .mf-node { font-size: clamp(15px, 1.35vw, 18px); line-height: 1.2; }
+.modal-flow strong, .modal-flow em { color: #fff6e6; }
 .mf-arrow { display: inline-flex; flex-direction: column; align-items: center; min-width: 96px; padding: 0 4px; font-size: 11px; line-height: 1.25; color: #e9d7b4; }
 .mf-line { position: relative; align-self: stretch; height: 1.5px; margin: 4px 0; background: currentColor; }
 .mf-line::after { content: ""; position: absolute; right: -1px; top: 50%; width: 7px; height: 7px; border-top: 1.5px solid currentColor; border-right: 1.5px solid currentColor; transform: translateY(-50%) rotate(45deg); }

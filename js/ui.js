@@ -361,9 +361,9 @@ export class StoryUI {
       (d.sections || []).forEach((s) => {
         const table = s.table ? `<div class="modal-table-wrap"><table class="modal-table"><thead><tr>${s.table.head.map((h) => `<th>${f(h)}</th>`).join('')}</tr></thead><tbody>${
           s.table.rows.map((r) => `<tr>${r.map((c) => `<td>${f(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>` : '';
-        html += `<section class="modal-sec"><h3 class="modal-h">${f(s.heading)}</h3>${s.flow ? flow(s.flow) : ''}${s.intro ? `<p class="modal-intro">${f(s.intro)}</p>` : ''}${
+        html += `<section class="modal-sec"><h3 class="modal-h">${f(s.heading)}</h3>${s.flow && !s.flowAfter ? flow(s.flow) : ''}${s.intro ? `<p class="modal-intro">${f(s.intro)}</p>` : ''}${
           s.quote ? `<blockquote class="modal-quote">${f(s.quote)}</blockquote>` : ''}${s.items ? list(s.items) : ''}${
-          s.outro ? `<p class="modal-intro">${f(s.outro)}</p>` : ''}${s.verses ? `<ol class="modal-verses">${s.verses.map(verse).join('')}</ol>` : ''}${table}</section>`;
+          s.outro ? `<p class="modal-intro">${f(s.outro)}</p>` : ''}${s.verses ? `<ol class="modal-verses">${s.verses.map(verse).join('')}</ol>` : ''}${table}${s.flow && s.flowAfter ? flow(s.flow) : ''}</section>`;
       });
       const groups = d.verseGroups || (d.verses ? [{ verses: d.verses }] : []);
       if (groups.length) {

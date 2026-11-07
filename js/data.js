@@ -699,17 +699,93 @@ export const EXPLAINERS = {
         ],
       },
       {
+        heading: 'Konsep "Dua Kuasa di Surga" (*Two Powers in Heaven*)',
+        intro:
+          'Sebelum era teologi Rabbinik abad ke-2/3 Masehi memperketat batas-batas polemik anti-Kristen, pemikiran Yahudi kuno ' +
+          'abad pertama mengenal konsep teologis yang disebut **"Dua Kuasa di Surga"** (*Two Powers in Heaven*):',
+        items: [
+          '**YHWH yang Tak Terlihat** (*Invisible YHWH*): Bapa di surga yang tidak pernah dilihat oleh mata manusia.',
+          '**YHWH yang Terlihat / Manifestasi** (*Visible YHWH / Memra / Malakh YHWH*): Firman atau Utusan Ilahi yang turun ' +
+            'menampakkan diri, berbicara kepada nabi-nabi, dan berjalan bersama manusia di bumi.',
+        ],
+      },
+      {
         heading: 'Hubungan *Memra* (Aramaik) dengan *Logos* (Yunani) dalam Perjanjian Baru',
+        // rumusan panah: Ibrani → Aramaik → Yunani (di akhir bagian)
+        flow: ['Ibrani: **Dabar/’Amar**', ['', ''], 'Aramaik: **Memra**', ['', ''], 'Yunani: **Logos**'],
+        flowAfter: true,
         intro:
           'Ketika Rasul Yohanes menulis Injilnya dalam bahasa Yunani (Yohanes 1:1–14), ia menggunakan kata **Logos** (Ὁ Λόγος) ' +
           'untuk menjelaskan identitas Kristus.',
         items: [
-          '**Latar Belakang Pemikiran Yohanes:** Sebagai seorang Yahudi abad pertama yang akrab dengan pembacaan Targum di sinagoge, ' +
-            'Rasul Yohanes mengambil konsep *Memra* (Firman TUHAN yang menciptakan dan menampakkan diri di Perjanjian Lama) dan ' +
-            'menyatakannya dalam bahasa Yunani sebagai *Logos*.',
+          '**Latar Belakang Pemikiran Yohanes:** Ketika Rasul Yohanes—seorang Yahudi abad pertama yang dibesarkan dalam tradisi ' +
+            'pembacaan Targum di sinagoge—menulis Injilnya dalam bahasa Yunani, ia mengambil konsep *Memra* ini dan menerjemahkannya ' +
+            'ke dalam istilah **Logos** (Ὁ Λόγος) (Yohanes 1:1–14).',
           '**Kebenaran Inkarnasi:** Yohanes mengabarkan bahwa *Memra* / *Logos* yang kekal ini bukan lagi sekadar suara penampakan ' +
             'sementara, melainkan telah **mengambil rupa daging manusia sejati (*Inkarnasi*) dalam Diri Yesus Kristus** (Yohanes 1:14).',
         ],
+      },
+      {
+        heading: 'Misteri Inkarnasi',
+        items: [
+          'Dalam Perjanjian Lama/Targum, *Memra* menampakkan diri secara **sementara dan sporadis** (Teofani / Kristofani Perjanjian Lama).',
+          {
+            text:
+              'Dalam Perjanjian Baru (Yohanes 1:14), Rasul Yohanes memproklamasikan kebenaran radikal: **Sang *Memra* / *Logos* itu ' +
+              'sendiri telah mengambil rupa daging manusia sejati** (*Sarx Egeneto* / *Inkarnasi*) dalam Diri Yesus Kristus.',
+            quote:
+              '"Pada mulanya adalah Firman [*Memra* / *Logos*]; Firman itu bersama-sama dengan Allah dan Firman itu adalah Allah ... ' +
+              '**Firman itu telah menjadi manusia** [daging], dan diam di antara kita..." (Yohanes 1:1, 14)',
+          },
+        ],
+      },
+      {
+        heading: 'Implikasi Kristologis dalam Teologi Patristik Ortodoks',
+        intro:
+          'Bapa-Bapa Gereja (seperti **Santo Yustinus Martir**, **Santo Athanasius Agung**, **Santo Irenaeus dari Lyon**, dan ' +
+          '**Santo Yohanes dari Damaskus**) memberikan penegasan dogmatis atas teologi *Memra* / *Logos* ini:',
+        items: [
+          '**1. Sehakikat (*Homoousios*):** Sang *Memra* / *Logos* bukanlah makhluk ciptaan, melainkan Pribadi Kedua dari ' +
+            'Tritunggal Mahakudus yang sehakikat dengan Bapa (*Homoousios*), diperanakkan secara kekal sebelum segala zaman.',
+          '**2. Kausa Penciptaan dan *Logoi*:** Segala sesuatu diciptakan oleh dan melalui Sang *Memra* / *Logos*. Setiap ciptaan ' +
+            'memiliki benih prinsip ilahi (*logoi*) yang bersumber pada Sang *Logos* utama.',
+          '**3. Penyatuan Tanpa Bercampur (*Hypostatic Union*):** Di dalam Yesus Kristus, Sang *Memra* (Kodrat Ilahi) dan Kodrat ' +
+            'Manusia bersatu dalam satu Pribadi (*Hypostasis*) tanpa percampuran, tanpa perubahan, tanpa pembagian, dan tanpa perpisahan.',
+        ],
+      },
+      {
+        heading: 'Tabel Ringkasan Komparatif *Memra*',
+        table: {
+          head: ['Dimensi', 'Targum Aramaik (*Memra*)', 'Injil Yunani (*Logos*)', 'Teologi Kristologi Ortodoks'],
+          rows: [
+            [
+              '**Definisi**',
+              '*Memra d’YHVH* (Firman TUHAN sebagai agen tindakan Allah).',
+              '*Ho Logos tou Theou* (Sang Firman yang bersama Allah dan adalah Allah).',
+              'Pribadi Kedua Tritunggal Mahakudus yang sehakikat dengan Bapa (*Homoousios*).',
+            ],
+            [
+              '**Peran Utama**',
+              'Agen Penciptaan, Penyataan Perjanjian, dan Teofani.',
+              'Pencipta Semesta dan Terang yang masuk ke dalam dunia.',
+              'Sang *Logos* yang menopang *logoi* seluruh kosmos.',
+            ],
+            [
+              '**Wujud Manifestasi**',
+              'Suara, Penglihatan, dan Penampakan Malaikat TUHAN (*Malakh YHWH*).',
+              'Mengambil rupa daging manusia sejati (*Sarx Egeneto*).',
+              '**Inkarnasi Yesus Kristus:** 100% Allah Sejati & 100% Manusia Sejati.',
+            ],
+          ],
+        },
+      },
+      {
+        heading: 'Kesimpulan',
+        intro:
+          'Teologi **Memra** adalah jejak peninggalan iman Perjanjian Lama yang membuktikan bahwa Allah sejak awal berfirman, ' +
+          'menampakkan diri, dan berhubungan dengan manusia melalui **Firman-Nya yang Kekal**. Di dalam Yesus Kristus, *Memra* yang ' +
+          'dahsyat itu tidak lagi sekadar menjadi suara di semak duri atau penglihatan para nabi, melainkan telah hadir memeluk ' +
+          'kemanusiaan kita agar kita dapat dipulihkan dan bersatu dengan Allah (*Theosis*).',
       },
     ],
   },
